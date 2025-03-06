@@ -75,7 +75,7 @@
     <!--FIM NAV-->
 
     <!--INICIO CONTEUDO-->
-    <section>
+    <section class="container">
         <!--CADASTRAR PROFESSORES-->
         <div id="cadastrarProfessor">
             <form th:action="@{/criarProfessor}" method="post" enctype="multipart/form-data">
@@ -251,13 +251,11 @@
     <!--INICIO RODAPÉ -->
     <footer>
         <div class="div-footer-logo">
-
             <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-footer-logo">
-
             <a href="https://mycodinghub.tech/" target="_blank">
                 <img th:src="@{/images/logo-mycoding.png}" alt="Logo da My Coding" class="img-footer-logo-mycoding">
-            </a>  
-        </div> 
+            </a>
+        </div>
 
         <div>
             <p>Todos os direitos reservados!</p>
