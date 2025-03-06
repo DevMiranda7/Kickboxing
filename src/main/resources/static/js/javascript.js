@@ -1,4 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Mapeamento entre botões e cabeçalhos
+    const modalidades = {
+        "btn-modalidade-light": "cabecalho-light",
+        "btn-modalidade-kick": "cabecalho-kick",
+        "btn-modalidade-point": "cabecalho-point",
+        "btn-modalidade-full": "cabecalho-full",
+        "btn-modalidade-low": "cabecalho-low",
+        "btn-modalidade-k1": "cabecalho-k1",
+        "btn-modalidade-kb": "cabecalho-kb"
+    };
+
+    // Seleciona todos os botões e cabeçalhos
+    const botoes = document.querySelectorAll(".conteiner-modalidades button");
+    const cabecalhos = document.querySelectorAll(".div-cabecalho-modalidade");
+
+    // Oculta todos os cabeçalhos no início
+    cabecalhos.forEach(cabecalho => cabecalho.style.display = "none");
+
+    // Adiciona evento de clique a cada botão
+    botoes.forEach(botao => {
+        botao.addEventListener("click", function () {
+            // Esconde todos os cabeçalhos antes de mostrar o correto
+            cabecalhos.forEach(cabecalho => cabecalho.style.display = "none");
+
+            // Obtém o ID do cabeçalho correspondente
+            const idCabecalho = modalidades[botao.classList[1]];
+
+            // Exibe o cabeçalho correto
+            document.getElementById(idCabecalho).style.display = "flex";
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
     filtrarEventos("01");
 });
 
@@ -591,3 +625,98 @@ function pesquisarAlunos() {
         })
         .catch(error => console.error("Erro ao buscar alunos:", error));
 }
+
+function openModalLightCombat() {
+    document.getElementById("lightCombatModal").style.display = "block";
+}
+
+function closeModalLightCombat() {
+    document.getElementById("lightCombatModal").style.display = "none";
+}
+
+function openModalKickLight() {
+    document.getElementById("kickLightModal").style.display = "block";
+}
+
+function closeModalKickLight() {
+    document.getElementById("kickLightModal").style.display = "none";
+}
+
+function openModalPointFight() {
+    document.getElementById("pointFightModal").style.display = "block";
+}
+
+function closeModalPointFight() {
+    document.getElementById("pointFightModal").style.display = "none";
+}
+
+function openModalFullContact() {
+    document.getElementById("fullContactModal").style.display = "block";
+}
+
+function closeModalFullContact() {
+    document.getElementById("fullContactModal").style.display = "none";
+}
+
+function openModalLowKicks() {
+    document.getElementById("lowKicksModal").style.display = "block";
+}
+
+function closeModalLowKicks() {
+    document.getElementById("lowKicksModal").style.display = "none";
+}
+
+function openModalK1() {
+    document.getElementById("k1Modal").style.display = "block";
+}
+
+function closeModalK1() {
+    document.getElementById("k1Modal").style.display = "none";
+}
+
+function openModalKBCombat() {
+    document.getElementById("KBCombatModal").style.display = "block";
+}
+
+function closeModalKBCombat() {
+    document.getElementById("KBCombatModal").style.display = "none";
+}
+
+window.onclick = function (event) {
+    let lightCombatModal = document.getElementById("lightCombatModal");
+    let kickLightModal = document.getElementById("kickLightModal");
+    let pointFightModal = document.getElementById("pointFightModal");
+    let fullContactModal = document.getElementById("fullContactModal");
+    let lowKicksModal = document.getElementById("lowKicksModal");
+    let k1Modal = document.getElementById("k1Modal");
+    let KBCombatModal = document.getElementById("KBCombatModal");
+
+    if (event.target === pointFightModal) {
+        closeModalLightCombat();
+    }
+
+    if (event.target === kickLightModal) {
+        closeModalKickLight();
+    }
+
+    if (event.target === pointFightModal) {
+        closeModalPointFight();
+    }
+
+    if (event.target === fullContactModal) {
+        closeModalFullContact();
+    }
+
+    if (event.target === lowKicksModal) {
+        closeModalLowKicks();
+    }
+
+    if (event.target === k1Modal) {
+        closeModalK1();
+    }
+
+    if (event.target === KBCombatModal) {
+        closeModalKBCombat();
+    }
+};
+
