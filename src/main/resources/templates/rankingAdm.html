@@ -75,36 +75,148 @@
     <!--FIM NAV-->
 
     <!--INICIO CONTEUDO-->
-    <section>
+    <section class="container">
+        <div class="conteiner-modalidades">
+            <button type="button" class="ant-input btn-modalidade-light">Light Combat</button>
+            <button type="button" class="ant-input btn-modalidade-kick">Kick Light</button>
+            <button type="button" class="ant-input btn-modalidade-point">Point Fight</button>
+            <button type="button" class="ant-input btn-modalidade-full">Full Contact</button>
+            <button type="button" class="ant-input btn-modalidade-low">Low Kicks</button>
+            <button type="button" class="ant-input btn-modalidade-k1">K1</button>
+            <button type="button" class="ant-input btn-modalidade-kb">KB Combat</button>
+        </div>
 
+        <!-- CABEÇALHOS (com IDs adicionados) -->
+        <div id="cabecalho-light" class="div-cabecalho-modalidade">
+            <h2>Light Combat</h2>
+            <i class="fa-solid fa-plus icon-criar" onclick="openModalLightCombat()"></i>
+        </div>
+
+        <div id="cabecalho-kick" class="div-cabecalho-modalidade">
+            <h2>Kick Light</h2>
+            <i class="fa-solid fa-plus icon-criar" onclick="openModalKickLight()"></i>
+        </div>
+
+        <div id="cabecalho-point" class="div-cabecalho-modalidade">
+            <h2>Point Fight</h2>
+            <i class="fa-solid fa-plus icon-criar" onclick="openModalPointFight()"></i>
+        </div>
+
+        <div id="cabecalho-full" class="div-cabecalho-modalidade">
+            <h2>Full Contact</h2>
+            <i class="fa-solid fa-plus icon-criar" onclick="openModalFullContact()"></i>
+        </div>
+
+        <div id="cabecalho-low" class="div-cabecalho-modalidade">
+            <h2>Low Kicks</h2>
+            <i class="fa-solid fa-plus icon-criar" onclick="openModalLowKicks()"></i>
+        </div>
+
+        <div id="cabecalho-k1" class="div-cabecalho-modalidade">
+            <h2>K1</h2>
+            <i class="fa-solid fa-plus icon-criar" onclick="openModalK1()"></i>
+        </div>
+
+        <div id="cabecalho-kb" class="div-cabecalho-modalidade">
+            <h2>KB Combat</h2>
+            <i class="fa-solid fa-plus icon-criar" onclick="openModalKBCombat()"></i>
+        </div>
+
+
+        <!-- INICIO MODAL Light Combat -->
+        <div id="lightCombatModal" class="modal-light-combat">
+            <div class="modal-light-combat-content">
+                <span class="close-light-combat" onclick="closeModalLightCombat()">&times;</span>
+                <h2>Light Combat</h2>
+
+                <form id="lightCombatForm" th:action="@{/}" method="post">
+                </form>
+            </div>
+        </div>
+        <!-- FIM MODAL Light Combat -->
+
+        <!-- INICIO MODAL Kick Light -->
+        <div id="kickLightModal" class="modal-kick-light">
+            <div class="modal-kick-light-content">
+                <span class="close-kick-light" onclick="closeModalKickLight()">&times;</span>
+                <h2>Kick Light</h2>
+
+                <form id="kickLightForm" th:action="@{/}" method="post">
+                </form>
+            </div>
+        </div>
+        <!-- FIM MODAL Kick Light -->
+
+        <!-- INICIO MODAL Point Fight -->
+        <div id="pointFightModal" class="modal-point-fight">
+            <div class="modal-point-fight-content">
+                <span class="close-point-fight" onclick="closeModalPointFight()">&times;</span>
+                <h2>Point Fight</h2>
+
+                <form id="pointFightForm" th:action="@{/}" method="post">
+                </form>
+            </div>
+        </div>
+        <!-- FIM MODAL Point Fight -->
+
+        <!-- INICIO MODAL Full Contact -->
+        <div id="fullContactModal" class="modal-full-contact">
+            <div class="modal-full-contact-content">
+                <span class="close-full-contact" onclick="closeModalFullContact()">&times;</span>
+                <h2>Full Contact</h2>
+
+                <form id="fullContactForm" th:action="@{/}" method="post">
+                </form>
+            </div>
+        </div>
+        <!-- FIM MODAL Full Contact -->
+
+        <!-- INICIO MODAL Low Kicks -->
+        <div id="lowKicksModal" class="modal-low-kicks">
+            <div class="modal-low-kicks-content">
+                <span class="close-low-kicks" onclick="closeModalLowKicks()">&times;</span>
+                <h2>Low Kicks</h2>
+
+                <form id="lowKicksForm" th:action="@{/}" method="post">
+                </form>
+            </div>
+        </div>
+        <!-- FIM MODAL Low Kicks -->
+
+        <!-- INICIO MODAL K1 -->
+        <div id="k1Modal" class="modal-k1">
+            <div class="modal-k1-content">
+                <span class="close-k1" onclick="closeModalK1()">&times;</span>
+                <h2>K1</h2>
+
+                <form id="k1Form" th:action="@{/}" method="post">
+                </form>
+            </div>
+        </div>
+        <!-- FIM MODAL K1 -->
+
+        <!-- INICIO MODAL KBCombat -->
+        <div id="KBCombatModal" class="modal-KBCombat">
+            <div class="modal-KBCombat-content">
+                <span class="close-KBCombat" onclick="closeModalKBCombat()">&times;</span>
+                <h2>KB Combat</h2>
+
+                <form id="KBCombatForm" th:action="@{/}" method="post">
+                </form>
+            </div>
+        </div>
+        <!-- FIM MODAL KBCombat -->
     </section>
     <!--FIM CONTEUDO-->
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
     <!--INICIO RODAPÉ -->
     <footer>
         <div class="div-footer-logo">
-
             <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-footer-logo">
-
             <a href="https://mycodinghub.tech/" target="_blank">
                 <img th:src="@{/images/logo-mycoding.png}" alt="Logo da My Coding" class="img-footer-logo-mycoding">
-            </a>  
-        </div> 
+            </a>
+        </div>
 
         <div>
             <p>Todos os direitos reservados!</p>
