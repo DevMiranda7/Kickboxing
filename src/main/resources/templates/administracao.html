@@ -76,113 +76,98 @@
     </nav>
     <!--FIM NAV-->
 
-    <!--INICIO CONTEUDO-->
-    <section>
-        <!-- MODAL EDITAR CONTA -->
-        <div id="editarContaModal" class="modal-editar-conta">
-            <div class="modal-editar-conta-content">
-                <span class="close-editar-conta" onclick="closeModalEditarConta()">&times;</span>
-                <h2>Editar Conta</h2>
+    <!-- MODAL EDITAR CONTA -->
+    <div id="editarContaModal" class="modal-editar-conta">
+        <div class="modal-editar-conta-content">
+            <span class="close-editar-conta" onclick="closeModalEditarConta()">&times;</span>
+            <h2>Editar Conta</h2>
 
-                <form id="editarContaForm">
-                    <div class="conteiner-inputs-editar">
-                        <div class="div-inputs-editar">
-                            <input type="text" id="nome-editar" name="nome" placeholder="Nome"
-                                pattern="[A-Za-zÀ-ÿ\s]+" th:value="${admin.nome}" 
-                                class="ant-input custom-input-editar" required>
+            <form id="editarContaForm">
+                <div class="conteiner-inputs-editar">
+                    <div class="div-inputs-editar">
+                        <input type="text" id="nome-editar" name="nome" placeholder="Nome"
+                               pattern="[A-Za-zÀ-ÿ\s]+" th:value="${admin.nome}"
+                               class="ant-input custom-input-editar" required>
 
-                            <input type="text" id="sobrenome-editar" name="sobrenome" placeholder="Sobrenome"
-                                pattern="[A-Za-zÀ-ÿ\s]+" th:value="${admin.sobrenome}" 
-                                class="ant-input custom-input-editar" required>
-                        </div>
-
-                        <div class="div-inputs-editar">
-                            <input type="tel" id="telefone-editar" onkeyup="formatarTelefone(this)" name="telefone"
-                                placeholder="Telefone" maxlength="11" minlength="11" th:value="${admin.telefone}" 
-                                class="ant-input custom-input-editar" required>
-
-                            <input type="email" id="email-editar" name="email" placeholder="E-mail"
-                                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" th:value="${admin.email}" 
-                                class="ant-input custom-input-editar" required>
-                        </div>
+                        <input type="text" id="sobrenome-editar" name="sobrenome" placeholder="Sobrenome"
+                               pattern="[A-Za-zÀ-ÿ\s]+" th:value="${admin.sobrenome}"
+                               class="ant-input custom-input-editar" required>
                     </div>
 
-                    <button type="button" onclick="openModalSenhaConta()" class="anti-input custom-btn-salvar-conta">Editar</button>
-                </form>
-            </div>
+                    <div class="div-inputs-editar">
+                        <input type="tel" id="telefone-editar" onkeyup="formatarTelefone(this)" name="telefone"
+                               placeholder="Telefone" maxlength="11" minlength="11" th:value="${admin.telefone}"
+                               class="ant-input custom-input-editar" required>
+
+                        <input type="email" id="email-editar" name="email" placeholder="E-mail"
+                               pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" th:value="${admin.email}"
+                               class="ant-input custom-input-editar" required>
+                    </div>
+                </div>
+
+                <button type="button" onclick="openModalSenhaConta()" class="anti-input custom-btn-salvar-conta">Editar</button>
+            </form>
         </div>
+    </div>
+    <!-- MODAL EDITAR CONTA -->
 
-        <!-- MODAL SENHA CONTA -->
-        <div id="senhaContaModal" class="modal-senha-conta">
-            <div class="modal-senha-conta-content">
-                <span class="close-senha-conta" onclick="closeModalSenhaConta()">&times;</span>
-                <h2>Senha da Conta Administrativa</h2>
+    <!-- MODAL SENHA CONTA -->
+    <div id="senhaContaModal" class="modal-senha-conta">
+        <div class="modal-senha-conta-content">
+            <span class="close-senha-conta" onclick="closeModalSenhaConta()">&times;</span>
+            <h2>Senha da Conta Administrativa</h2>
 
-                <form id="senhaContaForm" th:action="@{/editarConta}" method="post">
-                    <input type="hidden" id="nome-senha" name="nome">
-                    <input type="hidden" id="sobrenome-senha" name="sobrenome">
-                    <input type="hidden" id="telefone-senha" name="telefone">
-                    <input type="hidden" id="email-senha" name="email">
+            <form id="senhaContaForm" th:action="@{/editarConta}" method="post">
+                <input type="hidden" id="nome-senha" name="nome">
+                <input type="hidden" id="sobrenome-senha" name="sobrenome">
+                <input type="hidden" id="telefone-senha" name="telefone">
+                <input type="hidden" id="email-senha" name="email">
 
-                    <div class="div-senha-conta">
-                        <input type="password" id="senha-conta" name="senha-conta" placeholder="Senha"
-                            pattern=".{8,}" required title="A senha deve ter pelo menos 8 caracteres"
-                            autocomplete="new-password" autocorrect="off" spellcheck="false" class="ant-input custom-input">
+                <div class="div-senha-conta">
+                    <input type="password" id="senha-conta" name="senha-conta" placeholder="Senha"
+                           pattern=".{8,}" required title="A senha deve ter pelo menos 8 caracteres"
+                           autocomplete="new-password" autocorrect="off" spellcheck="false" class="ant-input custom-input">
 
-                        <button type="submit" class="anti-input custom-btn-salvar-conta">Salvar</button>
-                    </div>
-                </form>
+                    <button type="submit" class="anti-input custom-btn-salvar-conta">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- MODAL SENHA CONTA -->
+
+
+    <!--INICIO CONTEUDO-->
+    <section class="container">
+        <div class="conteiner-info-atencao conteiner">
+            <div>
+                <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-administracao-info">
+            </div>
+
+            <div class="div-info-atencao">
+                <h2>Bem-vindo à Área Administrativa</h2>
+                <h3>Esta é uma sessão privada e restrita do sistema, acessível apenas para administradores autorizados.</h3>
+                <h4><i class="fa-solid fa-triangle-exclamation custon-icon-atencao"></i>Atenção!</h4>
+
+                <p>Ao cadastrar, editar ou excluir informações, as alterações serão aplicadas imediatamente e poderão impactar a
+                    área pública do sistema. Certifique-se de revisar todos os dados antes de confirmar qualquer ação.</p>
+
+                <p>O acesso e a manipulação dos dados aqui são permitidos somente para usuários autorizados.
+                    Qualquer uso indevido pode resultar em medidas administrativas.</p>
+
+                <p>Se precisar de ajuda ou tiver dúvidas, entre em contato com o suporte.</p>
             </div>
         </div>
     </section>
     <!--FIM CONTEUDO-->
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <div class="conteiner-info-atencao">
-        <div>
-            <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-administracao-info">
-        </div>
-
-        <div class="div-info-atencao">
-            <h2>Bem-vindo à Área Administrativa</h2>
-            <h3>Esta é uma sessão privada e restrita do sistema, acessível apenas para administradores autorizados.</h3>
-            <h4><i class="fa-solid fa-triangle-exclamation custon-icon-atencao"></i>Atenção!</h4>
-
-            <p>Ao cadastrar, editar ou excluir informações, as alterações serão aplicadas imediatamente e poderão impactar a
-                área pública do sistema. Certifique-se de revisar todos os dados antes de confirmar qualquer ação.</p>
-
-            <p>O acesso e a manipulação dos dados aqui são permitidos somente para usuários autorizados.
-                Qualquer uso indevido pode resultar em medidas administrativas.</p>
-
-            <p>Se precisar de ajuda ou tiver dúvidas, entre em contato com o suporte.</p>
-        </div>
-    </div>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
     <!--INICIO RODAPÉ -->
     <footer>
         <div class="div-footer-logo">
             <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-footer-logo">
-
             <a href="https://mycodinghub.tech/" target="_blank">
                 <img th:src="@{/images/logo-mycoding.png}" alt="Logo da My Coding" class="img-footer-logo-mycoding">
-            </a>  
-        </div> 
+            </a>
+        </div>
 
         <div>
             <p>Todos os direitos reservados!</p>
