@@ -26,6 +26,7 @@ public class AcademiaController {
     public String criarAcademia(@RequestParam("nomeAcademia") String nomeAcademia,
                                 @RequestParam("responsavelAcademia") String responsavelAcademia,
                                 @RequestParam("enderecoAcademia") String enderecoAcademia,
+                                @RequestParam("bairroAcademia") String bairroAcademia,
                                 @RequestParam("cidadeAcademia") String cidadeAcademia,
                                 @RequestParam("contatoAcademia") String contatoAcademia,
                                 @RequestParam("imagemAcademia") MultipartFile imagemAcademia,
@@ -35,6 +36,7 @@ public class AcademiaController {
             academia.setNomeAcademia(nomeAcademia);
             academia.setResponsavelAcademia(responsavelAcademia);
             academia.setEnderecoAcademia(enderecoAcademia);
+            academia.setBairroAcademia(bairroAcademia);
             academia.setCidadeAcademia(cidadeAcademia);
             academia.setContatoAcademia(contatoAcademia);
 

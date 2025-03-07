@@ -139,7 +139,7 @@
         <div class="conteiner-eventos">
             <ul>
                 <li th:each="evento : ${eventos}">
-                    <img th:src="@{${evento.imagemEvento}}" alt="Imagem do evento" width="200"
+                    <img th:src="@{${evento.imagemEvento}}" alt="Imagem do evento"
                          onclick="openModalImagemEvento(this.src)">
 
                     <span th:text="${evento.nomeEvento}" class="span-nomeEvento"></span>

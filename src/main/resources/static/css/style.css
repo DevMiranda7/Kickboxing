@@ -606,7 +606,7 @@ html, body {
     justify-content: center;
     align-items: center;
     gap: 60px;
-    margin-top: 40px;
+    margin-top: 100px;
 }
 
 .img-administracao-info {
@@ -777,8 +777,9 @@ html, body {
 }
 
 .conteiner-eventos img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
@@ -1100,12 +1101,14 @@ html, body {
 }
 
 .conteiner-academias img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 200px;  /* Defina o tamanho fixo desejado */
+    height: 150px; /* Ajuste conforme necessário */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
 }
+
 
 .conteiner-academias img:hover {
     transform: scale(1.2);
@@ -1140,6 +1143,16 @@ html, body {
     margin-top: 8px;
     display: flex;
     flex-direction: column;
+}
+
+.div-bairro {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.div-contato-academia {
+    margin-top: 8px;
 }
 
 .academia-contato {
@@ -1952,6 +1965,7 @@ table .nome-ranking {
     text-align: left;
     font-size: 16px;
     width: auto;
+    padding-left: 5px;
 }
 
 table .pontos-ranking {
