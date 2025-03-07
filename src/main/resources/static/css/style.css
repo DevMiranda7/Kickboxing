@@ -1890,19 +1890,27 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     transform: scale(1.05); /* Mesmo efeito do hover */
 }
 
+.conteiner-info-cabecalho-ranking {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
-.div-cabecalho-modalidade {
+.div-info-cabecalho {
     background-color: #181818;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 50px;
     margin: 50px auto 0 auto;
-    width: 70%;
+    width: 90%;
     padding: 0 20px;
+    box-sizing: border-box;
 }
 
-.div-cabecalho-modalidade h2 {
+.div-info-cabecalho h2 {
     color: white;
     margin-left: 30px;
     margin: 0;
@@ -1922,6 +1930,46 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     transform: scale(1.2);
 }
 
+/* Tabela */
+.table-ranking {
+    width: 90%;
+}
+
+.table-ranking th {
+    background-color: #333;
+    color: white;
+}
+
+table .indice-ranking {
+    text-align: center;
+    font-size: 16px;
+    width: 20px;
+}
+
+table .nome-ranking {
+    text-align: left;
+    font-size: 16px;
+}
+
+table .pontos-ranking {
+    text-align: right;
+    font-size: 16px
+    width: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+}
+
+#cabecalho-kb,
+#cabecalho-k1,
+#cabecalho-low,
+#cabecalho-full,
+#cabecalho-point,
+#cabecalho-kick,
+#cabecalho-light {
+    width: 70%;
+    margin: 0 auto;
+}
+/* Tabela */
 
 /* MODAL Light Combat */
 .modal-KBCombat,
@@ -2027,7 +2075,7 @@ footer {
     flex-direction: column;
     color: #FFFFFF;
     gap: 20px;
-    margin-top: 50px; /* Garante que o rodapé fique na parte inferior */
+    margin-top: 100px; /* Garante que o rodapé fique na parte inferior */
     border-top: 4px solid;
     border-image: linear-gradient(45deg, #009739 33.33%, #c60c30 33.33%, #c60c30 66.66%, #ffcc29 66.66%) 1;
 }

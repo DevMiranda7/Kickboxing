@@ -1,5 +1,6 @@
 package kickboxing.service.modalidade;
 
+import kickboxing.model.modalide.LightCombat;
 import kickboxing.model.modalide.LowKicks;
 import kickboxing.repository.modalidade.LowKicksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LowKicksService {
@@ -33,5 +36,12 @@ public class LowKicksService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Formato inválido para pontos. Use números como 10,00.");
         }
+    }
+
+    public List<LowKicks> listarLowKicks() {
+        List<LowKicks> lowKickss = lowKicksRepository.findAll();
+        return lowKickss.stream()
+                .sorted((lc1, lc2) -> lc2.getPontosLowKicks().compareTo(lc1.getPontosLowKicks()))
+                .collect(Collectors.toList());
     }
 }

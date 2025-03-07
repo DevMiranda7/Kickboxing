@@ -88,40 +88,137 @@
 
         <!-- CABEÇALHOS (com IDs adicionados) -->
         <div id="cabecalho-light" class="div-cabecalho-modalidade">
-            <h2>Light Combat</h2>
-            <i class="fa-solid fa-plus icon-criar" onclick="openModalLightCombat()"></i>
+            <div class="conteiner-info-cabecalho-ranking">
+                <div class="div-info-cabecalho">
+                    <h2>Light Combat</h2>
+                    <i class="fa-solid fa-plus icon-criar" onclick="openModalLightCombat()"></i>
+                </div>
+
+                <table class="table-ranking">
+                    <tbody>
+                    <tr th:each="lightCombat, iterStat : ${lightCombats}">
+                        <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
+                        <td class="nome-ranking" th:text="${lightCombat.nomeLightCombat}"></td>
+                        <td class="pontos-ranking" th:text="${lightCombat.pontosLightCombat}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div id="cabecalho-kick" class="div-cabecalho-modalidade">
-            <h2>Kick Light</h2>
-            <i class="fa-solid fa-plus icon-criar" onclick="openModalKickLight()"></i>
+            <div class="conteiner-info-cabecalho-ranking">
+                <div class="div-info-cabecalho">
+                    <h2>Kick Light</h2>
+                    <i class="fa-solid fa-plus icon-criar" onclick="openModalKickLight()"></i>
+                </div>
+
+                <table class="table-ranking">
+                    <tbody>
+                        <tr th:each="kickLight, iterStat : ${kicklights}">
+                            <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
+                            <td class="nome-ranking" th:text="${kickLight.nomeKickLight}"></td>
+                            <td class="pontos-ranking" th:text="${kickLight.pontosKickLight}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div id="cabecalho-point" class="div-cabecalho-modalidade">
-            <h2>Point Fight</h2>
-            <i class="fa-solid fa-plus icon-criar" onclick="openModalPointFight()"></i>
+            <div class="conteiner-info-cabecalho-ranking">
+                <div class="div-info-cabecalho">
+                    <h2>Point Fight</h2>
+                    <i class="fa-solid fa-plus icon-criar" onclick="openModalPointFight()"></i>
+                </div>
+
+                <table class="table-ranking">
+                    <tbody>
+                        <tr th:each="pointFight, iterStat : ${pointFights}">
+                            <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
+                            <td class="nome-ranking" th:text="${pointFight.nomePointFight}"></td>
+                            <td class="pontos-ranking" th:text="${pointFight.pontosPointFight}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div id="cabecalho-full" class="div-cabecalho-modalidade">
-            <h2>Full Contact</h2>
-            <i class="fa-solid fa-plus icon-criar" onclick="openModalFullContact()"></i>
+            <div class="conteiner-info-cabecalho-ranking">
+                <div class="div-info-cabecalho">
+                    <h2>Full Contact</h2>
+                    <i class="fa-solid fa-plus icon-criar" onclick="openModalFullContact()"></i>
+                </div>
+
+                <table class="table-ranking">
+                    <tbody>
+                        <tr th:each="fullContact, iterStat : ${fullContacts}">
+                            <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
+                            <td class="nome-ranking" th:text="${fullContact.nomeFullContact}"></td>
+                            <td class="pontos-ranking" th:text="${fullContact.pontosFullContact}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div id="cabecalho-low" class="div-cabecalho-modalidade">
-            <h2>Low Kicks</h2>
-            <i class="fa-solid fa-plus icon-criar" onclick="openModalLowKicks()"></i>
+            <div class="conteiner-info-cabecalho-ranking">
+                <div class="div-info-cabecalho">
+                    <h2>Low Kicks</h2>
+                    <i class="fa-solid fa-plus icon-criar" onclick="openModalLowKicks()"></i>
+                </div>
+
+                <table class="table-ranking">
+                    <tbody>
+                        <tr th:each="lowKicks, iterStat : ${lowKickss}">
+                            <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
+                            <td class="nome-ranking" th:text="${lowKicks.nomeLowKicks}"></td>
+                            <td class="pontos-ranking" th:text="${lowKicks.pontosLowKicks}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div id="cabecalho-k1" class="div-cabecalho-modalidade">
-            <h2>K1</h2>
-            <i class="fa-solid fa-plus icon-criar" onclick="openModalK1()"></i>
+            <div class="conteiner-info-cabecalho-ranking">
+                <div class="div-info-cabecalho">
+                    <h2>K1</h2>
+                    <i class="fa-solid fa-plus icon-criar" onclick="openModalK1()"></i>
+                </div>
+
+                <table class="table-ranking">
+                    <tbody>
+                        <tr th:each="k1, iterStat : ${k1s}">
+                            <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
+                            <td class="nome-ranking" th:text="${k1.nomeK1}"></td>
+                            <td class="pontos-ranking" th:text="${k1.pontosK1}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div id="cabecalho-kb" class="div-cabecalho-modalidade">
-            <h2>KB Combat</h2>
-            <i class="fa-solid fa-plus icon-criar" onclick="openModalKBCombat()"></i>
-        </div>
+            <div class="conteiner-info-cabecalho-ranking">
+                <div class="div-info-cabecalho">
+                    <h2>KB Combat</h2>
+                    <i class="fa-solid fa-plus icon-criar" onclick="openModalKBCombat()"></i>
+                </div>
 
+                <table class="table-ranking">
+                    <tbody>
+                        <tr th:each="kbCombat, iterStat : ${kbCombats}">
+                            <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
+                            <td class="nome-ranking" th:text="${kbCombat.nomeKBCombat}"></td>
+                            <td class="pontos-ranking" th:text="${kbCombat.pontosKBCombat}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <!-- Modal Light Combat -->
         <div id="lightCombatModal" class="modal-light-combat">
