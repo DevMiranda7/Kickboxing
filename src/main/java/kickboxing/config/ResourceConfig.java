@@ -18,8 +18,8 @@ public class ResourceConfig implements WebMvcConfigurer {
     private static final String UPLOAD_EVENTOS_DIR = Paths.get(System.getProperty("user.dir"),
             "src/main/resources/static/upload/eventos/").toString();
 
-    private static final String UPLOAD_ALUNOS_DIR = Paths.get(System.getProperty("user.dir"),
-            "src/main/resources/static/upload/alunos/").toString();
+    private static final String UPLOAD_FILIADOS_DIR = Paths.get(System.getProperty("user.dir"),
+            "src/main/resources/static/upload/filiados/").toString();
 
     private static final String UPLOAD_PROFESSORES_DIR = Paths.get(System.getProperty("user.dir"),
             "src/main/resources/static/upload/professores/").toString();
@@ -38,8 +38,8 @@ public class ResourceConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/upload/eventos/**")
                 .addResourceLocations("file:" + UPLOAD_EVENTOS_DIR + "/");
 
-        registry.addResourceHandler("/upload/alunos/**")
-                .addResourceLocations("file:" + UPLOAD_ALUNOS_DIR + "/");
+        registry.addResourceHandler("/upload/filiados/**")
+                .addResourceLocations("file:" + UPLOAD_FILIADOS_DIR + "/");
 
         registry.addResourceHandler("/upload/professores/**")
                 .addResourceLocations("file:" + UPLOAD_PROFESSORES_DIR + "/");

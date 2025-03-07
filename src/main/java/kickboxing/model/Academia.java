@@ -21,6 +21,9 @@ public class Academia {
     private String enderecoAcademia;
 
     @Column(nullable = false, columnDefinition = "TEXT")
+    private String bairroAcademia;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String cidadeAcademia;
 
     @Column(nullable = false)

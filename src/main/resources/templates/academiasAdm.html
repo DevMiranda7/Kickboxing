@@ -50,7 +50,7 @@
                     <a th:href="@{/eventosAdm}">Eventos</a>
                 </li>
                 <li>
-                    <a th:href="@{/alunosAdm}">Alunos</a>
+                    <a th:href="@{/filiadosAdm}">Filiados</a>
                 </li>
                 <li>
                     <a th:href="@{/professoresAdm}">Professores</a>
@@ -90,6 +90,11 @@
 
                         <input type="text" id="responsavel-academia" name="responsavelAcademia" placeholder="Responsável Técnico"
                                class="ant-input custom-input-editar" required>
+
+                        <input type="tel" id="contato-academia" onkeyup="formatarContato(this)" name="contatoAcademia"
+                               placeholder="Contato" maxlength="11" minlength="11"
+                               class="ant-input custom-input-telefone" required
+                               title="Número inválido">
                     </div>
 
                     <div class="div-cadastrar-academias-endereco">
@@ -98,15 +103,13 @@
 
                         <input type="text" id="cidade-academia" name="cidadeAcademia" placeholder="Cidade"
                                class="ant-input custom-input-editar" required>
+
+                        <input type="text" id="bairro-academia" name="bairroAcademia" placeholder="Bairro"
+                               class="ant-input custom-input-editar" required>
                     </div>
                 </div>
 
                 <div class="div-cadastrar-academias-upload">
-                    <input type="tel" id="contato-academia" onkeyup="formatarContato(this)" name="contatoAcademia"
-                           placeholder="Contato" maxlength="11" minlength="11"
-                           class="ant-input custom-input-telefone" required
-                           title="Número inválido">
-
                     <input type="file" id="imagem-academias" name="imagemAcademia" accept="image/*"
                            class="ant-input custom-input-upload-academias" required>
                 </div>
@@ -150,7 +153,12 @@
                             <span th:text="${academia.enderecoAcademia}"></span>
                         </div>
 
-                        <span th:text="${academia.cidadeAcademia}"></span>
+                        <div class="div-bairro">
+                            <span th:text="${academia.bairroAcademia}"></span>
+                            <span>-</span>
+                            <span th:text="${academia.cidadeAcademia}"></span>
+                        </div>
+
                         <div class="div-contato-academia">
                             <span th:text="${academia.contatoAcademia}" class="academia-contato"></span>
                         </div>

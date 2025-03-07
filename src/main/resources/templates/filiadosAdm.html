@@ -26,7 +26,7 @@
     <!-- CSS do projeto -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
-    <title>Administração - Alunos</title>
+    <title>Administração - Filiados</title>
 </head>
 
 <body>
@@ -50,7 +50,7 @@
                     <a th:href="@{/eventosAdm}">Eventos</a>
                 </li>
                 <li>
-                    <a th:href="@{/alunosAdm}" style="color: white;">Alunos</a>
+                    <a th:href="@{/filiadosAdm}" style="color: white;">Filiados</a>
                 </li>
                 <li>
                     <a th:href="@{/professoresAdm}">Professores</a>
@@ -76,28 +76,28 @@
 
     <!--INICIO CONTEUDO-->
     <section class="container">
-        <!--CADASTRAR ALUNOS-->
-        <div id="cadastrarAluno">
-            <form th:action="@{/criarAluno}" method="post" enctype="multipart/form-data">
+        <!--CADASTRAR FILIADOS-->
+        <div id="cadastrarFiliado">
+            <form th:action="@{/criarFiliado}" method="post" enctype="multipart/form-data">
 
-                <div class="cadastrar-aluno-h2">
-                    <h2>CADASTRAR ALUNO</h2>
+                <div class="cadastrar-filiado-h2">
+                    <h2>CADASTRAR FILIADO</h2>
                 </div>
                 
-                <div class="conteiner-cadastrar-alunos">
-                    <div class="div-cadastrar-alunos-registro">
-                        <input type="text" id="registro-aluno" name="registroAluno" 
-                        placeholder="Registro do Aluno" class="ant-input ant-input custom-input-editar" required>
+                <div class="conteiner-cadastrar-filiados">
+                    <div class="div-cadastrar-filiados-registro">
+                        <input type="text" id="registro-filiado" name="registroFiliado"
+                        placeholder="Registro do Filiado" class="ant-input ant-input custom-input-editar" required>
 
-                        <input type="text" id="nome-aluno" name="nomeAluno" placeholder="Nome do Aluno" 
+                        <input type="text" id="nome-filiado" name="nomeFiliado" placeholder="Nome do Filiado"
                         class="ant-input ant-input custom-input-editar" required>
                     </div>
 
-                    <div class="div-cadastrar-alunos-cidade">
-                        <input type="text" id="cidade-aluno" name="cidadeAluno" placeholder="Cidade do Aluno" 
+                    <div class="div-cadastrar-filiados-cidade">
+                        <input type="text" id="cidade-filiado" name="cidadeFiliado" placeholder="Cidade do Filiado"
                         class="ant-input ant-input custom-input-editar" required>
 
-                        <select id="graduacao-aluno" name="graduacaoAluno" class="ant-input custom-input-editar" required>
+                        <select id="graduacao-filiado" name="graduacaoFiliado" class="ant-input custom-input-editar" required>
                             <option value="" disabled selected>Graduação</option>
                             <option value="Amarela">Amarela</option>
                             <option value="Laranja">Laranja</option>
@@ -108,19 +108,19 @@
                         </select>
                     </div>
 
-                    <div class="div-cadastrar-alunos-academia">
-                        <input type="text" id="academia-aluno" name="academiaAluno" 
-                        placeholder="Academia do Aluno" class="ant-input ant-input custom-input-editar" required>
+                    <div class="div-cadastrar-filiados-academia">
+                        <input type="text" id="academia-filiado" name="academiaFiliado"
+                        placeholder="Academia do Filiado" class="ant-input ant-input custom-input-editar" required>
 
-                        <input type="text" id="responsavel-aluno" name="responsavelAluno" 
-                        placeholder="Responsável do Aluno" class="ant-input ant-input custom-input-editar" required>
+                        <input type="text" id="responsavel-filiado" name="responsavelFiliado"
+                        placeholder="Responsável do Filiado" class="ant-input ant-input custom-input-editar" required>
                     </div>
 
-                    <div class="div-cadastrar-alunos-nascimento">
-                        <input type="date" id="nascimento-aluno" name="nascimentoAluno" 
+                    <div class="div-cadastrar-filiados-nascimento">
+                        <input type="date" id="nascimento-filiado" name="nascimentoFiliado"
                         class="ant-input ant-input custom-input-data" required>
 
-                        <input type="file" id="imagem-aluno" name="imagemAluno" accept="image/*"
+                        <input type="file" id="imagem-filiado" name="imagemFiliado" accept="image/*"
                         class="ant-input custom-input-upload" required>
                     </div>
                     <div>
@@ -129,22 +129,22 @@
                 </div>
             </form>
         </div>
-        <!--CADASTRAR ALUNOS-->
+        <!--CADASTRAR FILIADOS -->
 
         <hr class="separator">
 
-        <!-- REGISTROS ALUNOS -->
-        <form th:action="@{/pesquisarAlunos}" method="get">
-            <div class="conteiner-pesquisar-alunos">
-                <select class="ant-input" name="opcoes-cidades-alunos" id="select-cidade-alunos">
+        <!-- REGISTROS FILIADOS -->
+        <form th:action="@{/pesquisarFiliados}" method="get">
+            <div class="conteiner-pesquisar-filiados">
+                <select class="ant-input" name="opcoes-cidades-filiados" id="select-cidade-filiados">
                     <option value="">Selecionar Cidade</option>
                     <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>
                 </select>
-                <button class="ant-input custom-btn-pesquisar-alunos" type="button" onclick="pesquisarAlunos()">Pesquisar</button>
+                <button class="ant-input custom-btn-pesquisar-filiados" type="button" onclick="pesquisarFiliados()">Pesquisar</button>
             </div>
         </form>
 
-        <div class="conteiner-alunos">
+        <div class="conteiner-filiados">
             <table>
                 <thead>
                 <tr>
@@ -160,42 +160,42 @@
                 </thead>
 
                 <tbody>
-                <tr th:each="aluno : ${alunos}">
+                <tr th:each="filiado : ${filiados}">
                     <td>
-                        <img th:src="@{${aluno.imagemAluno}}" alt="Imagem do aluno"
-                             th:attr="data-id=${aluno.idAluno},
-                             data-nome=${aluno.nomeAluno},
-                             data-registro=${aluno.registroAluno},
-                             data-cidade=${aluno.cidadeAluno},
-                             data-graduacao=${aluno.graduacaoAluno},
-                             data-academia=${aluno.academiaAluno},
-                             data-responsavel=${aluno.responsavelAluno},
-                             data-nascimento=${aluno.nascimentoAluno}"
+                        <img th:src="@{${filiado.imagemFiliado}}" alt="Imagem do filiado"
+                             th:attr="data-id=${filiado.idFiliado},
+                             data-nome=${filiado.nomeFiliado},
+                             data-registro=${filiado.registroFiliado},
+                             data-cidade=${filiado.cidadeFiliado},
+                             data-graduacao=${filiado.graduacaoFiliado},
+                             data-academia=${filiado.academiaFiliado},
+                             data-responsavel=${filiado.responsavelFiliado},
+                             data-nascimento=${filiado.nascimentoFiliado}"
 
-                             onclick="openModalImagemAluno(this)" style="border-radius: 10px;">
+                             onclick="openModalImagemFiliado(this)" style="border-radius: 10px;">
                     </td>
 
-                    <td th:text="${aluno.registroAluno}"></td>
-                    <td th:text="${aluno.nomeAluno}"></td>
-                    <td th:text="${aluno.cidadeAluno}"></td>
+                    <td th:text="${filiado.registroFiliado}"></td>
+                    <td th:text="${filiado.nomeFiliado}"></td>
+                    <td th:text="${filiado.cidadeFiliado}"></td>
 
                     <td>
-                        <span th:text="${aluno.graduacaoAluno}" th:classappend="${aluno.graduacaoAluno}"></span>
+                        <span th:text="${filiado.graduacaoFiliado}" th:classappend="${filiado.graduacaoFiliado}"></span>
                     </td>
 
-                    <td th:text="${aluno.academiaAluno}"></td>
+                    <td th:text="${filiado.academiaFiliado}"></td>
 
-                    <td th:text="${aluno.responsavelAluno}"></td>
+                    <td th:text="${filiado.responsavelFiliado}"></td>
 
-                    <td th:text="${#temporals.format(aluno.nascimentoAluno, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#temporals.format(filiado.nascimentoFiliado, 'dd/MM/yyyy')}"></td>
 
                     <td>
-                        <form th:id="'formExcluir_' + ${aluno.idAluno}"
-                              th:action="@{/alunos/{id}(id=${aluno.idAluno})}"
+                        <form th:id="'formExcluir_' + ${filiado.idFiliado}"
+                              th:action="@{/filiados/{id}(id=${filiado.idFiliado})}"
                               method="post">
                             <input type="hidden" name="_method" value="DELETE">
                             <div>
-                                <button type="button" class="icon-lixo-alunos" th:attr="data-id=${aluno.idAluno}">
+                                <button type="button" class="icon-lixo-filiados" th:attr="data-id=${filiado.idFiliado}">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </div>
@@ -206,27 +206,27 @@
             </table>
         </div>
 
-        <!-- INICIO MODAL IMAGEM ALUNO-->
-        <div id="imagemAlunoModal" class="imagem-aluno-modal">
-            <div class="imagem-aluno-modal-content">
-                <span class="close-imagem-aluno-modal" onclick="closeModalImagemAluno()">&times;</span>
+        <!-- INICIO MODAL IMAGEM FILIADO-->
+        <div id="imagemFiliadoModal" class="imagem-filiado-modal">
+            <div class="imagem-filiado-modal-content">
+                <span class="close-imagem-filiado-modal" onclick="closeModalImagemFiliado()">&times;</span>
                 <div class="modal-content-wrapper">
                     <div class="imagem-container">
-                        <img id="imagemAlunoModalImage" src="" alt="Imagem do aluno" />
+                        <img id="imagemFiliadoModalImage" src="" alt="Imagem do filiado" />
                     </div>
 
-                    <div class="aluno-details">
-                        <form id="editarAlunoForm" th:action="@{/editarAluno}" method="post" enctype="multipart/form-data">
-                            <input type="hidden" id="alunoId" name="idAluno"> <!-- Campo oculto para o ID -->
+                    <div class="filiado-details">
+                        <form id="editarFiliadoForm" th:action="@{/editarFiliado}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" id="filiadoId" name="idFiliado"> <!-- Campo oculto para o ID -->
 
-                            <p><strong>Nome:</strong> <input style="width: 271px;" type="text" id="alunoNome" name="nomeAluno" class="ant-input custom-input-editar" required></p>
+                            <p><strong>Nome:</strong> <input style="width: 271px;" type="text" id="filiadoNome" name="nomeFiliado" class="ant-input custom-input-editar" required></p>
 
-                            <p><strong>Registro:</strong> <input style="width: 255px;" type="text" id="alunoRegistro" name="registroAluno" class="ant-input custom-input-editar" required></p>
+                            <p><strong>Registro:</strong> <input style="width: 255px;" type="text" id="filiadoRegistro" name="registroFiliado" class="ant-input custom-input-editar" required></p>
 
-                            <p><strong>Cidade:</strong> <input style="width: 265px;" type="text" id="alunoCidade" name="cidadeAluno" class="ant-input custom-input-editar" required></p>
+                            <p><strong>Cidade:</strong> <input style="width: 265px;" type="text" id="filiadoCidade" name="cidadeFiliado" class="ant-input custom-input-editar" required></p>
 
                             <p><strong>Graduação:</strong>
-                                <select style="width: 236px;" id="alunoGraduacao" name="graduacaoAluno" class="ant-input custom-input-editar" required>
+                                <select style="width: 236px;" id="filiadoGraduacao" name="graduacaoFiliado" class="ant-input custom-input-editar" required>
                                     <option value="" disabled selected>Graduação</option>
                                     <option value="Amarela">Amarela</option>
                                     <option value="Laranja">Laranja</option>
@@ -237,15 +237,15 @@
                                 </select>
                             </p>
 
-                            <p><strong>Academia:</strong> <input style="width: 243px;" type="text" id="alunoAcademia" name="academiaAluno" class="ant-input custom-input-editar" required></p>
+                            <p><strong>Academia:</strong> <input style="width: 243px;" type="text" id="filiadoAcademia" name="academiaFiliado" class="ant-input custom-input-editar" required></p>
 
-                            <p><strong>Responsável:</strong> <input style="width: 225px;" type="text" id="alunoResponsavel" name="responsavelAluno" class="ant-input custom-input-editar" required></p>
+                            <p><strong>Responsável:</strong> <input style="width: 225px;" type="text" id="filiadoResponsavel" name="responsavelFiliado" class="ant-input custom-input-editar" required></p>
 
                             <!--                            <p><strong>Data de Nascimento:</strong>-->
-                            <!--                                <input type="date" id="alunoNascimento" name="nascimentoAluno" class="ant-input custom-input-data" required>-->
+                            <!--                                <input type="date" id="filiadoNascimento" name="nascimentoFiliado" class="ant-input custom-input-data" required>-->
                             <!--                            </p>-->
 
-                            <input style="width: 325px;" type="file" id="imagemAlunos" name="imagemAluno" accept="image/*" class="ant-input custom-input-upload">
+                            <input style="width: 325px;" type="file" id="imagemFiliados" name="imagemFiliado" accept="image/*" class="ant-input custom-input-upload">
                             <div class="div-modal-img-button">
                                 <button type="submit" class="anti-input custom-btn-salvar-conta">Salvar</button>
                             </div>
@@ -254,8 +254,8 @@
                 </div>
             </div>
         </div>
-        <!-- FIM MODAL IMAGEM ALUNO-->
-        <!--REGISTROS ALUNOS-->
+        <!-- FIM MODAL IMAGEM FILIADO-->
+        <!--REGISTROS FILIADOS-->
     </section>
     <!--FIM CONTEUDO-->
 
@@ -301,11 +301,11 @@
     <!-- POPUP DE CONFIRMAR EXCLUSÃO ESTILIZADO -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-             document.querySelectorAll(".icon-lixo-alunos").forEach(button => {
+             document.querySelectorAll(".icon-lixo-filiados").forEach(button => {
                  button.addEventListener("click", function (event) {
                      event.preventDefault(); // Evita o envio imediato
 
-                     let alunoId = this.getAttribute("data-id");
+                     let filiadoId = this.getAttribute("data-id");
 
                      Swal.fire({
                          title: "Tem certeza?",
@@ -320,7 +320,7 @@
 
                          if (result.isConfirmed) {
                              // Submete o formulário de exclusão
-                             document.getElementById('formExcluir_' + alunoId).submit();
+                             document.getElementById('formExcluir_' + filiadoId).submit();
                          }
                      });
                  });

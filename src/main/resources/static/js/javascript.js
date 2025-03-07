@@ -538,96 +538,96 @@ function pesquisarProfessores() {
         .catch(error => console.error("Erro ao buscar professores:", error));
 }
 
-function openModalImagemAluno(imgElement) {
-    const modalImagemAluno = document.getElementById("imagemAlunoModal");
-    const modalImageAluno = document.getElementById("imagemAlunoModalImage");
+function openModalImagemFiliado(imgElement) {
+    const modalImagemFiliado = document.getElementById("imagemFiliadoModal");
+    const modalImageFiliado = document.getElementById("imagemFiliadoModalImage");
 
-    modalImageAluno.src = imgElement.src;
+    modalImageFiliado.src = imgElement.src;
 
-    document.getElementById("alunoId").value = imgElement.getAttribute("data-id");
-    document.getElementById("alunoNome").value = imgElement.getAttribute("data-nome");
-    document.getElementById("alunoRegistro").value = imgElement.getAttribute("data-registro");
-    document.getElementById("alunoCidade").value = imgElement.getAttribute("data-cidade");
-    document.getElementById("alunoGraduacao").value = imgElement.getAttribute("data-graduacao");
-    document.getElementById("alunoAcademia").value = imgElement.getAttribute("data-academia");
-    document.getElementById("alunoResponsavel").value = imgElement.getAttribute("data-responsavel");
+    document.getElementById("filiadoId").value = imgElement.getAttribute("data-id");
+    document.getElementById("filiadoNome").value = imgElement.getAttribute("data-nome");
+    document.getElementById("filiadoRegistro").value = imgElement.getAttribute("data-registro");
+    document.getElementById("filiadoCidade").value = imgElement.getAttribute("data-cidade");
+    document.getElementById("filiadoGraduacao").value = imgElement.getAttribute("data-graduacao");
+    document.getElementById("filiadoAcademia").value = imgElement.getAttribute("data-academia");
+    document.getElementById("filiadoResponsavel").value = imgElement.getAttribute("data-responsavel");
 //    document.getElementById("professorNascimento").value = imgElement.getAttribute("data-nascimento");
 
-    modalImagemAluno.style.display = "flex";
+    modalImagemFiliado.style.display = "flex";
 }
 
-function closeModalImagemAluno() {
-    const modalImagemAluno = document.getElementById("imagemAlunoModal");
-    modalImagemAluno.style.display = "none";
+function closeModalImagemFiliado() {
+    const modalImagemFiliado = document.getElementById("imagemFiliadoModal");
+    modalImagemFiliado.style.display = "none";
 }
 
 window.onclick = function(event) {
-    let modalImagemAluno = document.getElementById("imagemAlunoModal");
-    if (event.target === modalImagemAluno) {
-        closeModalImagemAluno();
+    let modalImagemFiliado = document.getElementById("imagemFiliadoModal");
+    if (event.target === modalImagemFiliado) {
+        closeModalImagemFiliado();
     }
 };
 
-function pesquisarAlunos() {
-    const cidade = document.getElementById('select-cidade-alunos').value;
+function pesquisarFiliados() {
+    const cidade = document.getElementById('select-cidade-filiados').value;
 
     event.preventDefault();
 
-    fetch('/pesquisarAlunos?opcoes-cidades-alunos=' + cidade)
+    fetch('/pesquisarFiliados?opcoes-cidades-filiados=' + cidade)
         .then(response => response.json())
-        .then(alunos => {
-            let tbody = document.querySelector(".conteiner-alunos tbody");
+        .then(filiados => {
+            let tbody = document.querySelector(".conteiner-filiados tbody");
             tbody.innerHTML = "";
 
-            alunos.forEach(aluno => {
+            filiados.forEach(filiado => {
                 let tr = document.createElement("tr");
 
                 let tdImg = document.createElement("td");
                 let img = document.createElement("img");
-                img.src = aluno.imagemAluno;
-                img.alt = "Imagem do aluno";
+                img.src = filiado.imagemFiliado;
+                img.alt = "Imagem do filiado";
                 img.style.borderRadius = "10px";
-                img.setAttribute("data-id", aluno.idAluno);
-                img.setAttribute("data-nome", aluno.nomeAluno);
-                img.setAttribute("data-registro", aluno.registroAluno);
-                img.setAttribute("data-cidade", aluno.cidadeAluno);
-                img.setAttribute("data-graduacao", aluno.graduacaoAluno);
-                img.setAttribute("data-academia", aluno.academiaAluno);
-                img.setAttribute("data-responsavel", aluno.responsavelAluno);
-                img.setAttribute("data-nascimento", aluno.nascimentoAluno);
+                img.setAttribute("data-id", filiado.idFiliado);
+                img.setAttribute("data-nome", filiado.nomeFiliado);
+                img.setAttribute("data-registro", filiado.registroFiliado);
+                img.setAttribute("data-cidade", filiado.cidadeFiliado);
+                img.setAttribute("data-graduacao", filiado.graduacaoFiliado);
+                img.setAttribute("data-academia", filiado.academiaFiliado);
+                img.setAttribute("data-responsavel", filiado.responsavelFiliado);
+                img.setAttribute("data-nascimento", filiado.nascimentoFiliado);
                 img.onclick = function () {
-                    openModalImagemAluno(this);
+                    openModalImagemFiliado(this);
                 };
                 tdImg.appendChild(img);
 
                 let tdRegistro = document.createElement("td");
-                tdRegistro.textContent = aluno.registroAluno;
+                tdRegistro.textContent = filiado.registroFiliado;
 
                 let tdNome = document.createElement("td");
-                tdNome.textContent = aluno.nomeAluno;
+                tdNome.textContent = filiado.nomeFiliado;
 
                 let tdCidade = document.createElement("td");
-                tdCidade.textContent = aluno.cidadeAluno;
+                tdCidade.textContent = filiado.cidadeFiliado;
 
                 let tdGraduacao = document.createElement("td");
                 let spanGraduacao = document.createElement("span");
-                spanGraduacao.textContent = aluno.graduacaoAluno;
-                spanGraduacao.classList.add(aluno.graduacaoAluno);
+                spanGraduacao.textContent = filiado.graduacaoFiliado;
+                spanGraduacao.classList.add(filiado.graduacaoFiliado);
                 tdGraduacao.appendChild(spanGraduacao);
 
                 let tdAcademia = document.createElement("td");
-                tdAcademia.textContent = aluno.academiaAluno;
+                tdAcademia.textContent = filiado.academiaFiliado;
 
                 let tdResponsavel = document.createElement("td");
-                tdResponsavel.textContent = aluno.responsavelAluno;
+                tdResponsavel.textContent = filiado.responsavelFiliado;
 
                 let tdNascimento = document.createElement("td");
-                tdNascimento.textContent = aluno.nascimentoAluno;
+                tdNascimento.textContent = filiado.nascimentoFiliado;
 
                 let tdExcluir = document.createElement("td");
                 let formExcluir = document.createElement("form");
-                formExcluir.id = `formExcluir_${aluno.idAluno}`;
-                formExcluir.action = `/alunos/${aluno.idAluno}`;
+                formExcluir.id = `formExcluir_${filiado.idFiliado}`;
+                formExcluir.action = `/filiados/${filiado.idFiliado}`;
                 formExcluir.method = "post";
 
                 let inputHidden = document.createElement("input");
@@ -637,8 +637,8 @@ function pesquisarAlunos() {
 
                 let btnExcluir = document.createElement("button");
                 btnExcluir.type = "button";
-                btnExcluir.classList.add("icon-lixo-alunos");
-                btnExcluir.setAttribute("data-id", aluno.idAluno);
+                btnExcluir.classList.add("icon-lixo-filiados");
+                btnExcluir.setAttribute("data-id", filiado.idFiliado);
                 btnExcluir.innerHTML = `<i class="fa-solid fa-trash"></i>`;
                 btnExcluir.style.border = "none";
                 btnExcluir.style.backgroundColor = "transparent";
@@ -655,7 +655,7 @@ function pesquisarAlunos() {
                         cancelButtonText: "Cancelar"
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            document.getElementById(`formExcluir_${aluno.idAluno}`).submit();
+                            document.getElementById(`formExcluir_${filiado.idFiliado}`).submit();
                         }
                     });
                 });
@@ -677,7 +677,7 @@ function pesquisarAlunos() {
                 tbody.appendChild(tr);
             });
         })
-        .catch(error => console.error("Erro ao buscar alunos:", error));
+        .catch(error => console.error("Erro ao buscar filiados:", error));
 }
 
 function openModalLightCombat() {
