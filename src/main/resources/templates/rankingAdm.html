@@ -123,17 +123,27 @@
         </div>
 
 
-        <!-- INICIO MODAL Light Combat -->
+        <!-- Modal Light Combat -->
         <div id="lightCombatModal" class="modal-light-combat">
             <div class="modal-light-combat-content">
                 <span class="close-light-combat" onclick="closeModalLightCombat()">&times;</span>
                 <h2>Light Combat</h2>
 
-                <form id="lightCombatForm" th:action="@{/}" method="post">
+                <form id="lightCombatForm" th:action="@{/pontosLightCombat}" method="post">
+                    <div class="div-modal-modalidade">
+                        <input type="text" id="nome-light-combat" name="nomeLightCombat" placeholder="Nome"
+                               class="ant-input ant-input custom-input-editar" required>
+
+                        <input type="text" id="pontos-light-combat" name="pontosLightCombat"
+                               placeholder="Pontos" class="ant-input custom-input-pontos" required>
+                    </div>
+                    <div class="div-btn-cadastrar-pontos">
+                        <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
+                    </div>
                 </form>
             </div>
         </div>
-        <!-- FIM MODAL Light Combat -->
+        <!-- Modal Light Combat -->
 
         <!-- INICIO MODAL Kick Light -->
         <div id="kickLightModal" class="modal-kick-light">
@@ -141,7 +151,17 @@
                 <span class="close-kick-light" onclick="closeModalKickLight()">&times;</span>
                 <h2>Kick Light</h2>
 
-                <form id="kickLightForm" th:action="@{/}" method="post">
+                <form id="kickLightForm" th:action="@{/pontosKickLight}" method="post">
+                    <div class="div-modal-modalidade">
+                        <input type="text" id="nome-kick-light-" name="nomeKickLight" placeholder="Nome"
+                               class="ant-input ant-input custom-input-editar" required>
+
+                        <input type="text" id="pontos-kick-light" name="pontosKickLight"
+                               placeholder="Pontos" class="ant-input custom-input-pontos" required>
+                    </div>
+                    <div class="div-btn-cadastrar-pontos">
+                        <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -153,7 +173,17 @@
                 <span class="close-point-fight" onclick="closeModalPointFight()">&times;</span>
                 <h2>Point Fight</h2>
 
-                <form id="pointFightForm" th:action="@{/}" method="post">
+                <form id="pointFightForm" th:action="@{/pontosPointFight}" method="post">
+                    <div class="div-modal-modalidade">
+                        <input type="text" id="nome-point-fight" name="nomePointFight" placeholder="Nome"
+                               class="ant-input ant-input custom-input-editar" required>
+
+                        <input type="text" id="pontos-point-fight" name="pontosPointFight"
+                               placeholder="Pontos" class="ant-input custom-input-pontos" required>
+                    </div>
+                    <div class="div-btn-cadastrar-pontos">
+                        <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -165,7 +195,17 @@
                 <span class="close-full-contact" onclick="closeModalFullContact()">&times;</span>
                 <h2>Full Contact</h2>
 
-                <form id="fullContactForm" th:action="@{/}" method="post">
+                <form id="fullContactForm" th:action="@{/pontosFullContact}" method="post">
+                    <div class="div-modal-modalidade">
+                        <input type="text" id="nome-full-contact" name="nomeFullContact" placeholder="Nome"
+                               class="ant-input ant-input custom-input-editar" required>
+
+                        <input type="text" id="pontos-full-contact" name="pontosFullContact"
+                               placeholder="Pontos" class="ant-input custom-input-pontos" required>
+                    </div>
+                    <div class="div-btn-cadastrar-pontos">
+                        <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -177,7 +217,17 @@
                 <span class="close-low-kicks" onclick="closeModalLowKicks()">&times;</span>
                 <h2>Low Kicks</h2>
 
-                <form id="lowKicksForm" th:action="@{/}" method="post">
+                <form id="lowKicksForm" th:action="@{/pontosLowKicks}" method="post">
+                    <div class="div-modal-modalidade">
+                        <input type="text" id="nome-low-kicks" name="nomeLowKicks" placeholder="Nome"
+                               class="ant-input ant-input custom-input-editar" required>
+
+                        <input type="text" id="pontos-low-kicks" name="pontosLowKicks"
+                               placeholder="Pontos" class="ant-input custom-input-pontos" required>
+                    </div>
+                    <div class="div-btn-cadastrar-pontos">
+                        <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -189,7 +239,17 @@
                 <span class="close-k1" onclick="closeModalK1()">&times;</span>
                 <h2>K1</h2>
 
-                <form id="k1Form" th:action="@{/}" method="post">
+                <form id="k1Form" th:action="@{/pontosK1}" method="post">
+                    <div class="div-modal-modalidade">
+                        <input type="text" id="nome-k1" name="nomeK1" placeholder="Nome"
+                               class="ant-input ant-input custom-input-editar" required>
+
+                        <input type="text" id="pontos-k1" name="pontosK1"
+                               placeholder="Pontos" class="ant-input custom-input-pontos" required>
+                    </div>
+                    <div class="div-btn-cadastrar-pontos">
+                        <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -201,7 +261,17 @@
                 <span class="close-KBCombat" onclick="closeModalKBCombat()">&times;</span>
                 <h2>KB Combat</h2>
 
-                <form id="KBCombatForm" th:action="@{/}" method="post">
+                <form id="KBCombatForm" th:action="@{/pontosKBCombat}" method="post">
+                    <div class="div-modal-modalidade">
+                        <input type="text" id="nome-KBCombat" name="nomeKBCombat" placeholder="Nome"
+                               class="ant-input ant-input custom-input-editar" required>
+
+                        <input type="text" id="pontos-KBCombat" name="pontosKBCombat"
+                               placeholder="Pontos" class="ant-input custom-input-pontos" required>
+                    </div>
+                    <div class="div-btn-cadastrar-pontos">
+                        <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -744,15 +744,11 @@ html, body {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.conteiner-calendario button:hover {
-    background-color: #0056b3;
-    transform: scale(1.2);
+.conteiner-calendario button.active {
+    background-color: #0056b3; /* Cor de fundo quando o mês estiver ativo */
+    transform: scale(1.2); /* Efeito de aumento ao ser ativado */
 }
 
-.conteiner-calendario button:active {
-    background-color: #004494;
-    transform: scale(1.05);
-}
 
 .conteiner-eventos ul {
     width: 80%;
@@ -1883,16 +1879,17 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-modalidade-kb:hover,
-.btn-modalidade-k1:hover,
-.btn-modalidade-low:hover,
-.btn-modalidade-full:hover,
-.btn-modalidade-point:hover,
-.btn-modalidade-kick:hover,
-.btn-modalidade-light:hover {
-    background-color: #006aff;
-    transform: scale(1.05);
+.btn-modalidade-light.active,
+.btn-modalidade-kick.active,
+.btn-modalidade-point.active,
+.btn-modalidade-full.active,
+.btn-modalidade-low.active,
+.btn-modalidade-k1.active,
+.btn-modalidade-kb.active {
+    background-color: #006aff; /* Cor de fundo ao ser ativado */
+    transform: scale(1.05); /* Mesmo efeito do hover */
 }
+
 
 .div-cabecalho-modalidade {
     background-color: #181818;
@@ -1902,17 +1899,19 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     height: 50px;
     margin: 50px auto 0 auto;
     width: 70%;
+    padding: 0 20px;
 }
 
 .div-cabecalho-modalidade h2 {
     color: white;
     margin-left: 30px;
-    margin-top: 6px;
+    margin: 0;
+    line-height: 1;
 }
 
 .icon-criar {
     color: white;
-    margin-right: 30px;
+    margin-right: 20px;
     font-size: 22px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -1983,6 +1982,29 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
 }
 /* MODAL Light Combat */
 
+.div-modal-modalidade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.custom-input-selecionar {
+    width: 310px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+}
+
+.custom-input-pontos {
+    width: 150px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+}
+
+.div-btn-cadastrar-pontos {
+    margin-top: 20px;
+}
 /* INICIO RANKING */
 
 
