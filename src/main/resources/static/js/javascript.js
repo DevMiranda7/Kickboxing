@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Mapeamento entre botões e cabeçalhos
     const modalidades = {
         "btn-modalidade-light": "cabecalho-light",
         "btn-modalidade-kick": "cabecalho-kick",
@@ -10,30 +9,63 @@ document.addEventListener("DOMContentLoaded", function () {
         "btn-modalidade-kb": "cabecalho-kb"
     };
 
-    // Seleciona todos os botões e cabeçalhos
     const botoes = document.querySelectorAll(".conteiner-modalidades button");
     const cabecalhos = document.querySelectorAll(".div-cabecalho-modalidade");
 
-    // Oculta todos os cabeçalhos no início
+    // Oculta todos os cabeçalhos e remove 'active' dos botões no início
     cabecalhos.forEach(cabecalho => cabecalho.style.display = "none");
+    botoes.forEach(botao => botao.classList.remove("active"));
 
-    // Adiciona evento de clique a cada botão
+    // Exibe a seção "Light Combat" e marca o botão como ativo ao carregar a página
+    document.getElementById("cabecalho-light").style.display = "flex";
+    document.querySelector(".btn-modalidade-light").classList.add("active");
+
     botoes.forEach(botao => {
         botao.addEventListener("click", function () {
+            // Remove a classe 'active' de todos os botões
+            botoes.forEach(btn => btn.classList.remove("active"));
+
+            // Adiciona a classe 'active' ao botão clicado
+            botao.classList.add("active");
+
             // Esconde todos os cabeçalhos antes de mostrar o correto
             cabecalhos.forEach(cabecalho => cabecalho.style.display = "none");
 
-            // Obtém o ID do cabeçalho correspondente
+            // Obtém o ID do cabeçalho correspondente e exibe
             const idCabecalho = modalidades[botao.classList[1]];
-
-            // Exibe o cabeçalho correto
             document.getElementById(idCabecalho).style.display = "flex";
         });
     });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    filtrarEventos("01");
+    // Seleciona todos os inputs de pontos
+    let inputsPontos = document.querySelectorAll("input[name^='pontos']");
+
+    inputsPontos.forEach(input => {
+        input.addEventListener("input", function () {
+            // Permite apenas números e vírgulas
+            this.value = this.value.replace(/[^0-9,]/g, '');
+
+            // Impede mais de uma vírgula
+            let partes = this.value.split(',');
+            if (partes.length > 2) {
+                this.value = partes[0] + ',' + partes[1]; // Mantém apenas uma vírgula
+            }
+        });
+    });
+
+    // Seleciona todos os formulários e adiciona o evento de submit
+    let forms = document.querySelectorAll("form[id$='Form']");
+
+    forms.forEach(form => {
+        form.addEventListener("submit", function () {
+            let inputPontos = form.querySelector("input[name^='pontos']");
+            if (inputPontos) {
+                inputPontos.value = inputPontos.value.replace(',', '.'); // Converte vírgula para ponto antes de enviar
+            }
+        });
+    });
 });
 
 function openModalCriarConta() {
@@ -152,11 +184,22 @@ window.onclick = function (event) {
 };
 
 function filtrarEventos(mes) {
+    // Adiciona a classe 'active' ao botão clicado e remove dos outros
+    let botoes = document.querySelectorAll(".conteiner-calendario button");
+    botoes.forEach(botao => {
+        if (botao.textContent === getMesNome(mes)) {
+            botao.classList.add("active");
+        } else {
+            botao.classList.remove("active");
+        }
+    });
+
+    // Agora faz o fetch e exibe os eventos
     fetch('/filtrar?mes=' + mes)
         .then(response => response.json())
         .then(eventos => {
             let containerEventos = document.querySelector(".conteiner-eventos ul");
-            containerEventos.innerHTML = "";
+            containerEventos.innerHTML = ""; // Limpa a lista de eventos
 
             eventos.forEach(evento => {
                 let eventoItem = document.createElement("li");
@@ -232,6 +275,16 @@ function filtrarEventos(mes) {
         })
     .catch(error => console.error("Erro ao buscar eventos:", error));
 }
+
+// Função auxiliar para mapear o número do mês para o nome
+function getMesNome(mes) {
+    const meses = [
+        "JAN", "FEV", "MAR", "ABR", "MAI", "JUN",
+        "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"
+    ];
+    return meses[mes - 1];
+}
+
 
 function openModalImagemAcademia(imgSrc) {
     const modalImagemAcademia = document.getElementById("imagemAcademiaModal");
