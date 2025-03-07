@@ -1490,22 +1490,22 @@ th:nth-child(7), td:nth-child(7) { /* Data de Nascimento */
 /* IMAGEM NO MODAL PROFESSOR */
 /* REGISTRO PROFESSORES */
 
-/* CADASTRAR ALUNOS */
-.conteiner-pesquisar-alunos {
+/* CADASTRAR FILIADOS */
+.conteiner-pesquisar-filiados {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
 
-.conteiner-pesquisar-alunos select {
+.conteiner-pesquisar-filiados select {
     width: 210px;
     border: 1px solid #aaa;
     justify-content: center;
     align-items: center;
 }
 
-.custom-btn-pesquisar-alunos {
+.custom-btn-pesquisar-filiados {
     width: 94px;
     background-color: #00c8ff;
     color: white;
@@ -1519,12 +1519,12 @@ th:nth-child(7), td:nth-child(7) { /* Data de Nascimento */
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.custom-btn-pesquisar-alunos:hover {
+.custom-btn-pesquisar-filiados:hover {
     background-color: #006aff;
     transform: scale(1.05);
 }
 
-.cadastrar-aluno-h2 {
+.cadastrar-filiado-h2 {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -1533,7 +1533,7 @@ th:nth-child(7), td:nth-child(7) { /* Data de Nascimento */
     margin-top: 50px;
 }
 
-.conteiner-cadastrar-alunos {
+.conteiner-cadastrar-filiados {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1541,45 +1541,45 @@ th:nth-child(7), td:nth-child(7) { /* Data de Nascimento */
     gap: 20px;
 }
 
-.div-cadastrar-alunos-registro {
+.div-cadastrar-filiados-registro {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
 
-.div-cadastrar-alunos-cidade {
+.div-cadastrar-filiados-cidade {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
 
-.div-cadastrar-alunos-academia {
+.div-cadastrar-filiados-academia {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
 
-.div-cadastrar-alunos-nascimento {
+.div-cadastrar-filiados-nascimento {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 30px;
 
 }
-/* CADASTRAR ALUNOS */
+/* CADASTRAR FILIADOS */
 
-/* REGISTROS ALUNO */
-.conteiner-alunos {
+/* REGISTROS FILIADOS */
+.conteiner-filiados {
     margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.conteiner-alunos th {
+.conteiner-filiados th {
     font-size: 16px;
     background-color: #181818;
     text-align: left;
@@ -1588,7 +1588,7 @@ th:nth-child(7), td:nth-child(7) { /* Data de Nascimento */
     padding: 10px;
 }
 
-.conteiner-alunos td {
+.conteiner-filiados td {
     text-align: left;
     font-size: 12px;
     font-weight: bold;
@@ -1630,12 +1630,12 @@ th:nth-child(7), td:nth-child(7) { /* Responsável */
     width: 200px;
 }
 
-th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
+th:nth-child(8), td:nth-child(8) {
     width: 150px;
     text-align: center;
 }
 
-.conteiner-alunos img {
+.conteiner-filiados img {
     width: 80px;
     height: 80px;
     object-fit: cover;
@@ -1643,7 +1643,7 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
 }
 
-.conteiner-alunos img:hover {
+.conteiner-filiados img:hover {
     transform: scale(1.2);
 }
 
@@ -1679,7 +1679,7 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     color: white;
 }
 
-.icon-lixo-alunos {
+.icon-lixo-filiados {
     color: #fd3434;
     font-size: 20px;
     height: auto;
@@ -1690,12 +1690,12 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     transition: transform 0.1s ease-in-out;
 }
 
-.icon-lixo-alunos:hover {
+.icon-lixo-filiados:hover {
     transform: scale(1.3);
 }
 
-/* IMAGEM NO MODAL ALUNO */
-.imagem-aluno-modal {
+/* IMAGEM NO MODAL FILIADO */
+.imagem-filiado-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -1708,7 +1708,7 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     align-items: center;
 }
 
-.imagem-aluno-modal-content {
+.imagem-filiado-modal-content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1734,25 +1734,25 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     justify-content: center;
 }
 
-.imagem-aluno-modal-content img {
+.imagem-filiado-modal-content img {
     width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 10px;
 }
 
-.aluno-details {
+.filiado-details {
     flex: 1;
     margin-top: 20px;
 }
 
-.aluno-details p {
+.filiado-details p {
     margin: 10px 0;
     display: flex;
     align-items: center;
 }
 
-.aluno-details strong {
+.filiado-details strong {
     margin-right: 10px;
 }
 
@@ -1762,7 +1762,7 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     align-items: center;
 }
 
-.close-imagem-aluno-modal {
+.close-imagem-filiado-modal {
     color: #fff;
     font-size: 40px;
     position: absolute;
@@ -1771,11 +1771,11 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
     cursor: pointer;
 }
 
-.close-imagem-aluno-modal:hover {
+.close-imagem-filiado-modal:hover {
     color: #bbb;
 }
-/* IMAGEM NO MODAL ALUNO */
-/* REGISTRO ALUNOS */
+/* IMAGEM NO MODAL FILIADO */
+/* REGISTRO FILIADOS */
 
 /* INICIO RANKING */
 .conteiner-modalidades {

@@ -1,7 +1,5 @@
 package kickboxing.service.modalidade;
 
-import kickboxing.model.modalide.FullContact;
-import kickboxing.model.modalide.LightCombat;
 import kickboxing.model.modalide.LowKicks;
 import kickboxing.repository.modalidade.LowKicksRepository;
 import org.springframework.beans.factory.annotation.Autowired;

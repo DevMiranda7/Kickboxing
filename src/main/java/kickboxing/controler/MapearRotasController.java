@@ -31,7 +31,7 @@ public class MapearRotasController {
     private EventoController eventoController;
 
     @Autowired
-    private AlunoController alunoController;
+    private FiliadoController filiadoController;
 
     @Autowired
     private ProfessorController professorController;
@@ -90,14 +90,14 @@ public class MapearRotasController {
         return professorController.listarProfessores(model);
     }
 
-    @GetMapping("/alunosAdm")
-    public String alunosAdmPage(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
+    @GetMapping("/filiadosAdm")
+    public String filiadosAdmPage(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         String redirecionamento = verificarSessao(session, redirectAttributes);
         if (redirecionamento != null) {
             return redirecionamento;
         }
 
-        return alunoController.listarAlunos(model);
+        return filiadoController.listarFiliados(model);
     }
 
     @GetMapping("/eventosAdm")

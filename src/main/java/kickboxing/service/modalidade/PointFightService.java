@@ -1,7 +1,5 @@
 package kickboxing.service.modalidade;
 
-import kickboxing.model.modalide.FullContact;
-import kickboxing.model.modalide.LightCombat;
 import kickboxing.model.modalide.PointFight;
 import kickboxing.repository.modalidade.PointFightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
