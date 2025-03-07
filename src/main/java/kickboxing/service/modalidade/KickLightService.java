@@ -1,6 +1,7 @@
 package kickboxing.service.modalidade;
 
 import kickboxing.model.modalide.KickLight;
+import kickboxing.model.modalide.LightCombat;
 import kickboxing.repository.modalidade.KickLightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class KickLightService {
@@ -33,5 +36,12 @@ public class KickLightService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Formato inválido para pontos. Use números como 10,00.");
         }
+    }
+
+    public List<KickLight> listarKickLight() {
+        List<KickLight> kickLights = kickLightRepository.findAll();
+        return kickLights.stream()
+                .sorted((lc1, lc2) -> lc2.getPontosKickLight().compareTo(lc1.getPontosKickLight()))
+                .collect(Collectors.toList());
     }
 }

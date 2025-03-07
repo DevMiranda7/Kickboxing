@@ -2,7 +2,9 @@ package kickboxing.controler;
 
 import jakarta.servlet.http.HttpSession;
 import kickboxing.model.Admin;
+import kickboxing.model.modalide.*;
 import kickboxing.service.AdminService;
+import kickboxing.service.modalidade.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Controller
 public class MapearRotasController {
@@ -32,6 +35,28 @@ public class MapearRotasController {
 
     @Autowired
     private ProfessorController professorController;
+
+    @Autowired
+    private LightCombatService lightCombatService;
+
+    @Autowired
+    private KickLightService kickLightService;
+
+    @Autowired
+    private PointFightService pointFightService;
+
+    @Autowired
+    private FullContactService fullContactService;
+
+    @Autowired
+    private LowKicksService lowKicksService;
+
+    @Autowired
+    private K1Service k1Service;
+
+    @Autowired
+    private KBCombatService kbCombatService;
+
 
     @GetMapping("/index")
     public String indexPage() {
@@ -106,10 +131,37 @@ public class MapearRotasController {
     }
 
     @GetMapping("/rankingAdm")
-    public String rankingAdmPage(HttpSession session, RedirectAttributes redirectAttributes) {
+    public String rankingAdmPage(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         String redirecionamento = verificarSessao(session, redirectAttributes);
-        return redirecionamento != null ? redirecionamento : "rankingAdm";
+        if (redirecionamento != null) {
+            return redirecionamento;
+        }
+
+        // Adicionar todas as listas ao modelo
+        List<LightCombat> lightCombats = lightCombatService.listarLightCombat();
+        model.addAttribute("lightCombats", lightCombats);
+
+        List<KickLight> kicklights = kickLightService.listarKickLight();
+        model.addAttribute("kicklights", kicklights);
+
+        List<PointFight> pointFights = pointFightService.listarPointFight();
+        model.addAttribute("pointFights", pointFights);
+
+        List<FullContact> fullContacts = fullContactService.listarFullContact();
+        model.addAttribute("fullContacts", fullContacts);
+
+        List<LowKicks> lowKickss = lowKicksService.listarLowKicks();
+        model.addAttribute("lowKickss", lowKickss);
+
+        List<K1> k1s = k1Service.listarK1();
+        model.addAttribute("k1s", k1s);
+
+        List<KBCombat> kbCombats = kbCombatService.listarKBCombat();
+        model.addAttribute("kbCombats", kbCombats);
+
+        return "rankingAdm";
     }
+
 
     @GetMapping("/recuperarSenha")
     public String mostrarFormularioRecuperacao(@RequestParam("token") String token, Model model) {

@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const modalidades = {
         "btn-modalidade-light": "cabecalho-light",
