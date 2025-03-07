@@ -3,6 +3,7 @@ package kickboxing.controler.modalidade;
 import kickboxing.service.modalidade.KBCombatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -28,6 +29,18 @@ public class KBCombatController {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
 
+        return "redirect:/rankingAdm";
+    }
+
+    @PostMapping("/kbCombats/{id}")
+    public String excluirKBCombat(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        try {
+            kbCombatService.excluirKBCombat(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Excluído com sucesso!");
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao excluir: " + e.getMessage());
+        }
         return "redirect:/rankingAdm";
     }
 }

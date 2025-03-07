@@ -1,5 +1,6 @@
 package kickboxing.service.modalidade;
 
+import kickboxing.model.modalide.FullContact;
 import kickboxing.model.modalide.KBCombat;
 import kickboxing.model.modalide.LightCombat;
 import kickboxing.repository.modalidade.KBCombatRepository;
@@ -43,5 +44,12 @@ public class KBCombatService {
         return kbCombats.stream()
                 .sorted((lc1, lc2) -> lc2.getPontosKBCombat().compareTo(lc1.getPontosKBCombat()))
                 .collect(Collectors.toList());
+    }
+
+    public void excluirKBCombat(Long id) {
+        KBCombat kbCombat = kbCombatRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Não encontrado"));
+
+        kbCombatRepository.deleteById(id);
     }
 }

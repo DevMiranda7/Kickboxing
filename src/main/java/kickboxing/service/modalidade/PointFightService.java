@@ -1,5 +1,6 @@
 package kickboxing.service.modalidade;
 
+import kickboxing.model.modalide.FullContact;
 import kickboxing.model.modalide.LightCombat;
 import kickboxing.model.modalide.PointFight;
 import kickboxing.repository.modalidade.PointFightRepository;
@@ -43,5 +44,12 @@ public class PointFightService {
         return pointFights.stream()
                 .sorted((lc1, lc2) -> lc2.getPontosPointFight().compareTo(lc1.getPontosPointFight()))
                 .collect(Collectors.toList());
+    }
+
+    public void excluirPointFight(Long id) {
+        PointFight pointFight = pointFightRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Não encontrado"));
+
+        pointFightRepository.deleteById(id);
     }
 }

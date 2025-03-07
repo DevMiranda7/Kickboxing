@@ -1,5 +1,6 @@
 package kickboxing.service.modalidade;
 
+import kickboxing.model.modalide.FullContact;
 import kickboxing.model.modalide.K1;
 import kickboxing.model.modalide.LightCombat;
 import kickboxing.repository.modalidade.K1Repository;
@@ -43,5 +44,12 @@ public class K1Service {
         return k1s.stream()
                 .sorted((lc1, lc2) -> lc2.getPontosK1().compareTo(lc1.getPontosK1()))
                 .collect(Collectors.toList());
+    }
+
+    public void excluirK1(Long id) {
+        K1 k1 = k1Repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Não encontrado"));
+
+        k1Repository.deleteById(id);
     }
 }

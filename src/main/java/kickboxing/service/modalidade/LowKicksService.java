@@ -1,5 +1,6 @@
 package kickboxing.service.modalidade;
 
+import kickboxing.model.modalide.FullContact;
 import kickboxing.model.modalide.LightCombat;
 import kickboxing.model.modalide.LowKicks;
 import kickboxing.repository.modalidade.LowKicksRepository;
@@ -43,5 +44,12 @@ public class LowKicksService {
         return lowKickss.stream()
                 .sorted((lc1, lc2) -> lc2.getPontosLowKicks().compareTo(lc1.getPontosLowKicks()))
                 .collect(Collectors.toList());
+    }
+
+    public void excluirLowKicks(Long id) {
+        LowKicks lowKicks = lowKicksRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Não encontrado"));
+
+        lowKicksRepository.deleteById(id);
     }
 }
