@@ -1,5 +1,6 @@
 package kickboxing.service.modalidade;
 
+import kickboxing.model.modalide.FullContact;
 import kickboxing.model.modalide.KickLight;
 import kickboxing.model.modalide.LightCombat;
 import kickboxing.repository.modalidade.KickLightRepository;
@@ -43,5 +44,12 @@ public class KickLightService {
         return kickLights.stream()
                 .sorted((lc1, lc2) -> lc2.getPontosKickLight().compareTo(lc1.getPontosKickLight()))
                 .collect(Collectors.toList());
+    }
+
+    public void excluirKickLight(Long id) {
+        KickLight kickLight = kickLightRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Não encontrado"));
+
+        kickLightRepository.deleteById(id);
     }
 }

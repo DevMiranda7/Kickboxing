@@ -773,4 +773,3 @@ window.onclick = function (event) {
         closeModalKBCombat();
     }
 };
-

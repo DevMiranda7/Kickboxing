@@ -1,6 +1,7 @@
 package kickboxing.service.modalidade;
 
 import kickboxing.model.Evento;
+import kickboxing.model.modalide.FullContact;
 import kickboxing.model.modalide.LightCombat;
 import kickboxing.repository.modalidade.LightCombatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,12 @@ public class LightCombatService {
         return lightCombats.stream()
                 .sorted((lc1, lc2) -> lc2.getPontosLightCombat().compareTo(lc1.getPontosLightCombat()))
                 .collect(Collectors.toList());
+    }
+
+    public void excluirLightCombat(Long id) {
+        LightCombat lightCombat = lightCombatRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Não encontrado"));
+
+        lightCombatRepository.deleteById(id);
     }
 }

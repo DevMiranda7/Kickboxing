@@ -1,7 +1,6 @@
 package kickboxing.service.modalidade;
 
 import kickboxing.model.modalide.FullContact;
-import kickboxing.model.modalide.LightCombat;
 import kickboxing.repository.modalidade.FullContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +42,12 @@ public class FullContactService {
         return fullContacts.stream()
                 .sorted((lc1, lc2) -> lc2.getPontosFullContact().compareTo(lc1.getPontosFullContact()))
                 .collect(Collectors.toList());
+    }
+
+    public void excluirFullContact(Long id) {
+        FullContact fullContact = fullContactRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Não encontrado"));
+
+        fullContactRepository.deleteById(id);
     }
 }

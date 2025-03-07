@@ -96,11 +96,23 @@
 
                 <table class="table-ranking">
                     <tbody>
-                    <tr th:each="lightCombat, iterStat : ${lightCombats}">
-                        <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
-                        <td class="nome-ranking" th:text="${lightCombat.nomeLightCombat}"></td>
-                        <td class="pontos-ranking" th:text="${lightCombat.pontosLightCombat}"></td>
-                    </tr>
+                        <tr th:each="lightCombat, iterStat : ${lightCombats}">
+                            <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
+                            <td class="nome-ranking" th:text="${lightCombat.nomeLightCombat}"></td>
+                            <td class="pontos-ranking" th:text="${lightCombat.pontosLightCombat}"></td>
+
+                            <td class="lixo-ranking">
+                                <form th:id="'formExcluir_light_' + ${lightCombat.idLightCombat}"
+                                      th:action="@{/lightCombats/{id}(id=${lightCombat.idLightCombat})}"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="button" class="icon-lixo-ranking"
+                                            th:attr="data-id='light_' + ${lightCombat.idLightCombat}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -119,6 +131,20 @@
                             <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
                             <td class="nome-ranking" th:text="${kickLight.nomeKickLight}"></td>
                             <td class="pontos-ranking" th:text="${kickLight.pontosKickLight}"></td>
+
+                            <td class="lixo-ranking">
+                                <form th:id="'formExcluir_kick_' + ${kickLight.idKickLight}"
+                                      th:action="@{/kickLights/{id}(id=${kickLight.idKickLight})}"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <div>
+                                        <button type="button" class="icon-lixo-ranking"
+                                                th:attr="data-id='kick_' + ${kickLight.idKickLight}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -138,6 +164,20 @@
                             <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
                             <td class="nome-ranking" th:text="${pointFight.nomePointFight}"></td>
                             <td class="pontos-ranking" th:text="${pointFight.pontosPointFight}"></td>
+
+                            <td class="lixo-ranking">
+                                <form th:id="'formExcluir_point_' + ${pointFight.idPointFight}"
+                                      th:action="@{/pointFights/{id}(id=${pointFight.idPointFight})}"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <div>
+                                        <button type="button" class="icon-lixo-ranking"
+                                                th:attr="data-id='point_' + ${pointFight.idPointFight}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -157,6 +197,20 @@
                             <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
                             <td class="nome-ranking" th:text="${fullContact.nomeFullContact}"></td>
                             <td class="pontos-ranking" th:text="${fullContact.pontosFullContact}"></td>
+
+                            <td class="lixo-ranking">
+                                <form th:id="'formExcluir_full_' + ${fullContact.idFullContact}"
+                                      th:action="@{/fullContacts/{id}(id=${fullContact.idFullContact})}"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <div>
+                                        <button type="button" class="icon-lixo-ranking"
+                                                th:attr="data-id='full_' + ${fullContact.idFullContact}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -176,6 +230,20 @@
                             <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
                             <td class="nome-ranking" th:text="${lowKicks.nomeLowKicks}"></td>
                             <td class="pontos-ranking" th:text="${lowKicks.pontosLowKicks}"></td>
+
+                            <td class="lixo-ranking">
+                                <form th:id="'formExcluir_low_' + ${lowKicks.idLowKicks}"
+                                      th:action="@{/lowKickss/{id}(id=${lowKicks.idLowKicks})}"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <div>
+                                        <button type="button" class="icon-lixo-ranking"
+                                                th:attr="data-id='low_' + ${lowKicks.idLowKicks}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -195,6 +263,20 @@
                             <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
                             <td class="nome-ranking" th:text="${k1.nomeK1}"></td>
                             <td class="pontos-ranking" th:text="${k1.pontosK1}"></td>
+
+                            <td class="lixo-ranking">
+                                <form th:id="'formExcluir_k1_' + ${k1.idK1}"
+                                      th:action="@{/k1s/{id}(id=${k1.idK1})}"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <div>
+                                        <button type="button" class="icon-lixo-ranking"
+                                                th:attr="data-id='k1_' + ${k1.idK1}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -214,6 +296,20 @@
                             <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
                             <td class="nome-ranking" th:text="${kbCombat.nomeKBCombat}"></td>
                             <td class="pontos-ranking" th:text="${kbCombat.pontosKBCombat}"></td>
+
+                            <td class="lixo-ranking">
+                                <form th:id="'formExcluir_kb_' + ${kbCombat.idKBCombat}"
+                                      th:action="@{/kbCombats/{id}(id=${kbCombat.idKBCombat})}"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <div>
+                                        <button type="button" class="icon-lixo-ranking"
+                                                th:attr="data-id='kb_' + ${kbCombat.idKBCombat}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -414,6 +510,40 @@
             });
         </script>
     </div>
+
+    <!-- POPUP DE CONFIRMAR EXCLUSÃO ESTILIZADO -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".icon-lixo-ranking").forEach(button => {
+                button.addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    let rankingId = this.getAttribute("data-id"); // Exemplo: "light_2", "kick_3"
+                    console.log("Tentando excluir: ", rankingId);
+
+                    Swal.fire({
+                        title: "Tem certeza?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#d33",
+                        cancelButtonColor: "#3085d6",
+                        confirmButtonText: "Sim, excluir!",
+                        cancelButtonText: "Cancelar"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            let form = document.getElementById('formExcluir_' + rankingId);
+                            if (form) {
+                                form.submit();
+                            } else {
+                                console.error("Formulário não encontrado para ID:", rankingId);
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <!-- Sweet Alert Componentes UI -->
 
     <script th:src="@{/js/javascript.js}"></script>
 </body>

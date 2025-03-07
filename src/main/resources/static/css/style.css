@@ -1933,6 +1933,7 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
 /* Tabela */
 .table-ranking {
     width: 90%;
+    text-align: center;
 }
 
 .table-ranking th {
@@ -1943,20 +1944,44 @@ th:nth-child(8), td:nth-child(8) { /* Data de Nascimento */
 table .indice-ranking {
     text-align: center;
     font-size: 16px;
-    width: 20px;
+    width: 30px;
+    padding-left: 15px;
 }
 
 table .nome-ranking {
     text-align: left;
     font-size: 16px;
+    width: auto;
 }
 
 table .pontos-ranking {
     text-align: right;
-    font-size: 16px
-    width: 20px;
-    padding-right: 20px;
-    padding-top: 15px;
+    font-size: 16px;
+    padding-right: 10px;
+    white-space: nowrap;
+}
+
+table .lixo-ranking {
+    text-align: right;
+    font-size: 16px;
+    width: 30px;
+    padding-right: 15px;
+}
+
+.icon-lixo-ranking {
+    color: #fd3434;
+    font-size: 20px;
+    height: auto;
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+    transition: transform 0.1s ease-in-out;
+    padding: 5px;
+}
+
+.icon-lixo-ranking:hover {
+    transform: scale(1.3);
 }
 
 #cabecalho-kb,
