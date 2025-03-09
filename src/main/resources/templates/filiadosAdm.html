@@ -91,41 +91,86 @@
 
                         <input type="text" id="nome-filiado" name="nomeFiliado" placeholder="Nome do Filiado"
                         class="ant-input ant-input custom-input-editar" required>
+
+                        <input type="date" id="nascimento-filiado" name="nascimentoFiliado"
+                               class="ant-input ant-input custom-input-data" required>
                     </div>
 
                     <div class="div-cadastrar-filiados-cidade">
                         <input type="text" id="cidade-filiado" name="cidadeFiliado" placeholder="Cidade do Filiado"
-                        class="ant-input ant-input custom-input-editar" required>
+                        class="ant-input ant-input custom-input-editar-cidade" required>
 
-                        <select id="graduacao-filiado" name="graduacaoFiliado" class="ant-input custom-input-editar" required>
-                            <option value="" disabled selected>Graduação</option>
-                            <option value="Amarela">Amarela</option>
-                            <option value="Laranja">Laranja</option>
-                            <option value="Verde">Verde</option>
-                            <option value="Azul">Azul</option>
-                            <option value="Marrom">Marrom</option>
-                            <option value="Preta">Preta</option>
-                        </select>
-                    </div>
-
-                    <div class="div-cadastrar-filiados-academia">
                         <input type="text" id="academia-filiado" name="academiaFiliado"
-                        placeholder="Academia do Filiado" class="ant-input ant-input custom-input-editar" required>
+                               placeholder="Academia do Filiado" class="ant-input ant-input custom-input-editar" required>
 
                         <input type="text" id="responsavel-filiado" name="responsavelFiliado"
-                        placeholder="Responsável do Filiado" class="ant-input ant-input custom-input-editar" required>
+                               placeholder="Responsável do Filiado" class="ant-input ant-input custom-input-editar" required>
                     </div>
 
-                    <div class="div-cadastrar-filiados-nascimento">
-                        <input type="date" id="nascimento-filiado" name="nascimentoFiliado"
-                        class="ant-input ant-input custom-input-data" required>
-
+                    <div class="div-cadastrar-filiados-upload">
+                        <label>
+                            <input type="radio" name="generoFiliado" value="Masculino" required>
+                            Masculino
+                        </label>
+                        <label>
+                            <input type="radio" name="generoFiliado" value="Feminino" required>
+                            Feminino
+                        </label>
                         <input type="file" id="imagem-filiado" name="imagemFiliado" accept="image/*"
-                        class="ant-input custom-input-upload" required>
+                               class="ant-input custom-input-upload" required>
                     </div>
-                    <div>
-                        <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
+                </div>
+
+                <div class="h3-escolher">
+                    <h3>Escolher Graduação</h3>
+                    <hr class="separator-graduado">
+                </div>
+
+                <div class="conteiner-cadastrar-graduacao">
+                    <div class="info-faixa">
+                        <div>
+                            <div>
+                            <p>Faixa Colorida:</p>
+                                <select id="graduacao-coloridas-filiado" name="graduacaoFiliado" class="ant-input custom-input-graduacao">
+                                    <option value="" disabled selected>Coloridas</option>
+                                    <option value="Amarela">Amarela</option>
+                                    <option value="Laranja">Laranja</option>
+                                    <option value="Verde">Verde</option>
+                                    <option value="Azul">Azul</option>
+                                    <option value="Marrom">Marrom</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="info-faixa">
+                        <div>
+                            <p>Faixa Preta:</p>
+                            <select id="graduacao-pretas-filiado" name="graduacaoFiliado" class="ant-input custom-input-graduacao">
+                                <option value="" disabled selected>Pretas</option>
+                                <option value="Preta 1° Dan">Preta 1° Dan</option>
+                                <option value="Preta 2° Dan">Preta 2° Dan</option>
+                                <option value="Preta 3° Dan">Preta 3° Dan</option>
+                                <option value="Preta 4° Dan">Preta 4° Dan</option>
+                                <option value="Preta 5° Dan">Preta 5° Dan</option>
+                                <option value="Preta 6° Dan">Preta 6° Dan</option>
+                                <option value="Preta 7° Dan">Preta 7° Dan</option>
+                                <option value="Preta 8° Dan">Preta 8° Dan</option>
+                                <option value="Preta 9° Dan">Preta 9° Dan</option>
+                                <option value="Preta 10° Dan">Preta 10° Dan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="color-div">
+                        <p>Graduado em:</p>
+                        <input type="date" id="graduadoEm" name="graduadoEm"
+                               class="ant-input ant-input custom-input-data" required>
+                    </div>
+                </div>
+
+                <div class="div-cadastrar-filiado-upload">
+                    <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -151,11 +196,12 @@
                     <th>Foto</th>
                     <th>Registro</th>
                     <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>M/F</th>
                     <th>Cidade</th>
                     <th>Graduação</th>
                     <th>Academia</th>
                     <th>Responsável</th>
-                    <th>Data de Nascimento</th>
                 </tr>
                 </thead>
 
@@ -163,20 +209,22 @@
                 <tr th:each="filiado : ${filiados}">
                     <td>
                         <img th:src="@{${filiado.imagemFiliado}}" alt="Imagem do filiado"
-                             th:attr="data-id=${filiado.idFiliado},
-                             data-nome=${filiado.nomeFiliado},
-                             data-registro=${filiado.registroFiliado},
-                             data-cidade=${filiado.cidadeFiliado},
-                             data-graduacao=${filiado.graduacaoFiliado},
-                             data-academia=${filiado.academiaFiliado},
-                             data-responsavel=${filiado.responsavelFiliado},
-                             data-nascimento=${filiado.nascimentoFiliado}"
+                              th:attr="data-id=${filiado.idFiliado},
+                              data-registro=${filiado.registroFiliado},
+                              data-nome=${filiado.nomeFiliado},
+                              data-cidade=${filiado.cidadeFiliado},
+                              data-academia=${filiado.academiaFiliado},
+                              data-responsavel=${filiado.responsavelFiliado},
+                              data-genero=${filiado.generoFiliado},
+                              data-graduado=${filiado.graduadoEm}"
+                              onclick="openModalImagemFiliado(this)" style="border-radius: 10px;">
 
-                             onclick="openModalImagemFiliado(this)" style="border-radius: 10px;">
                     </td>
 
                     <td th:text="${filiado.registroFiliado}"></td>
                     <td th:text="${filiado.nomeFiliado}"></td>
+                    <td th:text="${#temporals.format(filiado.nascimentoFiliado, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${filiado.generoFiliado == 'Masculino' ? 'M' : (filiado.generoFiliado == 'Feminino' ? 'F' : '')}"></td>
                     <td th:text="${filiado.cidadeFiliado}"></td>
 
                     <td>
@@ -186,8 +234,6 @@
                     <td th:text="${filiado.academiaFiliado}"></td>
 
                     <td th:text="${filiado.responsavelFiliado}"></td>
-
-                    <td th:text="${#temporals.format(filiado.nascimentoFiliado, 'dd/MM/yyyy')}"></td>
 
                     <td>
                         <form th:id="'formExcluir_' + ${filiado.idFiliado}"
@@ -217,36 +263,90 @@
 
                     <div class="filiado-details">
                         <form id="editarFiliadoForm" th:action="@{/editarFiliado}" method="post" enctype="multipart/form-data">
-                            <input type="hidden" id="filiadoId" name="idFiliado"> <!-- Campo oculto para o ID -->
+                            <input type="hidden" id="filiadoId" name="idFiliado">
 
-                            <p><strong>Nome:</strong> <input style="width: 271px;" type="text" id="filiadoNome" name="nomeFiliado" class="ant-input custom-input-editar" required></p>
+                            <div class="div-modal-nome">
+                                <div class="info-modal-nome">
+                                    <p>Registro:</p>
+                                    <input type="text" id="filiadoRegistro" name="registroFiliado" class="ant-input custom-input-editar" required>
+                                </div>
 
-                            <p><strong>Registro:</strong> <input style="width: 255px;" type="text" id="filiadoRegistro" name="registroFiliado" class="ant-input custom-input-editar" required></p>
+                                <div class="info-modal-nome">
+                                    <p>Nome:</p>
+                                    <input type="text" id="filiadoNome" name="nomeFiliado" class="ant-input custom-input-editar" required>
+                                </div>
+                            </div>
 
-                            <p><strong>Cidade:</strong> <input style="width: 265px;" type="text" id="filiadoCidade" name="cidadeFiliado" class="ant-input custom-input-editar" required></p>
+                            <div class="div-modal-nome">
+                                <div class="info-modal-nome">
+                                    <p>Cidade:</p>
+                                    <input type="text" id="filiadoCidade" name="cidadeFiliado" class="ant-input custom-input-editar" required>
+                               </div>
 
-                            <p><strong>Graduação:</strong>
-                                <select style="width: 236px;" id="filiadoGraduacao" name="graduacaoFiliado" class="ant-input custom-input-editar" required>
-                                    <option value="" disabled selected>Graduação</option>
-                                    <option value="Amarela">Amarela</option>
-                                    <option value="Laranja">Laranja</option>
-                                    <option value="Verde">Verde</option>
-                                    <option value="Azul">Azul</option>
-                                    <option value="Marrom">Marrom</option>
-                                    <option value="Preta">Preta</option>
-                                </select>
-                            </p>
+                                <div class="info-modal-nome">
+                                    <p>Academia:</p>
+                                    <input type="text" id="filiadoAcademia" name="academiaFiliado" class="ant-input custom-input-editar" required>
+                                </div>
+                            </div>
 
-                            <p><strong>Academia:</strong> <input style="width: 243px;" type="text" id="filiadoAcademia" name="academiaFiliado" class="ant-input custom-input-editar" required></p>
+                            <div class="div-modal-nome">
+                                <div class="info-modal-nome">
+                                    <p>Responsável:</p>
+                                    <input type="text" id="filiadoResponsavel" name="responsavelFiliado" class="ant-input custom-input-editar" required>
+                                </div>
 
-                            <p><strong>Responsável:</strong> <input style="width: 225px;" type="text" id="filiadoResponsavel" name="responsavelFiliado" class="ant-input custom-input-editar" required></p>
+                                <div class="info-modal-genero">
+                                    <label>
+                                        <input type="radio" name="generoFiliado" value="Masculino" required>
+                                        Masculino
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="generoFiliado" value="Feminino" required>
+                                        Feminino
+                                    </label>
+                                </div>
+                            </div>
 
-                            <!--                            <p><strong>Data de Nascimento:</strong>-->
-                            <!--                                <input type="date" id="filiadoNascimento" name="nascimentoFiliado" class="ant-input custom-input-data" required>-->
-                            <!--                            </p>-->
+                            <div class="div-modal-nome">
+                                <div class="info-modal-nome">
+                                    <p>Faixa Colorida:</p>
+                                        <select id="modalGraduacaoColoridas" name="graduacaoFiliado" class="ant-input custom-input-graduacao">
+                                            <option value="" disabled selected>Coloridas</option>
+                                            <option value="Amarela">Amarela</option>
+                                            <option value="Laranja">Laranja</option>
+                                            <option value="Verde">Verde</option>
+                                            <option value="Azul">Azul</option>
+                                            <option value="Marrom">Marrom</option>
+                                        </select>
+                                </div>
 
-                            <input style="width: 325px;" type="file" id="imagemFiliados" name="imagemFiliado" accept="image/*" class="ant-input custom-input-upload">
+                                <div class="info-modal-nome">
+                                    <p>Faixa Preta:</p>
+                                        <select id="modalGraduacaoPretas" name="graduacaoFiliado" class="ant-input custom-input-graduacao">
+                                            <option value="" disabled selected>Pretas</option>
+                                            <option value="Preta 1° Dan">Preta 1° Dan</option>
+                                            <option value="Preta 2° Dan">Preta 2° Dan</option>
+                                            <option value="Preta 3° Dan">Preta 3° Dan</option>
+                                            <option value="Preta 4° Dan">Preta 4° Dan</option>
+                                            <option value="Preta 5° Dan">Preta 5° Dan</option>
+                                            <option value="Preta 6° Dan">Preta 6° Dan</option>
+                                            <option value="Preta 7° Dan">Preta 7° Dan</option>
+                                            <option value="Preta 8° Dan">Preta 8° Dan</option>
+                                            <option value="Preta 9° Dan">Preta 9° Dan</option>
+                                            <option value="Preta 10° Dan">Preta 10° Dan</option>
+                                        </select>
+                                </div>
+
+                                <div class="info-modal-nome">
+                                    <p>Graduado Em:</p>
+                                    <input type="date" id="filiadoGraduadoEm"
+                                           name="graduadoEm" class="ant-input custom-input-data" required>
+                                </div>
+                            </div>
+
                             <div class="div-modal-img-button">
+                                <input style="width: 325px;" type="file" id="imagemFiliados" name="imagemFiliado" accept="image/*" class="ant-input custom-input-upload">
+
                                 <button type="submit" class="anti-input custom-btn-salvar-conta">Salvar</button>
                             </div>
                         </form>

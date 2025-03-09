@@ -22,31 +22,42 @@ public class FiliadoController {
 
     @PostMapping("/criarFiliado")
     public String criarFiliado(@RequestParam("registroFiliado") String registroFiliado,
-                                 @RequestParam("nomeFiliado") String nomeFiliado,
-                                 @RequestParam("cidadeFiliado") String cidadeFiliado,
-                                 @RequestParam("graduacaoFiliado") String graduacaoFiliado,
-                                 @RequestParam("academiaFiliado") String academiaFiliado,
-                                 @RequestParam("responsavelFiliado") String responsavelFiliado,
-                                 @RequestParam("nascimentoFiliado") String nascimentoFiliado,
-                                 @RequestParam("imagemFiliado") MultipartFile imagemFiliado,
-                                 RedirectAttributes redirectAttributes) {
+                               @RequestParam("nomeFiliado") String nomeFiliado,
+                               @RequestParam("cidadeFiliado") String cidadeFiliado,
+                               @RequestParam(value = "graduacaoFiliado", required = false) String graduacaoFiliado,
+                               @RequestParam(value = "graduadoEm") String graduadoEm,
+                               @RequestParam("academiaFiliado") String academiaFiliado,
+                               @RequestParam("responsavelFiliado") String responsavelFiliado,
+                               @RequestParam("nascimentoFiliado") String nascimentoFiliado,
+                               @RequestParam("generoFiliado") String generoFiliado,
+                               @RequestParam("imagemFiliado") MultipartFile imagemFiliado,
+                               RedirectAttributes redirectAttributes) {
         try {
+            if (graduacaoFiliado != null && (graduacaoFiliado.contains(",") || graduacaoFiliado.isEmpty())) {
+                throw new IllegalArgumentException("Selecione uma faixa de graduação.");
+            }
+
             Filiado filiado = new Filiado();
             filiado.setRegistroFiliado(registroFiliado);
             filiado.setNomeFiliado(nomeFiliado);
             filiado.setCidadeFiliado(cidadeFiliado);
             filiado.setGraduacaoFiliado(graduacaoFiliado);
+            filiado.setGraduadoEm(graduadoEm);
             filiado.setAcademiaFiliado(academiaFiliado);
             filiado.setResponsavelFiliado(responsavelFiliado);
             filiado.setNascimentoFiliado(LocalDate.parse(nascimentoFiliado));
+            filiado.setGeneroFiliado(generoFiliado);
 
             filiadoService.salvarFiliado(filiado, imagemFiliado);
 
             redirectAttributes.addFlashAttribute("successMessage", "Filiado cadastrado com sucesso!");
             return "redirect:/filiadosAdm?refresh=" + System.currentTimeMillis();
-
         } catch (IOException e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao salvar a imagem: " + e.getMessage());
+            return "redirect:/filiadosAdm";
+
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/filiadosAdm";
 
         } catch (Exception e) {
@@ -54,6 +65,8 @@ public class FiliadoController {
             return "redirect:/filiadosAdm";
         }
     }
+
+
 
     public String listarFiliados(Model model) {
         List<Filiado> filiados = filiadoService.listarFiliados();
@@ -95,10 +108,11 @@ public class FiliadoController {
                                   @RequestParam("registroFiliado") String registroFiliado,
                                   @RequestParam("nomeFiliado") String nomeFiliado,
                                   @RequestParam("cidadeFiliado") String cidadeFiliado,
-                                  @RequestParam("graduacaoFiliado") String graduacaoFiliado,
+                                  @RequestParam(value = "graduacaoFiliado", required = false) String graduacaoFiliado,
+                                  @RequestParam(value = "graduadoEm") String graduadoEm,
                                   @RequestParam("academiaFiliado") String academiaFiliado,
                                   @RequestParam("responsavelFiliado") String responsavelFiliado,
-//                                  @RequestParam("nascimentoFiliado") String nascimentoFiliado,
+                                  @RequestParam("generoFiliado") String generoFiliado,
                                   @RequestParam(value = "imagemFiliado", required = false) MultipartFile imagemFiliado,
                                   RedirectAttributes redirectAttributes) {
         try {
@@ -108,12 +122,10 @@ public class FiliadoController {
             filiado.setNomeFiliado(nomeFiliado);
             filiado.setCidadeFiliado(cidadeFiliado);
             filiado.setGraduacaoFiliado(graduacaoFiliado);
+            filiado.setGraduadoEm(graduadoEm);
             filiado.setAcademiaFiliado(academiaFiliado);
             filiado.setResponsavelFiliado(responsavelFiliado);
-
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//            LocalDate nascimentoLocalDate = LocalDate.parse(nascimentoFiliado, formatter);
-//            filiado.setNascimentoFiliado(nascimentoLocalDate);
+            filiado.setGeneroFiliado(generoFiliado);
 
             filiadoService.salvarFiliado(filiado, imagemFiliado);
 
