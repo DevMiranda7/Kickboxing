@@ -538,6 +538,28 @@ function pesquisarProfessores() {
         .catch(error => console.error("Erro ao buscar professores:", error));
 }
 
+function toggleGraduacao() {
+    const coloridaSelect = document.getElementById("graduacao-coloridas-filiado");
+    const pretaSelect = document.getElementById("graduacao-pretas-filiado");
+
+    // Se uma faixa colorida for selecionada, desabilita a faixa preta
+    if (coloridaSelect.value) {
+        pretaSelect.disabled = true;
+        pretaSelect.value = ""; // Limpa a seleção de faixa preta
+    } else {
+        pretaSelect.disabled = false;
+    }
+
+    // Se uma faixa preta for selecionada, desabilita a faixa colorida
+    if (pretaSelect.value) {
+        coloridaSelect.disabled = true;
+        coloridaSelect.value = ""; // Limpa a seleção de faixa colorida
+    } else {
+        coloridaSelect.disabled = false;
+    }
+}
+
+
 function openModalImagemFiliado(imgElement) {
     const modalImagemFiliado = document.getElementById("imagemFiliadoModal");
     const modalImageFiliado = document.getElementById("imagemFiliadoModalImage");
@@ -548,10 +570,16 @@ function openModalImagemFiliado(imgElement) {
     document.getElementById("filiadoNome").value = imgElement.getAttribute("data-nome");
     document.getElementById("filiadoRegistro").value = imgElement.getAttribute("data-registro");
     document.getElementById("filiadoCidade").value = imgElement.getAttribute("data-cidade");
-    document.getElementById("filiadoGraduacao").value = imgElement.getAttribute("data-graduacao");
     document.getElementById("filiadoAcademia").value = imgElement.getAttribute("data-academia");
     document.getElementById("filiadoResponsavel").value = imgElement.getAttribute("data-responsavel");
-//    document.getElementById("professorNascimento").value = imgElement.getAttribute("data-nascimento");
+    document.getElementById("filiadoGraduadoEm").value = imgElement.getAttribute("data-graduado");
+
+    const genero = imgElement.getAttribute("data-genero");
+    if (genero === "Masculino") {
+        document.querySelector("input[name='generoFiliado'][value='Masculino']").checked = true;
+    } else if (genero === "Feminino") {
+        document.querySelector("input[name='generoFiliado'][value='Feminino']").checked = true;
+    }
 
     modalImagemFiliado.style.display = "flex";
 }

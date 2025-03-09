@@ -1555,19 +1555,87 @@ th:nth-child(7), td:nth-child(7) { /* Data de Nascimento */
     gap: 20px;
 }
 
-.div-cadastrar-filiados-academia {
+.custom-input-editar-cidade {
+     width: 170px;
+     font-size: 14px;
+     border: 1px solid #aaa;
+ }
+
+.div-cadastrar-filiados-upload {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
 
-.div-cadastrar-filiados-nascimento {
+.h3-escolher {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+}
 
+.separator-graduado {
+    width: 5%;
+    height: 2px;
+    border: none;
+    background-color: #181818;
+}
+
+.conteiner-cadastrar-graduacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.info-faixa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.color-div {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.info-faixa p {
+    margin: 0;
+}
+
+.color-div p {
+    margin: 0;
+}
+
+.custom-input-graduacao {
+    width: 140px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+}
+
+.div-cadastrar-filiado-upload {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.div-cadastrar-filiado-upload p {
+    margin: 0;
+}
+
+.div-btn-cadastrar-graduacao {
+    margin-top: 20px;
 }
 /* CADASTRAR FILIADOS */
 
@@ -1613,26 +1681,31 @@ th:nth-child(3), td:nth-child(3) { /* Nome */
     width: 200px;
 }
 
-th:nth-child(4), td:nth-child(4) { /* Cidade */
-    width: 170px;
+th:nth-child(4), td:nth-child(4) {
+    width: 150px;
+    text-align: center;
 }
 
 th:nth-child(5), td:nth-child(5) { /* Graduação */
-    width: 120px;
+    width: 80px;
     text-align: center;
 }
 
-th:nth-child(6), td:nth-child(6) { /* Academia */
-    width: 200px;
-}
-
-th:nth-child(7), td:nth-child(7) { /* Responsável */
-    width: 200px;
-}
-
-th:nth-child(8), td:nth-child(8) {
+th:nth-child(6), td:nth-child(6) { /* Cidade */
     width: 150px;
+}
+
+th:nth-child(7), td:nth-child(7) { /* Graduação */
+    width: 130px;
     text-align: center;
+}
+
+th:nth-child(8), td:nth-child(8) { /* Academia */
+    width: 200px;
+}
+
+th:nth-child(9), td:nth-child(9) { /* Responsável */
+    width: 200px;
 }
 
 .conteiner-filiados img {
@@ -1667,11 +1740,36 @@ th:nth-child(8), td:nth-child(8) {
     background-color: #4d2e26;
 }
 
+.Preta 1° Dan,
+.Preta 2° Dan,
+.Preta 3° Dan,
+.Preta 4° Dan,
+.Preta 5° Dan,
+.Preta 6° Dan,
+.Preta 7° Dan,
+.Preta 8° Dan,
+.Preta 9° Dan,
+.Preta 10° Dan,
 .Preta {
     background-color: #000000;
 }
 
-.Amarela, .Laranja, .Verde, .Azul, .Marrom, .Preta {
+.Preta 1° Dan,
+.Preta 2° Dan,
+.Preta 3° Dan,
+.Preta 4° Dan,
+.Preta 5° Dan,
+.Preta 6° Dan,
+.Preta 7° Dan,
+.Preta 8° Dan,
+.Preta 9° Dan,
+.Preta 10° Dan,
+.Amarela,
+.Laranja,
+.Verde,
+.Azul,
+.Marrom,
+.Preta {
     display: inline-block;
     padding: 4px 10px;
     border-radius: 4px;
@@ -1746,20 +1844,38 @@ th:nth-child(8), td:nth-child(8) {
     margin-top: 20px;
 }
 
-.filiado-details p {
-    margin: 10px 0;
+.div-modal-nome {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    gap: 20px;
 }
 
-.filiado-details strong {
-    margin-right: 10px;
+.info-modal-nome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.info-modal-nome p {
+    margin: 0;
+}
+
+.info-modal-genero {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 28px;
 }
 
 .div-modal-img-button {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
 }
 
 .close-imagem-filiado-modal {
@@ -2114,7 +2230,7 @@ footer {
     flex-direction: column;
     color: #FFFFFF;
     gap: 20px;
-    margin-top: 100px; /* Garante que o rodapé fique na parte inferior */
+    margin-top: 100px;
     border-top: 4px solid;
     border-image: linear-gradient(45deg, #009739 33.33%, #c60c30 33.33%, #c60c30 66.66%, #ffcc29 66.66%) 1;
 }

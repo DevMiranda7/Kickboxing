@@ -23,8 +23,12 @@ public class Filiado {
     @Column(nullable = false)
     private String cidadeFiliado;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String graduacaoFiliado;
+
+    @Column(updatable = false)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private String graduadoEm;
 
     @Column(updatable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -38,6 +42,9 @@ public class Filiado {
 
     @Column(nullable = false)
     private String imagemFiliado;
+
+    @Column(nullable = false)
+    private String generoFiliado;
 
     public long getIdFiliado() {
         return idFiliado;
@@ -79,6 +86,14 @@ public class Filiado {
         this.graduacaoFiliado = graduacaoFiliado;
     }
 
+    public String getGraduadoEm() {
+        return graduadoEm;
+    }
+
+    public void setGraduadoEm(String graduadoEm) {
+        this.graduadoEm = graduadoEm;
+    }
+
     public LocalDate getNascimentoFiliado() {
         return nascimentoFiliado;
     }
@@ -109,5 +124,13 @@ public class Filiado {
 
     public void setImagemFiliado(String imagemFiliado) {
         this.imagemFiliado = imagemFiliado;
+    }
+
+    public String getGeneroFiliado() {
+        return generoFiliado;
+    }
+
+    public void setGeneroFiliado(String generoFiliado) {
+        this.generoFiliado = generoFiliado;
     }
 }
