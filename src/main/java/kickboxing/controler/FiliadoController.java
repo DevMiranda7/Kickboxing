@@ -33,9 +33,13 @@ public class FiliadoController {
                                @RequestParam("imagemFiliado") MultipartFile imagemFiliado,
                                RedirectAttributes redirectAttributes) {
         try {
-            if (graduacaoFiliado != null && (graduacaoFiliado.contains(",") || graduacaoFiliado.isEmpty())) {
-                throw new IllegalArgumentException("Selecione uma faixa de graduação.");
+            if (graduacaoFiliado == null || graduacaoFiliado.trim().isEmpty()) {
+                    throw new IllegalArgumentException("É obrigatório selecionar uma faixa de graduação.");
             }
+            if (graduacaoFiliado != null && (graduacaoFiliado.contains(",") || graduacaoFiliado.isEmpty())) {
+                throw new IllegalArgumentException("Selecione apenas uma faixa de graduação.");
+            }
+
 
             Filiado filiado = new Filiado();
             filiado.setRegistroFiliado(registroFiliado);
