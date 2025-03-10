@@ -559,7 +559,6 @@ function toggleGraduacao() {
     }
 }
 
-
 function openModalImagemFiliado(imgElement) {
     const modalImagemFiliado = document.getElementById("imagemFiliadoModal");
     const modalImageFiliado = document.getElementById("imagemFiliadoModalImage");

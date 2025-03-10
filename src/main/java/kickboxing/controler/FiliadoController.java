@@ -25,7 +25,7 @@ public class FiliadoController {
                                @RequestParam("nomeFiliado") String nomeFiliado,
                                @RequestParam("cidadeFiliado") String cidadeFiliado,
                                @RequestParam(value = "graduacaoFiliado", required = false) String graduacaoFiliado,
-                               @RequestParam(value = "graduadoEm") String graduadoEm,
+                               @RequestParam("graduadoEm") LocalDate graduadoEm,
                                @RequestParam("academiaFiliado") String academiaFiliado,
                                @RequestParam("responsavelFiliado") String responsavelFiliado,
                                @RequestParam("nascimentoFiliado") String nascimentoFiliado,
@@ -33,6 +33,7 @@ public class FiliadoController {
                                @RequestParam("imagemFiliado") MultipartFile imagemFiliado,
                                RedirectAttributes redirectAttributes) {
         try {
+
             if (graduacaoFiliado == null || graduacaoFiliado.trim().isEmpty()) {
                     throw new IllegalArgumentException("É obrigatório selecionar uma faixa de graduação.");
             }
@@ -70,8 +71,6 @@ public class FiliadoController {
             return "redirect:/filiadosAdm";
         }
     }
-
-
 
     public String listarFiliados(Model model) {
         List<Filiado> filiados = filiadoService.listarFiliados();
@@ -114,13 +113,22 @@ public class FiliadoController {
                                   @RequestParam("nomeFiliado") String nomeFiliado,
                                   @RequestParam("cidadeFiliado") String cidadeFiliado,
                                   @RequestParam(value = "graduacaoFiliado", required = false) String graduacaoFiliado,
-                                  @RequestParam(value = "graduadoEm") String graduadoEm,
+                                  @RequestParam("graduadoEm") LocalDate graduadoEm,
                                   @RequestParam("academiaFiliado") String academiaFiliado,
                                   @RequestParam("responsavelFiliado") String responsavelFiliado,
                                   @RequestParam("generoFiliado") String generoFiliado,
                                   @RequestParam(value = "imagemFiliado", required = false) MultipartFile imagemFiliado,
                                   RedirectAttributes redirectAttributes) {
         try {
+
+            if (graduacaoFiliado == null || graduacaoFiliado.trim().isEmpty()) {
+                throw new IllegalArgumentException("É obrigatório selecionar uma faixa de graduação.");
+            }
+
+            if (graduacaoFiliado != null && (graduacaoFiliado.contains(",") || graduacaoFiliado.isEmpty())) {
+                throw new IllegalArgumentException("Selecione apenas uma faixa de graduação.");
+            }
+
             Filiado filiado = filiadoService.buscarFiliadoPorId(idFiliado);
 
             filiado.setRegistroFiliado(registroFiliado);
@@ -133,6 +141,8 @@ public class FiliadoController {
             filiado.setGeneroFiliado(generoFiliado);
 
             filiadoService.salvarFiliado(filiado, imagemFiliado);
+
+            System.out.println("Data de graduação: " + graduadoEm);
 
             redirectAttributes.addFlashAttribute("successMessage", "Filiado atualizado com sucesso!");
             return "redirect:/filiadosAdm?refresh=" + System.currentTimeMillis();

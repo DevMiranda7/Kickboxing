@@ -1627,7 +1627,11 @@ th:nth-child(7), td:nth-child(7) { /* Data de Nascimento */
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    gap: 20px;
+}
+
+.div-cadastrar-filiado-upload p {
+    color: #f72c1e;
 }
 
 .div-cadastrar-filiado-upload p {
@@ -1745,11 +1749,11 @@ th:nth-child(9), td:nth-child(9) { /* Responsável */
 .Preta 3° Dan,
 .Preta 4° Dan,
 .Preta 5° Dan,
-.Preta 6° Dan,
-.Preta 7° Dan,
-.Preta 8° Dan,
-.Preta 9° Dan,
-.Preta 10° Dan,
+.Preta 6° Coral,
+.Preta 7° Coral,
+.Preta 8° Coral,
+.Preta 9° Coral,
+.Preta 10° Coral,
 .Preta {
     background-color: #000000;
 }
@@ -1876,6 +1880,10 @@ th:nth-child(9), td:nth-child(9) { /* Responsável */
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
+}
+
+.div-modal-img-button p {
+    color: #f72c1e;
 }
 
 .close-imagem-filiado-modal {
