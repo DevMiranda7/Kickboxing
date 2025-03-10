@@ -1548,6 +1548,14 @@ th:nth-child(7), td:nth-child(7) { /* Data de Nascimento */
     gap: 20px;
 }
 
+.div-cadastrar-filiados-registro p {
+    margin: 0;
+}
+
+.div-cadastrar-filiados-cidade p {
+    margin: 0;
+}
+
 .div-cadastrar-filiados-cidade {
     display: flex;
     justify-content: center;
@@ -1744,12 +1752,10 @@ th:nth-child(9), td:nth-child(9) { /* Responsável */
     background-color: #4d2e26;
 }
 
-/* Faixas Pretas */
 .Preta {
-    background-color: #000000; /* Preto */
+    background-color: #000000;
 }
 
-/* Faixas Pretas com Detalhes Vermelhos */
 .Preta-Coral {
     background-color: black;
     border: 3px solid #ff2121;
