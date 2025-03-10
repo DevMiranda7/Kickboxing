@@ -618,10 +618,11 @@ function pesquisarFiliados() {
                 img.setAttribute("data-nome", filiado.nomeFiliado);
                 img.setAttribute("data-registro", filiado.registroFiliado);
                 img.setAttribute("data-cidade", filiado.cidadeFiliado);
-                img.setAttribute("data-graduacao", filiado.graduacaoFiliado);
                 img.setAttribute("data-academia", filiado.academiaFiliado);
                 img.setAttribute("data-responsavel", filiado.responsavelFiliado);
                 img.setAttribute("data-nascimento", filiado.nascimentoFiliado);
+                img.setAttribute("data-genero", filiado.generoFiliado);
+                img.setAttribute("data-graduacao", filiado.graduacaoFiliado);
                 img.onclick = function () {
                     openModalImagemFiliado(this);
                 };
@@ -633,13 +634,23 @@ function pesquisarFiliados() {
                 let tdNome = document.createElement("td");
                 tdNome.textContent = filiado.nomeFiliado;
 
+                let tdNascimento = document.createElement("td");
+                tdNascimento.textContent = filiado.nascimentoFiliado;
+
+                let tdGerero = document.createElement("td");
+                tdGerero.textContent = filiado.generoFiliado;
+
                 let tdCidade = document.createElement("td");
                 tdCidade.textContent = filiado.cidadeFiliado;
 
                 let tdGraduacao = document.createElement("td");
                 let spanGraduacao = document.createElement("span");
+
                 spanGraduacao.textContent = filiado.graduacaoFiliado;
-                spanGraduacao.classList.add(filiado.graduacaoFiliado);
+                spanGraduacao.classList.add(
+                    filiado.graduacaoFiliado.includes("Coral") ? "Preta-Coral" : "Preta"
+                );
+
                 tdGraduacao.appendChild(spanGraduacao);
 
                 let tdAcademia = document.createElement("td");
@@ -647,9 +658,6 @@ function pesquisarFiliados() {
 
                 let tdResponsavel = document.createElement("td");
                 tdResponsavel.textContent = filiado.responsavelFiliado;
-
-                let tdNascimento = document.createElement("td");
-                tdNascimento.textContent = filiado.nascimentoFiliado;
 
                 let tdExcluir = document.createElement("td");
                 let formExcluir = document.createElement("form");
@@ -694,11 +702,12 @@ function pesquisarFiliados() {
                 tr.appendChild(tdImg);
                 tr.appendChild(tdRegistro);
                 tr.appendChild(tdNome);
+                tr.appendChild(tdNascimento);
+                tr.appendChild(tdGerero);
                 tr.appendChild(tdCidade);
                 tr.appendChild(tdGraduacao);
                 tr.appendChild(tdAcademia);
                 tr.appendChild(tdResponsavel);
-                tr.appendChild(tdNascimento);
                 tr.appendChild(tdExcluir);
 
                 tbody.appendChild(tr);
