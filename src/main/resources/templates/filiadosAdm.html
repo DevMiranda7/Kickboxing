@@ -107,19 +107,19 @@
 
                     <div class="div-cadastrar-filiados-cidade">
                         <div>
-                            <p>Cidade</p>
+                            <p>Cidade do Filiado</p>
                             <input type="text" id="cidade-filiado" name="cidadeFiliado" placeholder="Cidade do Filiado"
                             class="ant-input ant-input custom-input-editar-cidade" required>
                         </div>
 
                         <div>
-                            <p>Academia</p>
+                            <p>Academia do Filiado</p>
                             <input type="text" id="academia-filiado" name="academiaFiliado"
                                    placeholder="Academia do Filiado" class="ant-input ant-input custom-input-editar" required>
                         </div>
 
                         <div>
-                            <p>Responsável</p>
+                            <p>Responsável do Filiado</p>
                             <input type="text" id="responsavel-filiado" name="responsavelFiliado"
                                    placeholder="Responsável do Filiado" class="ant-input ant-input custom-input-editar" required>
                         </div>
@@ -250,7 +250,6 @@
                         <span th:text="${filiado.graduacaoFiliado}"
                               th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' : 'Preta'}"></span>
                     </td>
-
 
                     <td th:text="${filiado.academiaFiliado}"></td>
 

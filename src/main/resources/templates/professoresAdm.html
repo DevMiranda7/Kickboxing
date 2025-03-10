@@ -86,42 +86,90 @@
 
                 <div class="conteiner-cadastrar-professores">
                     <div class="div-cadastrar-professores-registro">
-                        <input type="text" id="registro-professor" name="registroProfessor" 
-                        placeholder="Registro do Professor" class="ant-input custom-input-editar" required>
+                        <div class="div-p">
+                            <p>Número de Registro</p>
+                            <input type="text" id="registro-professor" name="registroProfessor"
+                            placeholder="Registro do Professor" class="ant-input custom-input-editar" required>
+                        </div>
 
-                        <input type="text" id="nome-professor" name="nomeProfessor" 
-                         placeholder="Nome do Professor" class="ant-input custom-input-editar" required>
+                        <div class="div-p">
+                            <p>Número do Professor</p>
+                            <input type="text" id="nome-professor" name="nomeProfessor"
+                            placeholder="Nome do Professor" class="ant-input custom-input-editar" required>
+                        </div>
+
+                        <div class="div-p">
+                            <p>Data de Nascimento</p>
+                            <input type="date" id="nascimento-professor" name="nascimentoProfessor"
+                                   class="ant-input custom-input-data" required>
+                        </div>
                     </div>
 
                     <div class="div-cadastrar-professores-cidade">
-                        <input type="text" id="cidade-professor" name="cidadeProfessor"
-                               placeholder="Cidade do Professor" class="ant-input custom-input-editar" required>
+                        <div class="div-p">
+                            <p>Cidade do Professor</p>
+                            <input type="text" id="cidade-professor" name="cidadeProfessor"
+                                   placeholder="Cidade do Professor" class="ant-input custom-input-editar-cidade" required>
+                        </div>
 
-                        <select id="graduacao-professor" name="graduacaoProfessor" class="ant-input custom-input-editar" required>
-                            <option value="" disabled selected>Graduação</option>
-                            <option value="Amarela">Amarela</option>
-                            <option value="Laranja">Laranja</option>
-                            <option value="Verde">Verde</option>
-                            <option value="Azul">Azul</option>
-                            <option value="Marrom">Marrom</option>
-                            <option value="Preta">Preta</option>
-                        </select>
-                    </div>
+                        <div class="div-p">
+                            <p>Equipe do Professor</p>
+                            <input type="text" id="equipe-professor" name="equipeProfessor"
+                                   placeholder="Equipe do Professor" class="ant-input custom-input-editar" required>
+                        </div>
 
-                    <div class="div-cadastrar-professores-equipe">
-                        <input type="text" id="equipe-professor" name="equipeProfessor" 
-                        placeholder="Equipe do Professor" class="ant-input custom-input-editar" required>
-
-                        <input type="date" id="nascimento-professor" name="nascimentoProfessor" 
-                        class="ant-input custom-input-data" required>
+                        <div class="div-genero">
+                            <label>
+                                <input type="radio" name="generoProfessor" value="Masculino" required>
+                                Masculino
+                            </label>
+                            <label>
+                                <input type="radio" name="generoProfessor" value="Feminino" required>
+                                Feminino
+                            </label>
+                        </div>
                     </div>
 
                     <div class="div-cadastrar-professores-upload">
                         <input type="file" id="imagem-professores" name="imagemProfessor" accept="image/*"
                         class="ant-input custom-input-upload" required>
-
-                        <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
                     </div>
+                </div>
+
+                <div class="h3-escolher">
+                    <h3>Escolher Graduação</h3>
+                    <hr class="separator-graduado">
+                </div>
+
+                <div class="conteiner-cadastrar-graduacao">
+                    <div class="info-faixa">
+                        <div>
+                            <p>Faixa Preta:</p>
+                            <select id="graduacao-pretas-professor" name="graduacaoProfessor" class="ant-input custom-input-graduacao" required>
+                                <option value="" disabled selected>Pretas</option>
+                                <option value="Preta 1° Dan">Preta 1° Dan</option>
+                                <option value="Preta 2° Dan">Preta 2° Dan</option>
+                                <option value="Preta 3° Dan">Preta 3° Dan</option>
+                                <option value="Preta 4° Dan">Preta 4° Dan</option>
+                                <option value="Preta 5° Dan">Preta 5° Dan</option>
+                                <option value="Coral 6° Dan">Coral 6° Dan</option>
+                                <option value="Coral 7° Dan">Coral 7° Dan</option>
+                                <option value="Coral 8° Dan">Coral 8° Dan</option>
+                                <option value="Coral 9° Dan">Coral 9° Dan</option>
+                                <option value="Coral 10° Dan">Coral 10° Dan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="color-div">
+                        <p>Graduado em:</p>
+                        <input type="date" id="graduadoEm" name="graduadoEm"
+                               class="ant-input ant-input custom-input-data" required>
+                    </div>
+                </div>
+
+                <div class="div-cadastrar-filiado-upload">
+                    <button type="submit" class="ant-input custom-btn-cadastrar">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -147,10 +195,11 @@
                     <th>Foto</th>
                     <th>Registro</th>
                     <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>M/F</th>
                     <th>Cidade</th>
                     <th>Graduação</th>
                     <th>Equipe</th>
-                    <th>Data de Nascimento</th>
                 </tr>
                 </thead>
 
@@ -162,23 +211,25 @@
                                  data-nome=${professor.nomeProfessor},
                                  data-registro=${professor.registroProfessor},
                                  data-cidade=${professor.cidadeProfessor},
+                                 data-genero=${professor.generoProfessor},
                                  data-graduacao=${professor.graduacaoProfessor},
                                  data-equipe=${professor.equipeProfessor},
                                  data-nascimento=${professor.nascimentoProfessor}"
-
                                  onclick="openModalImagemProfessor(this)" style="border-radius: 10px;">
                         </td>
 
                         <td th:text="${professor.registroProfessor}"></td>
                         <td th:text="${professor.nomeProfessor}"></td>
+                        <td th:text="${#temporals.format(professor.nascimentoProfessor, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${professor.generoProfessor == 'Masculino' ? 'M' : (professor.generoProfessor == 'Feminino' ? 'F' : '')}"></td>
                         <td th:text="${professor.cidadeProfessor}"></td>
 
                         <td>
-                            <span th:text="${professor.graduacaoProfessor}" th:classappend="${professor.graduacaoProfessor}"></span>
+                            <span th:text="${professor.graduacaoProfessor}"
+                                  th:classappend="${professor.graduacaoProfessor.contains('Coral') ? 'Preta-Coral' : 'Preta'}"></span>
                         </td>
 
                         <td th:text="${professor.equipeProfessor}"></td>
-                        <td th:text="${#temporals.format(professor.nascimentoProfessor, 'dd/MM/yyyy')}"></td>
 
                         <td>
                             <form th:id="'formExcluir_' + ${professor.idProfessor}"

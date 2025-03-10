@@ -451,12 +451,13 @@ function pesquisarProfessores() {
                 img.alt = "Imagem do professor";
                 img.style.borderRadius = "10px";
                 img.setAttribute("data-id", professor.idProfessor);
-                img.setAttribute("data-nome", professor.nomeProfessor);
                 img.setAttribute("data-registro", professor.registroProfessor);
+                img.setAttribute("data-nome", professor.nomeProfessor);
+                img.setAttribute("data-nascimento", professor.nascimentoProfessor);
+                img.setAttribute("data-genero", professor.generoProfessor);
                 img.setAttribute("data-cidade", professor.cidadeProfessor);
                 img.setAttribute("data-graduacao", professor.graduacaoProfessor);
                 img.setAttribute("data-equipe", professor.equipeProfessor);
-                img.setAttribute("data-nascimento", professor.nascimentoProfessor);
                 img.onclick = function () {
                     openModalImagemProfessor(this);
                 };
@@ -468,20 +469,27 @@ function pesquisarProfessores() {
                 let tdNome = document.createElement("td");
                 tdNome.textContent = professor.nomeProfessor;
 
+                let tdNascimento = document.createElement("td");
+                tdNascimento.textContent = professor.nascimentoProfessor;
+
+                let tdGerero = document.createElement("td");
+                tdGerero.textContent = professor.generoProfessor;
+
                 let tdCidade = document.createElement("td");
                 tdCidade.textContent = professor.cidadeProfessor;
 
                 let tdGraduacao = document.createElement("td");
                 let spanGraduacao = document.createElement("span");
+
                 spanGraduacao.textContent = professor.graduacaoProfessor;
-                spanGraduacao.classList.add(professor.graduacaoProfessor);
+                spanGraduacao.classList.add(
+                    professor.graduacaoProfessor.includes("Coral") ? "Preta-Coral" : "Preta"
+                );
+
                 tdGraduacao.appendChild(spanGraduacao);
 
                 let tdEquipe = document.createElement("td");
                 tdEquipe.textContent = professor.equipeProfessor;
-
-                let tdNascimento = document.createElement("td");
-                tdNascimento.textContent = professor.nascimentoProfessor;
 
                 let tdExcluir = document.createElement("td");
                 let formExcluir = document.createElement("form");
@@ -526,10 +534,11 @@ function pesquisarProfessores() {
                 tr.appendChild(tdImg);
                 tr.appendChild(tdRegistro);
                 tr.appendChild(tdNome);
+                tr.appendChild(tdNascimento);
+                tr.appendChild(tdGerero)
                 tr.appendChild(tdCidade);
                 tr.appendChild(tdGraduacao);
                 tr.appendChild(tdEquipe);
-                tr.appendChild(tdNascimento);
                 tr.appendChild(tdExcluir);
 
                 tbody.appendChild(tr);
