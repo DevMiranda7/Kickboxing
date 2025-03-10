@@ -36,6 +36,7 @@ public class FiliadoController {
             if (graduacaoFiliado == null || graduacaoFiliado.trim().isEmpty()) {
                     throw new IllegalArgumentException("É obrigatório selecionar uma faixa de graduação.");
             }
+
             if (graduacaoFiliado != null && (graduacaoFiliado.contains(",") || graduacaoFiliado.isEmpty())) {
                 throw new IllegalArgumentException("Selecione apenas uma faixa de graduação.");
             }
