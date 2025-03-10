@@ -26,11 +26,11 @@ public class Filiado {
     @Column(nullable = true)
     private String graduacaoFiliado;
 
-    @Column(updatable = false)
+    @Column
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private String graduadoEm;
+    private LocalDate graduadoEm;
 
-    @Column(updatable = false)
+    @Column
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate nascimentoFiliado;
 
@@ -86,11 +86,11 @@ public class Filiado {
         this.graduacaoFiliado = graduacaoFiliado;
     }
 
-    public String getGraduadoEm() {
+    public LocalDate getGraduadoEm() {
         return graduadoEm;
     }
 
-    public void setGraduadoEm(String graduadoEm) {
+    public void setGraduadoEm(LocalDate graduadoEm) {
         this.graduadoEm = graduadoEm;
     }
 

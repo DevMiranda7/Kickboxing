@@ -4,6 +4,7 @@ import kickboxing.model.Filiado;
 import kickboxing.repository.FiliadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -18,6 +19,7 @@ public class FiliadoService {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/upload/filiados";
 
+    @Transactional
     public void salvarFiliado(Filiado filiado, MultipartFile imagemFiliado) throws IOException {
         File uploadDir = new File(UPLOAD_DIR);
         if (!uploadDir.exists()) {
