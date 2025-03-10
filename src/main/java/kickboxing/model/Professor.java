@@ -23,10 +23,10 @@ public class Professor {
     @Column(nullable = false)
     private String cidadeProfessor;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String graduacaoProfessor;
 
-    @Column(updatable = false)
+    @Column
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate nascimentoProfessor;
 
@@ -35,6 +35,13 @@ public class Professor {
 
     @Column(nullable = false)
     private String imagemProfessor;
+
+    @Column(nullable = false)
+    private String generoProfessor;
+
+    @Column
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate graduadoEm;
 
     public long getIdProfessor() {
         return idProfessor;
@@ -98,5 +105,21 @@ public class Professor {
 
     public void setImagemProfessor(String imagemProfessor) {
         this.imagemProfessor = imagemProfessor;
+    }
+
+    public String getGeneroProfessor() {
+        return generoProfessor;
+    }
+
+    public void setGeneroProfessor(String generoProfessor) {
+        this.generoProfessor = generoProfessor;
+    }
+
+    public LocalDate getGraduadoEm() {
+        return graduadoEm;
+    }
+
+    public void setGraduadoEm(LocalDate graduadoEm) {
+        this.graduadoEm = graduadoEm;
     }
 }

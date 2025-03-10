@@ -24,19 +24,28 @@ public class ProfessorController {
     public String criarProfessor(@RequestParam("registroProfessor") String registroProfessor,
                                  @RequestParam("nomeProfessor") String nomeProfessor,
                                  @RequestParam("cidadeProfessor") String cidadeProfessor,
-                                 @RequestParam("graduacaoProfessor") String graduacaoProfessor,
+                                 @RequestParam(value = "graduacaoProfessor", required = false) String graduacaoProfessor,
+                                 @RequestParam("graduadoEm") LocalDate graduadoEm,
                                  @RequestParam("equipeProfessor") String equipeProfessor,
                                  @RequestParam("nascimentoProfessor") String nascimentoProfessor,
+                                 @RequestParam("generoProfessor") String generoProfessor,
                                  @RequestParam("imagemProfessor") MultipartFile imagemProfessor,
                                  RedirectAttributes redirectAttributes) {
         try {
+
+            if (graduacaoProfessor == null || graduacaoProfessor.trim().isEmpty()) {
+                throw new IllegalArgumentException("É obrigatório selecionar uma faixa de graduação.");
+            }
+
             Professor professor = new Professor();
             professor.setRegistroProfessor(registroProfessor);
             professor.setNomeProfessor(nomeProfessor);
             professor.setCidadeProfessor(cidadeProfessor);
             professor.setGraduacaoProfessor(graduacaoProfessor);
+            professor.setGraduadoEm(graduadoEm);
             professor.setEquipeProfessor(equipeProfessor);
             professor.setNascimentoProfessor(LocalDate.parse(nascimentoProfessor));
+            professor.setGeneroProfessor(generoProfessor);
 
             professorService.salvarProfessor(professor, imagemProfessor);
 
@@ -45,6 +54,10 @@ public class ProfessorController {
 
         } catch (IOException e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao salvar a imagem: " + e.getMessage());
+            return "redirect:/professoresAdm";
+
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/professoresAdm";
 
         } catch (Exception e) {
@@ -93,23 +106,27 @@ public class ProfessorController {
                                   @RequestParam("registroProfessor") String registroProfessor,
                                   @RequestParam("nomeProfessor") String nomeProfessor,
                                   @RequestParam("cidadeProfessor") String cidadeProfessor,
-                                  @RequestParam("graduacaoProfessor") String graduacaoProfessor,
+                                  @RequestParam(value = "graduacaoProfessor", required = false) String graduacaoProfessor,
+                                  @RequestParam("graduadoEm") LocalDate graduadoEm,
                                   @RequestParam("equipeProfessor") String equipeProfessor,
-//                                  @RequestParam("nascimentoProfessor") String nascimentoProfessor,
+                                  @RequestParam("generoProfessor") String generoProfessor,
                                   @RequestParam(value = "imagemProfessor", required = false) MultipartFile imagemProfessor,
                                   RedirectAttributes redirectAttributes) {
         try {
+
+            if (graduacaoProfessor == null || graduacaoProfessor.trim().isEmpty()) {
+                throw new IllegalArgumentException("É obrigatório selecionar uma faixa de graduação.");
+            }
+
             Professor professor = professorService.buscarProfessorPorId(idProfessor);
 
             professor.setRegistroProfessor(registroProfessor);
             professor.setNomeProfessor(nomeProfessor);
             professor.setCidadeProfessor(cidadeProfessor);
             professor.setGraduacaoProfessor(graduacaoProfessor);
+            professor.setGraduadoEm(graduadoEm);
+            professor.setGeneroProfessor(generoProfessor);
             professor.setEquipeProfessor(equipeProfessor);
-
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//            LocalDate nascimentoLocalDate = LocalDate.parse(nascimentoProfessor, formatter);
-//            professor.setNascimentoProfessor(nascimentoLocalDate);
 
             professorService.salvarProfessor(professor, imagemProfessor);
 
@@ -118,6 +135,10 @@ public class ProfessorController {
 
         } catch (IOException e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao salvar a imagem: " + e.getMessage());
+            return "redirect:/professoresAdm";
+
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/professoresAdm";
 
         } catch (Exception e) {
