@@ -109,16 +109,16 @@ public class FiliadoController {
 
     @PostMapping("/editarFiliado")
     public String editarFiliado(@RequestParam("idFiliado") Long idFiliado,
-                                  @RequestParam("registroFiliado") String registroFiliado,
-                                  @RequestParam("nomeFiliado") String nomeFiliado,
-                                  @RequestParam("cidadeFiliado") String cidadeFiliado,
-                                  @RequestParam(value = "graduacaoFiliado", required = false) String graduacaoFiliado,
-                                  @RequestParam("graduadoEm") LocalDate graduadoEm,
-                                  @RequestParam("academiaFiliado") String academiaFiliado,
-                                  @RequestParam("responsavelFiliado") String responsavelFiliado,
-                                  @RequestParam("generoFiliado") String generoFiliado,
-                                  @RequestParam(value = "imagemFiliado", required = false) MultipartFile imagemFiliado,
-                                  RedirectAttributes redirectAttributes) {
+                                @RequestParam("registroFiliado") String registroFiliado,
+                                @RequestParam("nomeFiliado") String nomeFiliado,
+                                @RequestParam("cidadeFiliado") String cidadeFiliado,
+                                @RequestParam(value = "graduacaoFiliado", required = false) String graduacaoFiliado,
+                                @RequestParam("graduadoEm") LocalDate graduadoEm,
+                                @RequestParam("academiaFiliado") String academiaFiliado,
+                                @RequestParam("responsavelFiliado") String responsavelFiliado,
+                                @RequestParam("generoFiliado") String generoFiliado,
+                                @RequestParam(value = "imagemFiliado", required = false) MultipartFile imagemFiliado,
+                                RedirectAttributes redirectAttributes) {
         try {
 
             if (graduacaoFiliado == null || graduacaoFiliado.trim().isEmpty()) {
@@ -151,8 +151,12 @@ public class FiliadoController {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao salvar a imagem: " + e.getMessage());
             return "redirect:/filiadosAdm";
 
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/filiadosAdm";
+
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao atualizar filiado: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/filiadosAdm";
         }
     }

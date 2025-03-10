@@ -153,11 +153,11 @@
                                 <option value="Preta 3° Dan">Preta 3° Dan</option>
                                 <option value="Preta 4° Dan">Preta 4° Dan</option>
                                 <option value="Preta 5° Dan">Preta 5° Dan</option>
-                                <option value="Preta 6° Coral">Preta 6° Coral</option>
-                                <option value="Preta 7° Coral">Preta 7° Coral</option>
-                                <option value="Preta 8° Coral">Preta 8° Coral</option>
-                                <option value="Preta 9° Coral">Preta 9° Coral</option>
-                                <option value="Preta 10° Coral">Preta 10° Coral</option>
+                                <option value="Coral 6° Dan">Coral 6° Dan</option>
+                                <option value="Coral 7° Dan">Coral 7° Dan</option>
+                                <option value="Coral 8° Dan">Coral 8° Dan</option>
+                                <option value="Coral 9° Dan">Coral 9° Dan</option>
+                                <option value="Coral 10° Dan">Coral 10° Dan</option>
                             </select>
                         </div>
                     </div>
@@ -229,8 +229,10 @@
                     <td th:text="${filiado.cidadeFiliado}"></td>
 
                     <td>
-                        <span th:text="${filiado.graduacaoFiliado}" th:classappend="${filiado.graduacaoFiliado}"></span>
+                        <span th:text="${filiado.graduacaoFiliado}"
+                              th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' : 'Preta'}"></span>
                     </td>
+
 
                     <td th:text="${filiado.academiaFiliado}"></td>
 
@@ -330,11 +332,11 @@
                                             <option value="Preta 3° Dan">Preta 3° Dan</option>
                                             <option value="Preta 4° Dan">Preta 4° Dan</option>
                                             <option value="Preta 5° Dan">Preta 5° Dan</option>
-                                            <option value="Preta 6° Coral">Preta 6° Coral</option>
-                                            <option value="Preta 7° Coral">Preta 7° Coral</option>
-                                            <option value="Preta 8° Coral">Preta 8° Coral</option>
-                                            <option value="Preta 9° Coral">Preta 9° Coral</option>
-                                            <option value="Preta 10° Coral">Preta 10° Coral</option>
+                                            <option value="Coral 6° Dan">Coral 6° Dan</option>
+                                            <option value="Coral 7° Dan">Coral 7° Dan</option>
+                                            <option value="Coral 8° Dan">Coral 8° Dan</option>
+                                            <option value="Coral 9° Dan">Coral 9° Dan</option>
+                                            <option value="Coral 10° Dan">Coral 10° Dan</option>
                                         </select>
                                 </div>
 
@@ -346,6 +348,8 @@
                             </div>
 
                             <div class="div-modal-img-button">
+                                <p>Selecione apenas uma faixa</p>
+
                                 <input style="width: 325px;" type="file" id="imagemFiliados" name="imagemFiliado" accept="image/*" class="ant-input custom-input-upload">
 
                                 <button type="submit" class="anti-input custom-btn-salvar-conta">Salvar</button>

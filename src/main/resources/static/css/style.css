@@ -1744,30 +1744,17 @@ th:nth-child(9), td:nth-child(9) { /* Responsável */
     background-color: #4d2e26;
 }
 
-.Preta 1° Dan,
-.Preta 2° Dan,
-.Preta 3° Dan,
-.Preta 4° Dan,
-.Preta 5° Dan,
-.Preta 6° Coral,
-.Preta 7° Coral,
-.Preta 8° Coral,
-.Preta 9° Coral,
-.Preta 10° Coral,
+/* Faixas Pretas */
 .Preta {
-    background-color: #000000;
+    background-color: #000000; /* Preto */
 }
 
-.Preta 1° Dan,
-.Preta 2° Dan,
-.Preta 3° Dan,
-.Preta 4° Dan,
-.Preta 5° Dan,
-.Preta 6° Dan,
-.Preta 7° Dan,
-.Preta 8° Dan,
-.Preta 9° Dan,
-.Preta 10° Dan,
+/* Faixas Pretas com Detalhes Vermelhos */
+.Preta-Coral {
+    background-color: black;
+    border: 3px solid #ff2121;
+}
+
 .Amarela,
 .Laranja,
 .Verde,
@@ -1780,6 +1767,15 @@ th:nth-child(9), td:nth-child(9) { /* Responsável */
     font-weight: bold;
     color: white;
 }
+
+.Preta-Coral {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+}
+
 
 .icon-lixo-filiados {
     color: #fd3434;
