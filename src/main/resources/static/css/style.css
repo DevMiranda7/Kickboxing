@@ -698,6 +698,12 @@ html, body {
     border: 1px solid #aaa;
 }
 
+.custom-input-data-modal {
+    width: 156px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+}
+
 .custom-input-hora {
     width: 100px;
     font-size: 14px;
