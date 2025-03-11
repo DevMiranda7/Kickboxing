@@ -408,13 +408,18 @@ function openModalImagemProfessor(imgElement) {
 
     modalImageProfessor.src = imgElement.src;
 
-    document.getElementById("professorId").value = imgElement.getAttribute("data-id");
-    document.getElementById("professorNome").value = imgElement.getAttribute("data-nome");
-    document.getElementById("professorRegistro").value = imgElement.getAttribute("data-registro");
-    document.getElementById("professorCidade").value = imgElement.getAttribute("data-cidade");
-    document.getElementById("professorGraduacao").value = imgElement.getAttribute("data-graduacao");
-    document.getElementById("professorEquipe").value = imgElement.getAttribute("data-equipe");
-//    document.getElementById("professorNascimento").value = imgElement.getAttribute("data-nascimento");
+    document.getElementById("professorId").value = imgElement.getAttribute("data-id") || "";
+    document.getElementById("professorNome").value = imgElement.getAttribute("data-nome") || "";
+    document.getElementById("professorRegistro").value = imgElement.getAttribute("data-registro") || "";
+    document.getElementById("professorCidade").value = imgElement.getAttribute("data-cidade") || "";
+    document.getElementById("modalGraduacaoPretas").value = imgElement.getAttribute("data-graduacao") || "";
+    document.getElementById("professorEquipe").value = imgElement.getAttribute("data-equipe") || "";
+    document.getElementById("professorGraduadoEm").value = imgElement.getAttribute("data-graduado") || "";
+
+    const genero = imgElement.getAttribute("data-genero");
+    if (genero) {
+        document.querySelector(`input[name='generoProfessor'][value='${genero}']`).checked = true;
+    }
 
     modalImagemProfessor.style.display = "flex";
 }
