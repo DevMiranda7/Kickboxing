@@ -198,12 +198,17 @@
         <hr class="separator">
 
         <!-- REGISTROS FILIADOS -->
-        <form th:action="@{/pesquisarFiliados}" method="get">
+        <form th:action="@{/pesquisarFiliados}" method="get" onsubmit="return false;">
             <div class="conteiner-pesquisar-filiados">
+
+                <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome-filiado" placeholder="Nome do Filiado">
+
+
                 <select class="ant-input" name="opcoes-cidades-filiados" id="select-cidade-filiados">
                     <option value="">Selecionar Cidade</option>
                     <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>
                 </select>
+
                 <button class="ant-input custom-btn-pesquisar-filiados" type="button" onclick="pesquisarFiliados()">Pesquisar</button>
             </div>
         </form>
@@ -235,6 +240,7 @@
                               data-academia=${filiado.academiaFiliado},
                               data-responsavel=${filiado.responsavelFiliado},
                               data-genero=${filiado.generoFiliado},
+                              data-graduado=${filiado.graduadoEm},
                               data-graduacao=${filiado.graduacaoFiliado}"
                               onclick="openModalImagemFiliado(this)" style="border-radius: 10px;">
 
@@ -248,8 +254,16 @@
 
                     <td>
                         <span th:text="${filiado.graduacaoFiliado}"
-                              th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' : 'Preta'}"></span>
+                              th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' :
+                                               (filiado.graduacaoFiliado.contains('Preta') ? 'Preta' :
+                                               (filiado.graduacaoFiliado == 'Amarela' ? 'Amarela' :
+                                               (filiado.graduacaoFiliado == 'Laranja' ? 'Laranja' :
+                                               (filiado.graduacaoFiliado == 'Verde' ? 'Verde' :
+                                               (filiado.graduacaoFiliado == 'Azul' ? 'Azul' :
+                                               (filiado.graduacaoFiliado == 'Marrom' ? 'Marrom' : ''))))))}"></span>
                     </td>
+
+
 
                     <td th:text="${filiado.academiaFiliado}"></td>
 

@@ -10,4 +10,11 @@ import java.util.List;
 public interface FiliadoRepository extends JpaRepository<Filiado, Long> {
     @Query("SELECT a FROM Filiado a WHERE a.cidadeFiliado = :cidade")
     List<Filiado> findByCidadeFiliado(@Param("cidade") String cidade);
+
+    @Query("SELECT a FROM Filiado a WHERE LOWER(a.nomeFiliado) LIKE LOWER(CONCAT('%', :nomeFiliado, '%'))")
+    List<Filiado> findByNomeFiliado(@Param("nomeFiliado") String nomeFiliado);
+
+    @Query("SELECT a FROM Filiado a WHERE a.cidadeFiliado = :cidadeFiliado AND LOWER(a.nomeFiliado) LIKE LOWER(CONCAT('%', :nomeFiliado, '%'))")
+    List<Filiado> findByCidadeFiliadoAndNomeFiliado(@Param("cidadeFiliado") String cidadeFiliado, @Param("nomeFiliado") String nomeFiliado);
+
 }

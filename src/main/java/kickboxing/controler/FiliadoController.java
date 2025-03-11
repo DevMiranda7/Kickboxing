@@ -29,7 +29,7 @@ public class FiliadoController {
                                @RequestParam("graduadoEm") LocalDate graduadoEm,
                                @RequestParam("academiaFiliado") String academiaFiliado,
                                @RequestParam("responsavelFiliado") String responsavelFiliado,
-                               @RequestParam("nascimentoFiliado") String nascimentoFiliado,
+                               @RequestParam("nascimentoFiliado") LocalDate nascimentoFiliado,
                                @RequestParam("generoFiliado") String generoFiliado,
                                @RequestParam("imagemFiliado") MultipartFile imagemFiliado,
                                RedirectAttributes redirectAttributes) {
@@ -52,7 +52,7 @@ public class FiliadoController {
             filiado.setGraduadoEm(graduadoEm);
             filiado.setAcademiaFiliado(academiaFiliado);
             filiado.setResponsavelFiliado(responsavelFiliado);
-            filiado.setNascimentoFiliado(LocalDate.parse(nascimentoFiliado));
+            filiado.setNascimentoFiliado(nascimentoFiliado);
             filiado.setGeneroFiliado(generoFiliado);
 
             filiadoService.salvarFiliado(filiado, imagemFiliado);
@@ -88,11 +88,21 @@ public class FiliadoController {
 
     @GetMapping("/pesquisarFiliados")
     @ResponseBody
-    public List<Filiado> pesquisarFiliados(@RequestParam("opcoes-cidades-filiados") String cidadeFiliado) {
-        if (cidadeFiliado == null || cidadeFiliado.isEmpty()) {
+    public List<Filiado> pesquisarFiliados(
+            @RequestParam(value = "opcoes-cidades-filiados", required = false) String cidadeFiliado,
+            @RequestParam(value = "nome-filiado", required = false) String nomeFiliado) {
+
+        if ((cidadeFiliado == null || cidadeFiliado.isEmpty()) && (nomeFiliado == null || nomeFiliado.isEmpty())) {
             return filiadoService.listarFiliados();
-        } else {
+
+        } else if (cidadeFiliado != null && !cidadeFiliado.isEmpty() && (nomeFiliado == null || nomeFiliado.isEmpty())) {
             return filiadoService.pesquisarFiliadosPorCidade(cidadeFiliado);
+
+        } else if ((cidadeFiliado == null || cidadeFiliado.isEmpty()) && nomeFiliado != null && !nomeFiliado.isEmpty()) {
+            return filiadoService.pesquisarFiliadosPorNome(nomeFiliado);
+
+        } else {
+            return filiadoService.pesquisarFiliadosPorCidadeENome(cidadeFiliado, nomeFiliado);
         }
     }
 

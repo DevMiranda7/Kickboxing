@@ -124,8 +124,11 @@
         <hr class="separator">
 
         <!-- REGISTROS ACADEMIAS -->
-        <form th:action="@{/pesquisarAcademias}" method="get">
+        <form th:action="@{/pesquisarAcademias}" method="get" onsubmit="return false;">
             <div class="conteiner-pesquisar">
+
+                <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome" placeholder="Nome da academia">
+
                 <select class="ant-input" name="opcoes-cidades" id="select-cidade">
                     <option value="">Selecionar Cidade</option>
                     <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>

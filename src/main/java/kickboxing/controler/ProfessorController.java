@@ -27,7 +27,7 @@ public class ProfessorController {
                                  @RequestParam(value = "graduacaoProfessor", required = false) String graduacaoProfessor,
                                  @RequestParam("graduadoEm") LocalDate graduadoEm,
                                  @RequestParam("equipeProfessor") String equipeProfessor,
-                                 @RequestParam("nascimentoProfessor") String nascimentoProfessor,
+                                 @RequestParam("nascimentoProfessor") LocalDate nascimentoProfessor,
                                  @RequestParam("generoProfessor") String generoProfessor,
                                  @RequestParam("imagemProfessor") MultipartFile imagemProfessor,
                                  RedirectAttributes redirectAttributes) {
@@ -44,7 +44,7 @@ public class ProfessorController {
             professor.setGraduacaoProfessor(graduacaoProfessor);
             professor.setGraduadoEm(graduadoEm);
             professor.setEquipeProfessor(equipeProfessor);
-            professor.setNascimentoProfessor(LocalDate.parse(nascimentoProfessor));
+            professor.setNascimentoProfessor(nascimentoProfessor);
             professor.setGeneroProfessor(generoProfessor);
 
             professorService.salvarProfessor(professor, imagemProfessor);
@@ -81,11 +81,21 @@ public class ProfessorController {
 
     @GetMapping("/pesquisarProfessores")
     @ResponseBody
-    public List<Professor> pesquisarProfessores(@RequestParam("opcoes-cidades-professores") String cidadeProfessor) {
-        if (cidadeProfessor == null || cidadeProfessor.isEmpty()) {
+    public List<Professor> pesquisarProfessores(
+            @RequestParam(value = "opcoes-cidades-professores", required = false) String cidadeProfessor,
+            @RequestParam(value = "nome-professor", required = false) String nomeProfessor) {
+
+        if ((cidadeProfessor == null || cidadeProfessor.isEmpty()) && (nomeProfessor == null || nomeProfessor.isEmpty())) {
             return professorService.listarProfessores();
-        } else {
+
+        } else if (cidadeProfessor != null && !cidadeProfessor.isEmpty() && (nomeProfessor == null || nomeProfessor.isEmpty())) {
             return professorService.pesquisarProfessoresPorCidade(cidadeProfessor);
+
+        } else if ((cidadeProfessor == null || cidadeProfessor.isEmpty()) && nomeProfessor != null && !nomeProfessor.isEmpty()) {
+            return professorService.pesquisarProfessoresPorNome(nomeProfessor);
+
+        } else {
+            return professorService.pesquisarProfessoresPorCidadeENome(cidadeProfessor, nomeProfessor);
         }
     }
 

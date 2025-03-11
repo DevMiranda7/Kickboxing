@@ -178,12 +178,16 @@
         <hr class="separator">
 
         <!-- REGISTROS PROFESSORES -->
-        <form th:action="@{/pesquisarProfessores}" method="get">
+        <form th:action="@{/pesquisarProfessores}" method="get" onsubmit="return false;">
             <div class="conteiner-pesquisar-professores">
+
+                <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome-professor" placeholder="Nome do Professor">
+
                 <select class="ant-input" name="opcoes-cidades-professores" id="select-cidade-professores">
                     <option value="">Selecionar Cidade</option>
                     <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>
                 </select>
+
                 <button class="ant-input custom-btn-pesquisar-professores" type="button" onclick="pesquisarProfessores()">Pesquisar</button>
             </div>
         </form>
