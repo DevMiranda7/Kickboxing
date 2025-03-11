@@ -45,6 +45,14 @@ public class FiliadoService {
         return filiadoRepository.findByCidadeFiliado(cidade);
     }
 
+    public List<Filiado> pesquisarFiliadosPorNome(String nomeFiliado) {
+        return filiadoRepository.findByNomeFiliado(nomeFiliado);
+    }
+
+    public List<Filiado> pesquisarFiliadosPorCidadeENome(String cidadeFiliado, String nomeFiliado) {
+        return filiadoRepository.findByCidadeFiliadoAndNomeFiliado(cidadeFiliado, nomeFiliado);
+    }
+
     public void excluirFiliado(Long id) {
         Filiado filiado = filiadoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Filiado não encontrado"));

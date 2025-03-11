@@ -77,11 +77,21 @@ public class AcademiaController {
 
     @GetMapping("/pesquisarAcademias")
     @ResponseBody
-    public List<Academia> pesquisarAcademias(@RequestParam("opcoes-cidades") String cidade) {
-        if (cidade == null || cidade.isEmpty()) {
+    public List<Academia> pesquisarAcademias(
+            @RequestParam(value = "opcoes-cidades", required = false) String cidade,
+            @RequestParam(value = "nome", required = false) String nome) {
+
+        if ((cidade == null || cidade.isEmpty()) && (nome == null || nome.isEmpty())) {
             return academiaService.listarAcademias();
-        } else {
+
+        } else if (cidade != null && !cidade.isEmpty() && (nome == null || nome.isEmpty())) {
             return academiaService.pesquisarAcademias(cidade);
+
+        } else if ((cidade == null || cidade.isEmpty()) && nome != null && !nome.isEmpty()) {
+            return academiaService.pesquisarAcademiasPorNome(nome);
+
+        } else {
+            return academiaService.pesquisarAcademiasPorCidadeENome(cidade, nome);
         }
     }
 }

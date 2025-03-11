@@ -309,8 +309,9 @@ window.onclick = function (event) {
 
 function pesquisarAcademias() {
     const cidade = document.getElementById('select-cidade').value;
+    const nome = document.getElementById('input-nome').value;
 
-    fetch('/pesquisarAcademias?opcoes-cidades=' + cidade)
+    fetch(`/pesquisarAcademias?opcoes-cidades=${cidade}&nome=${nome}`)
         .then(response => response.json())
         .then(academias => {
             let containerAcademias = document.querySelector(".conteiner-academias ul");
@@ -438,10 +439,9 @@ window.onclick = function(event) {
 
 function pesquisarProfessores() {
     const cidade = document.getElementById('select-cidade-professores').value;
+    const nomeProfessor = document.getElementById('input-nome-professor').value;
 
-    event.preventDefault();
-
-    fetch('/pesquisarProfessores?opcoes-cidades-professores=' + cidade)
+    fetch(`/pesquisarProfessores?opcoes-cidades-professores=${cidade}&nome-professor=${nomeProfessor}`)
         .then(response => response.json())
         .then(professores => {
             let tbody = document.querySelector(".conteiner-professores tbody");
@@ -463,9 +463,11 @@ function pesquisarProfessores() {
                 img.setAttribute("data-cidade", professor.cidadeProfessor);
                 img.setAttribute("data-graduacao", professor.graduacaoProfessor);
                 img.setAttribute("data-equipe", professor.equipeProfessor);
+                img.setAttribute("data-graduado", professor.graduadoEm);
                 img.onclick = function () {
                     openModalImagemProfessor(this);
                 };
+
                 tdImg.appendChild(img);
 
                 let tdRegistro = document.createElement("td");
@@ -475,17 +477,16 @@ function pesquisarProfessores() {
                 tdNome.textContent = professor.nomeProfessor;
 
                 let tdNascimento = document.createElement("td");
-                tdNascimento.textContent = professor.nascimentoProfessor;
+                tdNascimento.textContent = formatDateToBrazilian(professor.nascimentoProfessor);
 
-                let tdGerero = document.createElement("td");
-                tdGerero.textContent = professor.generoProfessor;
+                let tdGenero = document.createElement("td");
+                tdGenero.textContent = professor.generoProfessor === 'Masculino' ? 'M' : (professor.generoProfessor === 'Feminino' ? 'F' : '');
 
                 let tdCidade = document.createElement("td");
                 tdCidade.textContent = professor.cidadeProfessor;
 
                 let tdGraduacao = document.createElement("td");
                 let spanGraduacao = document.createElement("span");
-
                 spanGraduacao.textContent = professor.graduacaoProfessor;
                 spanGraduacao.classList.add(
                     professor.graduacaoProfessor.includes("Coral") ? "Preta-Coral" : "Preta"
@@ -540,7 +541,7 @@ function pesquisarProfessores() {
                 tr.appendChild(tdRegistro);
                 tr.appendChild(tdNome);
                 tr.appendChild(tdNascimento);
-                tr.appendChild(tdGerero)
+                tr.appendChild(tdGenero);
                 tr.appendChild(tdCidade);
                 tr.appendChild(tdGraduacao);
                 tr.appendChild(tdEquipe);
@@ -556,18 +557,16 @@ function toggleGraduacao() {
     const coloridaSelect = document.getElementById("graduacao-coloridas-filiado");
     const pretaSelect = document.getElementById("graduacao-pretas-filiado");
 
-    // Se uma faixa colorida for selecionada, desabilita a faixa preta
     if (coloridaSelect.value) {
         pretaSelect.disabled = true;
-        pretaSelect.value = ""; // Limpa a seleção de faixa preta
+        pretaSelect.value = "";
     } else {
         pretaSelect.disabled = false;
     }
 
-    // Se uma faixa preta for selecionada, desabilita a faixa colorida
     if (pretaSelect.value) {
         coloridaSelect.disabled = true;
-        coloridaSelect.value = ""; // Limpa a seleção de faixa colorida
+        coloridaSelect.value = "";
     } else {
         coloridaSelect.disabled = false;
     }
@@ -579,13 +578,13 @@ function openModalImagemFiliado(imgElement) {
 
     modalImageFiliado.src = imgElement.src;
 
-    document.getElementById("filiadoId").value = imgElement.getAttribute("data-id");
-    document.getElementById("filiadoNome").value = imgElement.getAttribute("data-nome");
-    document.getElementById("filiadoRegistro").value = imgElement.getAttribute("data-registro");
-    document.getElementById("filiadoCidade").value = imgElement.getAttribute("data-cidade");
-    document.getElementById("filiadoAcademia").value = imgElement.getAttribute("data-academia");
-    document.getElementById("filiadoResponsavel").value = imgElement.getAttribute("data-responsavel");
-    document.getElementById("filiadoGraduadoEm").value = imgElement.getAttribute("data-graduado");
+    document.getElementById("filiadoId").value = imgElement.getAttribute("data-id") || "";
+    document.getElementById("filiadoNome").value = imgElement.getAttribute("data-nome") || "";
+    document.getElementById("filiadoRegistro").value = imgElement.getAttribute("data-registro") || "";
+    document.getElementById("filiadoCidade").value = imgElement.getAttribute("data-cidade") || "";
+    document.getElementById("filiadoAcademia").value = imgElement.getAttribute("data-academia") || "";
+    document.getElementById("filiadoResponsavel").value = imgElement.getAttribute("data-responsavel") || "";
+    document.getElementById("filiadoGraduadoEm").value = imgElement.getAttribute("data-graduado") || "";
 
     const genero = imgElement.getAttribute("data-genero");
     if (genero === "Masculino") {
@@ -609,12 +608,21 @@ window.onclick = function(event) {
     }
 };
 
+function formatDateToBrazilian(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+}
+
+
 function pesquisarFiliados() {
     const cidade = document.getElementById('select-cidade-filiados').value;
+    const nomeFiliado = document.getElementById('input-nome-filiado').value;
 
-    event.preventDefault();
-
-    fetch('/pesquisarFiliados?opcoes-cidades-filiados=' + cidade)
+    fetch(`/pesquisarFiliados?opcoes-cidades-filiados=${cidade}&nome-filiado=${nomeFiliado}`)
         .then(response => response.json())
         .then(filiados => {
             let tbody = document.querySelector(".conteiner-filiados tbody");
@@ -637,6 +645,7 @@ function pesquisarFiliados() {
                 img.setAttribute("data-nascimento", filiado.nascimentoFiliado);
                 img.setAttribute("data-genero", filiado.generoFiliado);
                 img.setAttribute("data-graduacao", filiado.graduacaoFiliado);
+                img.setAttribute("data-graduado", filiado.graduadoEm);
                 img.onclick = function () {
                     openModalImagemFiliado(this);
                 };
@@ -649,21 +658,33 @@ function pesquisarFiliados() {
                 tdNome.textContent = filiado.nomeFiliado;
 
                 let tdNascimento = document.createElement("td");
-                tdNascimento.textContent = filiado.nascimentoFiliado;
+                tdNascimento.textContent = formatDateToBrazilian(filiado.nascimentoFiliado);
 
-                let tdGerero = document.createElement("td");
-                tdGerero.textContent = filiado.generoFiliado;
+                let tdGenero = document.createElement("td");
+                tdGenero.textContent = filiado.generoFiliado === 'Masculino' ? 'M' : (filiado.generoFiliado === 'Feminino' ? 'F' : '');
 
                 let tdCidade = document.createElement("td");
                 tdCidade.textContent = filiado.cidadeFiliado;
 
                 let tdGraduacao = document.createElement("td");
                 let spanGraduacao = document.createElement("span");
-
                 spanGraduacao.textContent = filiado.graduacaoFiliado;
-                spanGraduacao.classList.add(
-                    filiado.graduacaoFiliado.includes("Coral") ? "Preta-Coral" : "Preta"
-                );
+
+                if (filiado.graduacaoFiliado.includes("Coral")) {
+                    spanGraduacao.classList.add("Preta-Coral");
+                } else if (filiado.graduacaoFiliado.includes("Preta")) {
+                    spanGraduacao.classList.add("Preta");
+                } else if (filiado.graduacaoFiliado === "Amarela") {
+                    spanGraduacao.classList.add("Amarela");
+                } else if (filiado.graduacaoFiliado === "Laranja") {
+                    spanGraduacao.classList.add("Laranja");
+                } else if (filiado.graduacaoFiliado === "Verde") {
+                    spanGraduacao.classList.add("Verde");
+                } else if (filiado.graduacaoFiliado === "Azul") {
+                    spanGraduacao.classList.add("Azul");
+                } else if (filiado.graduacaoFiliado === "Marrom") {
+                    spanGraduacao.classList.add("Marrom");
+                }
 
                 tdGraduacao.appendChild(spanGraduacao);
 
@@ -717,7 +738,7 @@ function pesquisarFiliados() {
                 tr.appendChild(tdRegistro);
                 tr.appendChild(tdNome);
                 tr.appendChild(tdNascimento);
-                tr.appendChild(tdGerero);
+                tr.appendChild(tdGenero);
                 tr.appendChild(tdCidade);
                 tr.appendChild(tdGraduacao);
                 tr.appendChild(tdAcademia);

@@ -27,7 +27,6 @@ public class Professor {
     private String graduacaoProfessor;
 
     @Column
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate nascimentoProfessor;
 
     @Column(nullable = false)
@@ -40,7 +39,6 @@ public class Professor {
     private String generoProfessor;
 
     @Column
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate graduadoEm;
 
     public long getIdProfessor() {

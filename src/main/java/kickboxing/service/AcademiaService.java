@@ -60,6 +60,14 @@ public class AcademiaService {
         return academiaRepository.findByCidadeAcademia(cidade);
     }
 
+    public List<Academia> pesquisarAcademiasPorNome(String nome) {
+        return academiaRepository.findByNomeAcademia(nome);
+    }
+
+    public List<Academia> pesquisarAcademiasPorCidadeENome(String cidade, String nome) {
+        return academiaRepository.findByCidadeAcademiaAndNomeAcademia(cidade, nome);
+    }
+
     //* AMBIENTE DE PRODUÇÃO ACESSE O ARQUIVO ---- "PRODUCAO.MD" ---- *//
     //* IMPORTANTE PARA ENTENDER COMO VAI FUNCIONAR!!!!!!! *//
 }

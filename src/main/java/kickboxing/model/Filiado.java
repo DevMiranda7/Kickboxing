@@ -27,11 +27,9 @@ public class Filiado {
     private String graduacaoFiliado;
 
     @Column
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate graduadoEm;
 
     @Column
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate nascimentoFiliado;
 
     @Column(nullable = false)
