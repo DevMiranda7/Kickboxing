@@ -213,6 +213,7 @@
                                  data-cidade=${professor.cidadeProfessor},
                                  data-genero=${professor.generoProfessor},
                                  data-graduacao=${professor.graduacaoProfessor},
+                                 data-graduado=${professor.graduadoEm},
                                  data-equipe=${professor.equipeProfessor},
                                  data-nascimento=${professor.nascimentoProfessor}"
                                  onclick="openModalImagemProfessor(this)" style="border-radius: 10px;">
@@ -259,34 +260,73 @@
 
                     <div class="professor-details">
                         <form id="editarProfessorForm" th:action="@{/editarProfessor}" method="post" enctype="multipart/form-data">
-                            <input type="hidden" id="professorId" name="idProfessor"> <!-- Campo oculto para o ID -->
+                            <input type="hidden" id="professorId" name="idProfessor">
 
-                            <p><strong>Nome:</strong> <input style="width: 271px;" type="text" id="professorNome" name="nomeProfessor" class="ant-input custom-input-editar" required></p>
+                            <div class="div-modal-nome">
+                                <div class="info-modal-nome">
+                                    <p>Registro:</p>
+                                    <input type="text" id="professorRegistro" name="registroProfessor" class="ant-input custom-input-editar" required>
+                                </div>
 
-                            <p><strong>Registro:</strong> <input style="width: 255px;" type="text" id="professorRegistro" name="registroProfessor" class="ant-input custom-input-editar" required></p>
+                                <div class="info-modal-nome">
+                                    <p>Nome:</p>
+                                    <input type="text" id="professorNome" name="nomeProfessor" class="ant-input custom-input-editar" required>
+                                </div>
+                            </div>
 
-                            <p><strong>Cidade:</strong> <input style="width: 265px;" type="text" id="professorCidade" name="cidadeProfessor" class="ant-input custom-input-editar" required></p>
+                            <div class="div-modal-nome">
+                                <div class="info-modal-nome">
+                                    <p>Cidade:</p>
+                                    <input type="text" id="professorCidade" name="cidadeProfessor" class="ant-input custom-input-editar" required>
+                                </div>
 
-                            <p><strong>Equipe:</strong> <input style="width: 265px;" type="text" id="professorEquipe" name="equipeProfessor" class="ant-input custom-input-editar" required></p>
+                                <div class="info-modal-nome">
+                                    <p>Equipe:</p>
+                                    <input type="text" id="professorEquipe" name="equipeProfessor" class="ant-input custom-input-editar" required>
+                                </div>
+                            </div>
 
-                            <p><strong>Graduação:</strong>
-                                <select style="width: 236px;" id="professorGraduacao" name="graduacaoProfessor" class="ant-input custom-input-editar" required>
-                                    <option value="" disabled selected>Graduação</option>
-                                    <option value="Amarela">Amarela</option>
-                                    <option value="Laranja">Laranja</option>
-                                    <option value="Verde">Verde</option>
-                                    <option value="Azul">Azul</option>
-                                    <option value="Marrom">Marrom</option>
-                                    <option value="Preta">Preta</option>
-                                </select>
-                            </p>
+                            <div class="div-modal-nome">
+                                <div class="info-modal-genero">
+                                    <label>
+                                        <input type="radio" name="generoProfessor" value="Masculino" required>
+                                        Masculino
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="generoProfessor" value="Feminino" required>
+                                        Feminino
+                                    </label>
+                                </div>
+                            </div>
 
-<!--                            <p><strong>Data de Nascimento:</strong>-->
-<!--                                <input type="date" id="professorNascimento" name="nascimentoProfessor" class="ant-input custom-input-data" required>-->
-<!--                            </p>-->
+                            <div class="div-modal-nome">
+                                <div class="info-modal-nome">
+                                    <p>Faixa Preta:</p>
+                                    <select id="modalGraduacaoPretas" name="graduacaoProfessor" class="ant-input custom-input-graduacao">
+                                        <option value="" disabled selected>Pretas</option>
+                                        <option value="Preta 1° Dan">Preta 1° Dan</option>
+                                        <option value="Preta 2° Dan">Preta 2° Dan</option>
+                                        <option value="Preta 3° Dan">Preta 3° Dan</option>
+                                        <option value="Preta 4° Dan">Preta 4° Dan</option>
+                                        <option value="Preta 5° Dan">Preta 5° Dan</option>
+                                        <option value="Coral 6° Dan">Coral 6° Dan</option>
+                                        <option value="Coral 7° Dan">Coral 7° Dan</option>
+                                        <option value="Coral 8° Dan">Coral 8° Dan</option>
+                                        <option value="Coral 9° Dan">Coral 9° Dan</option>
+                                        <option value="Coral 10° Dan">Coral 10° Dan</option>
+                                    </select>
+                                </div>
 
-                            <input style="width: 325px;" type="file" id="imagemProfessores" name="imagemProfessor" accept="image/*" class="ant-input custom-input-upload">
+                                <div class="info-modal-nome">
+                                    <p>Graduado Em:</p>
+                                    <input type="date" id="professorGraduadoEm"
+                                           name="graduadoEm" class="ant-input custom-input-data" required>
+                                </div>
+                            </div>
+
                             <div class="div-modal-img-button">
+                                <input style="width: 325px;" type="file" id="imagemProfessores" name="imagemProfessor" accept="image/*" class="ant-input custom-input-upload">
+
                                 <button type="submit" class="anti-input custom-btn-salvar-conta">Salvar</button>
                             </div>
                         </form>
