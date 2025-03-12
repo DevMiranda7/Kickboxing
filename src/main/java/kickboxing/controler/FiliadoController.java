@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -89,22 +88,13 @@ public class FiliadoController {
     @GetMapping("/pesquisarFiliados")
     @ResponseBody
     public List<Filiado> pesquisarFiliados(
-            @RequestParam(value = "opcoes-cidades-filiados", required = false) String cidadeFiliado,
-            @RequestParam(value = "nome-filiado", required = false) String nomeFiliado) {
-
-        if ((cidadeFiliado == null || cidadeFiliado.isEmpty()) && (nomeFiliado == null || nomeFiliado.isEmpty())) {
-            return filiadoService.listarFiliados();
-
-        } else if (cidadeFiliado != null && !cidadeFiliado.isEmpty() && (nomeFiliado == null || nomeFiliado.isEmpty())) {
-            return filiadoService.pesquisarFiliadosPorCidade(cidadeFiliado);
-
-        } else if ((cidadeFiliado == null || cidadeFiliado.isEmpty()) && nomeFiliado != null && !nomeFiliado.isEmpty()) {
-            return filiadoService.pesquisarFiliadosPorNome(nomeFiliado);
-
-        } else {
-            return filiadoService.pesquisarFiliadosPorCidadeENome(cidadeFiliado, nomeFiliado);
-        }
+            @RequestParam(value = "opcoes-cidades-filiados", required = false) String cidade,
+            @RequestParam(value = "nome-filiado", required = false) String nome,
+            @RequestParam(value = "registro-filiado", required = false) String registro,
+            @RequestParam(value = "tipoFaixa", required = false) String tipoFaixa) {
+        return filiadoService.pesquisarFiliados(cidade, nome, registro, tipoFaixa);
     }
+
 
     @PostMapping("/filiados/{id}")
     public String excluirFiliados(@PathVariable Long id, RedirectAttributes redirectAttributes) {

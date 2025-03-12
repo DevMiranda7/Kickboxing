@@ -2,7 +2,9 @@ package kickboxing.service;
 
 import kickboxing.model.Filiado;
 import kickboxing.repository.FiliadoRepository;
+import kickboxing.specifications.FiliadoSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,16 +43,9 @@ public class FiliadoService {
         return filiadoRepository.findAll();
     }
 
-    public List<Filiado> pesquisarFiliadosPorCidade(String cidade) {
-        return filiadoRepository.findByCidadeFiliado(cidade);
-    }
-
-    public List<Filiado> pesquisarFiliadosPorNome(String nomeFiliado) {
-        return filiadoRepository.findByNomeFiliado(nomeFiliado);
-    }
-
-    public List<Filiado> pesquisarFiliadosPorCidadeENome(String cidadeFiliado, String nomeFiliado) {
-        return filiadoRepository.findByCidadeFiliadoAndNomeFiliado(cidadeFiliado, nomeFiliado);
+    public List<Filiado> pesquisarFiliados(String cidade, String nome, String registro, String tipoFaixa) {
+        Specification<Filiado> spec = FiliadoSpecification.filtrarFiliados(cidade, nome, registro, tipoFaixa);
+        return filiadoRepository.findAll(spec);
     }
 
     public void excluirFiliado(Long id) {

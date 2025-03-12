@@ -18,4 +18,6 @@ public interface ProfessorRepository extends JpaRepository<Professor, Long> {
     @Query("SELECT a FROM Professor a WHERE a.cidadeProfessor = :cidadeProfessor AND LOWER(a.nomeProfessor) LIKE LOWER(CONCAT('%', :nomeProfessor, '%'))")
     List<Professor> findByCidadeProfessorAndNomeProfessor(@Param("cidadeProfessor") String cidadeProfessor, @Param("nomeProfessor") String nomeProfessor);
 
+    @Query("SELECT p FROM Professor p WHERE p.registroProfessor LIKE CONCAT('%', :registroProfessor, '%')")
+    List<Professor> findByRegistroProfessor(@Param("registroProfessor") String registroProfessor);
 }
