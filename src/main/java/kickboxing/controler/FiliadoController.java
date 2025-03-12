@@ -3,6 +3,9 @@ package kickboxing.controler;
 import kickboxing.model.Filiado;
 import kickboxing.service.FiliadoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -72,16 +75,25 @@ public class FiliadoController {
         }
     }
 
-    public String listarFiliados(Model model) {
-        List<Filiado> filiados = filiadoService.listarFiliados();
+    @GetMapping("/listarFiliados")
+    public String listarFiliados(@RequestParam(defaultValue = "0") int pagina, Model model) {
+        int tamanhoPagina = 50;
+        Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
-        List<String> cidades = filiados.stream()
+        List<Filiado> todosFiliados = filiadoService.listarFiliados();
+
+        List<String> cidades = todosFiliados.stream()
                 .map(Filiado::getCidadeFiliado)
                 .distinct()
                 .collect(Collectors.toList());
 
+        Page<Filiado> paginaFiliados = filiadoService.listarFiliadosPaginados(pageable);
+
         model.addAttribute("cidades", cidades);
-        model.addAttribute("filiados", filiados);
+        model.addAttribute("filiados", paginaFiliados.getContent());
+        model.addAttribute("paginaAtual", pagina);
+        model.addAttribute("totalPaginas", paginaFiliados.getTotalPages());
+
         return "filiadosAdm";
     }
 

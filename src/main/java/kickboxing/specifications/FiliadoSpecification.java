@@ -35,6 +35,8 @@ public class FiliadoSpecification {
                 }
             }
 
+            query.orderBy(criteriaBuilder.asc(root.get("nomeFiliado")));
+
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }

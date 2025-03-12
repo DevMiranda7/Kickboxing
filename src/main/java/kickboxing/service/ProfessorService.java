@@ -3,12 +3,18 @@ package kickboxing.service;
 import kickboxing.model.Professor;
 import kickboxing.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProfessorService {
@@ -36,23 +42,37 @@ public class ProfessorService {
     }
 
     public List<Professor> listarProfessores() {
-        return professorRepository.findAll();
+        return professorRepository.findAll(Sort.by(Sort.Order.asc("nomeProfessor")));
     }
 
     public List<Professor> pesquisarProfessoresPorCidade(String cidade) {
-        return professorRepository.findByCidadeProfessor(cidade);
+        return professorRepository.findByCidadeProfessor(cidade)
+                .stream()
+                .sorted(Comparator.comparing(Professor::getNomeProfessor))
+                .collect(Collectors.toList());
     }
 
     public List<Professor> pesquisarProfessoresPorNome(String nomeProfessor) {
-        return professorRepository.findByNomeProfessor(nomeProfessor);
+        return professorRepository.findByNomeProfessor(nomeProfessor)
+                .stream()
+                .sorted(Comparator.comparing(Professor::getNomeProfessor))
+                .collect(Collectors.toList());
     }
 
     public List<Professor> pesquisarProfessoresPorCidadeENome(String cidadeProfessor, String nomeProfessor) {
-        return professorRepository.findByCidadeProfessorAndNomeProfessor(cidadeProfessor, nomeProfessor);
+        return professorRepository.findByCidadeProfessorAndNomeProfessor(cidadeProfessor, nomeProfessor)
+                .stream()
+                .sorted(Comparator.comparing(Professor::getNomeProfessor))
+                .collect(Collectors.toList());
     }
 
     public List<Professor> pesquisarProfessoresPorRegistro(String registroProfessor) {
         return professorRepository.findByRegistroProfessor(registroProfessor);
+    }
+
+    public Page<Professor> listarProfessoresPaginados(Pageable pageable) {
+        Pageable pageableComOrdenacao = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Order.asc("nomeProfessor")));
+        return professorRepository.findAll(pageableComOrdenacao);
     }
 
     public void excluirProfessor(Long id) {
