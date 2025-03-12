@@ -87,29 +87,14 @@ public class FiliadoController {
 
     @GetMapping("/pesquisarFiliados")
     @ResponseBody
-    public List<Filiado> pesquisarFiliados (
-            @RequestParam(value = "opcoes-cidades-filiados", required = false) String cidadeFiliado,
-            @RequestParam(value = "nome-filiado", required = false) String nomeFiliado,
-            @RequestParam(value = "registro-filiado", required = false) String registroFiliado) {
-
-        if ((cidadeFiliado == null || cidadeFiliado.isEmpty())
-                && (nomeFiliado == null || nomeFiliado.isEmpty())
-                && (registroFiliado == null || registroFiliado.isEmpty())) {
-            return filiadoService.listarFiliados();
-
-        } else if (registroFiliado != null && !registroFiliado.isEmpty()) {
-            return filiadoService.pesquisarFiliadosPorRegistro(registroFiliado);
-
-        } else if (cidadeFiliado != null && !cidadeFiliado.isEmpty() && (nomeFiliado == null || nomeFiliado.isEmpty())) {
-            return filiadoService.pesquisarFiliadosPorCidade(cidadeFiliado);
-
-        } else if ((cidadeFiliado == null || cidadeFiliado.isEmpty()) && nomeFiliado != null && !nomeFiliado.isEmpty()) {
-            return filiadoService.pesquisarFiliadosPorNome(nomeFiliado);
-
-        } else {
-            return filiadoService.pesquisarFiliadosPorCidadeENome(cidadeFiliado, nomeFiliado);
-        }
+    public List<Filiado> pesquisarFiliados(
+            @RequestParam(value = "opcoes-cidades-filiados", required = false) String cidade,
+            @RequestParam(value = "nome-filiado", required = false) String nome,
+            @RequestParam(value = "registro-filiado", required = false) String registro,
+            @RequestParam(value = "tipoFaixa", required = false) String tipoFaixa) {
+        return filiadoService.pesquisarFiliados(cidade, nome, registro, tipoFaixa);
     }
+
 
     @PostMapping("/filiados/{id}")
     public String excluirFiliados(@PathVariable Long id, RedirectAttributes redirectAttributes) {

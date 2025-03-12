@@ -201,16 +201,58 @@
         <form th:action="@{/pesquisarFiliados}" method="get" onsubmit="return false;">
             <div class="conteiner-pesquisar-filiados">
 
-                <input type="text" class="ant-input custom-input-editar-registro" id="input-registro-filiado" placeholder="N° de Registro">
+                <div class="radio-margin">
+                    <h3>Selecione a Faixa:</h3>
+                    <label>
+                        <input type="radio" name="tipoFaixa" value="colorida" required onclick="desabilitarRadio(this)">
+                        Colorida
+                    </label>
+                    <label>
+                        <input type="radio" name="tipoFaixa" value="preta" required onclick="desabilitarRadio(this)">
+                        Preta
+                    </label>
 
-                <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome-filiado" placeholder="Nome do Filiado">
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const radios = document.querySelectorAll('input[name="tipoFaixa"]');
 
-                <select class="ant-input" name="opcoes-cidades-filiados" id="select-cidade-filiados">
-                    <option value="">Selecionar Cidade</option>
-                    <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>
-                </select>
+                            radios.forEach(radio => {
+                                radio.addEventListener("click", function () {
+                                    if (this.checked && this.dataset.checked === "true") {
+                                        this.checked = false;
+                                        this.dataset.checked = "false";
+                                    } else {
+                                        radios.forEach(r => r.dataset.checked = "false");
+                                        this.dataset.checked = "true";
+                                    }
+                                });
+                            });
+                        });
+                    </script>
 
-                <button class="ant-input custom-btn-pesquisar-filiados" type="button" onclick="pesquisarFiliados()">Pesquisar</button>
+                </div>
+
+                <div class="p-margin">
+                    <p>Registro:</p>
+                    <input type="text" class="ant-input custom-input-editar-registro" id="input-registro-filiado" placeholder="N° de Registro">
+                </div>
+
+                <div class="p-margin">
+                    <p>Nome do Filiado:</p>
+                    <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome-filiado" placeholder="Nome do Filiado">
+                </div>
+
+                <div class="p-margin">
+                    <p>Escolha a Cidade:</p>
+                    <select class="ant-input" name="opcoes-cidades-filiados" id="select-cidade-filiados">
+                        <option value="">Selecionar Cidade</option>
+                        <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>
+                    </select>
+                </div>
+
+                <div class="div-btn-pesquisar">
+                    <button class="ant-input custom-btn-pesquisar-filiados" type="button" onclick="pesquisarFiliados()">Pesquisar</button>
+                </div>
             </div>
         </form>
 

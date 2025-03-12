@@ -623,7 +623,11 @@ function pesquisarFiliados() {
     const nomeFiliado = document.getElementById('input-nome-filiado').value;
     const registroFiliado = document.getElementById('input-registro-filiado').value;
 
-    fetch(`/pesquisarFiliados?opcoes-cidades-filiados=${cidade}&nome-filiado=${nomeFiliado}&registro-filiado=${registroFiliado}`)
+    const tipoFaixa = document.querySelector('input[name="tipoFaixa"]:checked')?.value || '';
+
+    const url = `/pesquisarFiliados?opcoes-cidades-filiados=${cidade}&nome-filiado=${nomeFiliado}&registro-filiado=${registroFiliado}&tipoFaixa=${tipoFaixa}`;
+
+    fetch(url)
         .then(response => response.json())
         .then(filiados => {
             let tbody = document.querySelector(".conteiner-filiados tbody");

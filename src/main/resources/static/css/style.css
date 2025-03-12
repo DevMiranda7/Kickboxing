@@ -1485,8 +1485,20 @@ th:nth-child(8), td:nth-child(8) { /* Equipe */
 .conteiner-pesquisar-filiados {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     gap: 20px;
+}
+
+.radio-margin {
+    gap: 10px;
+}
+
+.radio-margin label {
+    margin-right: 20px;
+}
+
+.p-margin p {
+    margin: 0;
 }
 
 .conteiner-pesquisar-filiados select {
@@ -1494,6 +1506,11 @@ th:nth-child(8), td:nth-child(8) { /* Equipe */
     border: 1px solid #aaa;
     justify-content: center;
     align-items: center;
+}
+
+.div-btn-pesquisar {
+    margin-top: 23px;
+    margin-left: 30px;
 }
 
 .custom-btn-pesquisar-filiados {
