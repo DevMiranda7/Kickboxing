@@ -81,23 +81,23 @@ public class MapearRotasController {
     }
 
     @GetMapping("/professoresAdm")
-    public String professoresAdmPage(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
+    public String professoresAdmPage(@RequestParam(defaultValue = "0") int pagina, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         String redirecionamento = verificarSessao(session, redirectAttributes);
         if (redirecionamento != null) {
             return redirecionamento;
         }
 
-        return professorController.listarProfessores(model);
+        return professorController.listarProfessores(pagina, model);
     }
 
     @GetMapping("/filiadosAdm")
-    public String filiadosAdmPage(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
+    public String filiadosAdmPage(@RequestParam(defaultValue = "0") int pagina, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         String redirecionamento = verificarSessao(session, redirectAttributes);
         if (redirecionamento != null) {
             return redirecionamento;
         }
 
-        return filiadoController.listarFiliados(model);
+        return filiadoController.listarFiliados(pagina, model);
     }
 
     @GetMapping("/eventosAdm")

@@ -3,6 +3,9 @@ package kickboxing.controler;
 import kickboxing.model.Professor;
 import kickboxing.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,16 +70,25 @@ public class ProfessorController {
         }
     }
 
-    public String listarProfessores(Model model) {
-        List<Professor> professores = professorService.listarProfessores();
+    @GetMapping("/listarProfessores")
+    public String listarProfessores(@RequestParam(defaultValue = "0") int pagina, Model model) {
+        int tamanhoPagina = 8;
+        Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
-        List<String> cidades = professores.stream()
+        List<Professor> todosProfessores = professorService.listarProfessores();
+
+        List<String> cidades = todosProfessores.stream()
                 .map(Professor::getCidadeProfessor)
                 .distinct()
                 .collect(Collectors.toList());
 
+        Page<Professor> paginaProfessores = professorService.listarProfessoresPaginados(pageable);
+
         model.addAttribute("cidades", cidades);
-        model.addAttribute("professores", professores);
+        model.addAttribute("professores", paginaProfessores.getContent());
+        model.addAttribute("paginaAtual", pagina);
+        model.addAttribute("totalPaginas", paginaProfessores.getTotalPages());
+
         return "professoresAdm";
     }
 

@@ -1406,6 +1406,46 @@ th:nth-child(9), td:nth-child(9) { /* Status */
     transform: scale(1.3);
 }
 
+/* PAGINATION PROFESSOR */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination ul {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+}
+
+.pagination li {
+    margin: 0;
+}
+
+.pagination a {
+    padding: 4px 10px;
+    background-color: #00c8ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    background-color: #006aff;
+}
+
+.pagination .active a {
+    background-color: #006aff;
+    cursor: default;
+}
+
+.pagination li a {
+    cursor: pointer;
+}
+/* PAGINATION PROFESSOR */
+
 /* IMAGEM NO MODAL PROFESSOR */
 .imagem-professor-modal {
     display: none;
