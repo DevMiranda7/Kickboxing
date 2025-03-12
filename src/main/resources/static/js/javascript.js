@@ -498,6 +498,10 @@ function pesquisarProfessores() {
                 let tdEquipe = document.createElement("td");
                 tdEquipe.textContent = professor.equipeProfessor;
 
+                let tdStatus = document.createElement("td");
+                tdStatus.textContent = professor.statusProfessor;
+                tdStatus.classList.add(professor.statusProfessor === "Ativo" ? "status-ativo" : "status-inativo");
+
                 let tdExcluir = document.createElement("td");
                 let formExcluir = document.createElement("form");
                 formExcluir.id = `formExcluir_${professor.idProfessor}`;
@@ -546,6 +550,7 @@ function pesquisarProfessores() {
                 tr.appendChild(tdCidade);
                 tr.appendChild(tdGraduacao);
                 tr.appendChild(tdEquipe);
+                tr.appendChild(tdStatus);
                 tr.appendChild(tdExcluir);
 
                 tbody.appendChild(tr);
@@ -622,7 +627,6 @@ function pesquisarFiliados() {
     const cidade = document.getElementById('select-cidade-filiados').value;
     const nomeFiliado = document.getElementById('input-nome-filiado').value;
     const registroFiliado = document.getElementById('input-registro-filiado').value;
-
     const tipoFaixa = document.querySelector('input[name="tipoFaixa"]:checked')?.value || '';
 
     const url = `/pesquisarFiliados?opcoes-cidades-filiados=${cidade}&nome-filiado=${nomeFiliado}&registro-filiado=${registroFiliado}&tipoFaixa=${tipoFaixa}`;
@@ -699,6 +703,10 @@ function pesquisarFiliados() {
                 let tdResponsavel = document.createElement("td");
                 tdResponsavel.textContent = filiado.responsavelFiliado;
 
+                let tdStatus = document.createElement("td");
+                tdStatus.textContent = filiado.statusFiliado;
+                tdStatus.classList.add(filiado.statusFiliado === "Ativo" ? "status-ativo" : "status-inativo");
+
                 let tdExcluir = document.createElement("td");
                 let formExcluir = document.createElement("form");
                 formExcluir.id = `formExcluir_${filiado.idFiliado}`;
@@ -748,6 +756,7 @@ function pesquisarFiliados() {
                 tr.appendChild(tdGraduacao);
                 tr.appendChild(tdAcademia);
                 tr.appendChild(tdResponsavel);
+                tr.appendChild(tdStatus);
                 tr.appendChild(tdExcluir);
 
                 tbody.appendChild(tr);
@@ -755,6 +764,7 @@ function pesquisarFiliados() {
         })
         .catch(error => console.error("Erro ao buscar filiados:", error));
 }
+
 
 function openModalLightCombat() {
     document.getElementById("lightCombatModal").style.display = "block";

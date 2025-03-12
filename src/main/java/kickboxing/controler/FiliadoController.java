@@ -42,7 +42,6 @@ public class FiliadoController {
                 throw new IllegalArgumentException("Selecione apenas uma faixa de graduação.");
             }
 
-
             Filiado filiado = new Filiado();
             filiado.setRegistroFiliado(registroFiliado);
             filiado.setNomeFiliado(nomeFiliado);
@@ -53,6 +52,7 @@ public class FiliadoController {
             filiado.setResponsavelFiliado(responsavelFiliado);
             filiado.setNascimentoFiliado(nascimentoFiliado);
             filiado.setGeneroFiliado(generoFiliado);
+            filiado.setStatusFiliado("Ativo");
 
             filiadoService.salvarFiliado(filiado, imagemFiliado);
 
@@ -119,6 +119,7 @@ public class FiliadoController {
                                 @RequestParam("responsavelFiliado") String responsavelFiliado,
                                 @RequestParam("generoFiliado") String generoFiliado,
                                 @RequestParam(value = "imagemFiliado", required = false) MultipartFile imagemFiliado,
+                                @RequestParam("statusFiliado") String statusFiliado,
                                 RedirectAttributes redirectAttributes) {
         try {
 
@@ -140,10 +141,9 @@ public class FiliadoController {
             filiado.setAcademiaFiliado(academiaFiliado);
             filiado.setResponsavelFiliado(responsavelFiliado);
             filiado.setGeneroFiliado(generoFiliado);
+            filiado.setStatusFiliado(statusFiliado);
 
             filiadoService.salvarFiliado(filiado, imagemFiliado);
-
-            System.out.println("Data de graduação: " + graduadoEm);
 
             redirectAttributes.addFlashAttribute("successMessage", "Filiado atualizado com sucesso!");
             return "redirect:/filiadosAdm?refresh=" + System.currentTimeMillis();
