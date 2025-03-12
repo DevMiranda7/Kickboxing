@@ -536,6 +536,12 @@ html, body {
     border: 1px solid #aaa;
 }
 
+.custom-input-editar-registro {
+    width: 120px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+}
+
 .ant-input-editar::placeholder {
     color: #4b4b4b !important;
 }

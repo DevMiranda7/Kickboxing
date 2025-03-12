@@ -87,9 +87,9 @@
                 <div class="conteiner-cadastrar-professores">
                     <div class="div-cadastrar-professores-registro">
                         <div class="div-p">
-                            <p>Número de Registro</p>
+                            <p>Registro</p>
                             <input type="text" id="registro-professor" name="registroProfessor"
-                            placeholder="Registro do Professor" class="ant-input custom-input-editar" required>
+                            placeholder="N° de Registro" class="ant-input custom-input-editar-registro" required>
                         </div>
 
                         <div class="div-p">
@@ -180,6 +180,8 @@
         <!-- REGISTROS PROFESSORES -->
         <form th:action="@{/pesquisarProfessores}" method="get" onsubmit="return false;">
             <div class="conteiner-pesquisar-professores">
+
+                <input type="text" class="ant-input custom-input-editar-registro" id="input-registro-professor" placeholder="N° de Registro">
 
                 <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome-professor" placeholder="Nome do Professor">
 

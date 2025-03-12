@@ -17,4 +17,6 @@ public interface FiliadoRepository extends JpaRepository<Filiado, Long> {
     @Query("SELECT a FROM Filiado a WHERE a.cidadeFiliado = :cidadeFiliado AND LOWER(a.nomeFiliado) LIKE LOWER(CONCAT('%', :nomeFiliado, '%'))")
     List<Filiado> findByCidadeFiliadoAndNomeFiliado(@Param("cidadeFiliado") String cidadeFiliado, @Param("nomeFiliado") String nomeFiliado);
 
+    @Query("SELECT p FROM Filiado p WHERE p.registroFiliado LIKE CONCAT('%', :registroFiliado, '%')")
+    List<Filiado> findByRegistroFiliado(@Param("registroFiliado") String registroFiliado);
 }

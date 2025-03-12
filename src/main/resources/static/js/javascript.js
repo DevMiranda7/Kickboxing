@@ -440,8 +440,9 @@ window.onclick = function(event) {
 function pesquisarProfessores() {
     const cidade = document.getElementById('select-cidade-professores').value;
     const nomeProfessor = document.getElementById('input-nome-professor').value;
+    const registroProfessor = document.getElementById('input-registro-professor').value;
 
-    fetch(`/pesquisarProfessores?opcoes-cidades-professores=${cidade}&nome-professor=${nomeProfessor}`)
+    fetch(`/pesquisarProfessores?opcoes-cidades-professores=${cidade}&nome-professor=${nomeProfessor}&registro-professor=${registroProfessor}`)
         .then(response => response.json())
         .then(professores => {
             let tbody = document.querySelector(".conteiner-professores tbody");
@@ -617,12 +618,12 @@ function formatDateToBrazilian(dateString) {
     return `${day}/${month}/${year}`;
 }
 
-
 function pesquisarFiliados() {
     const cidade = document.getElementById('select-cidade-filiados').value;
     const nomeFiliado = document.getElementById('input-nome-filiado').value;
+    const registroFiliado = document.getElementById('input-registro-filiado').value;
 
-    fetch(`/pesquisarFiliados?opcoes-cidades-filiados=${cidade}&nome-filiado=${nomeFiliado}`)
+    fetch(`/pesquisarFiliados?opcoes-cidades-filiados=${cidade}&nome-filiado=${nomeFiliado}&registro-filiado=${registroFiliado}`)
         .then(response => response.json())
         .then(filiados => {
             let tbody = document.querySelector(".conteiner-filiados tbody");

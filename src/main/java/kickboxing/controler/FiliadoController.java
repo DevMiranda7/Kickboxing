@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -88,12 +87,18 @@ public class FiliadoController {
 
     @GetMapping("/pesquisarFiliados")
     @ResponseBody
-    public List<Filiado> pesquisarFiliados(
+    public List<Filiado> pesquisarFiliados (
             @RequestParam(value = "opcoes-cidades-filiados", required = false) String cidadeFiliado,
-            @RequestParam(value = "nome-filiado", required = false) String nomeFiliado) {
+            @RequestParam(value = "nome-filiado", required = false) String nomeFiliado,
+            @RequestParam(value = "registro-filiado", required = false) String registroFiliado) {
 
-        if ((cidadeFiliado == null || cidadeFiliado.isEmpty()) && (nomeFiliado == null || nomeFiliado.isEmpty())) {
+        if ((cidadeFiliado == null || cidadeFiliado.isEmpty())
+                && (nomeFiliado == null || nomeFiliado.isEmpty())
+                && (registroFiliado == null || registroFiliado.isEmpty())) {
             return filiadoService.listarFiliados();
+
+        } else if (registroFiliado != null && !registroFiliado.isEmpty()) {
+            return filiadoService.pesquisarFiliadosPorRegistro(registroFiliado);
 
         } else if (cidadeFiliado != null && !cidadeFiliado.isEmpty() && (nomeFiliado == null || nomeFiliado.isEmpty())) {
             return filiadoService.pesquisarFiliadosPorCidade(cidadeFiliado);

@@ -87,9 +87,9 @@
                 <div class="conteiner-cadastrar-filiados">
                     <div class="div-cadastrar-filiados-registro">
                         <div>
-                            <p>Número de Registro</p>
+                            <p>Registro</p>
                             <input type="text" id="registro-filiado" name="registroFiliado"
-                            placeholder="Registro do Filiado" class="ant-input ant-input custom-input-editar" required>
+                            placeholder="N° de Registro" class="ant-input ant-input custom-input-editar-registro" required>
                         </div>
 
                         <div>
@@ -201,8 +201,9 @@
         <form th:action="@{/pesquisarFiliados}" method="get" onsubmit="return false;">
             <div class="conteiner-pesquisar-filiados">
 
-                <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome-filiado" placeholder="Nome do Filiado">
+                <input type="text" class="ant-input custom-input-editar-registro" id="input-registro-filiado" placeholder="N° de Registro">
 
+                <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome-filiado" placeholder="Nome do Filiado">
 
                 <select class="ant-input" name="opcoes-cidades-filiados" id="select-cidade-filiados">
                     <option value="">Selecionar Cidade</option>

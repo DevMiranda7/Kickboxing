@@ -83,10 +83,16 @@ public class ProfessorController {
     @ResponseBody
     public List<Professor> pesquisarProfessores(
             @RequestParam(value = "opcoes-cidades-professores", required = false) String cidadeProfessor,
-            @RequestParam(value = "nome-professor", required = false) String nomeProfessor) {
+            @RequestParam(value = "nome-professor", required = false) String nomeProfessor,
+            @RequestParam(value = "registro-professor", required = false) String registroProfessor) {
 
-        if ((cidadeProfessor == null || cidadeProfessor.isEmpty()) && (nomeProfessor == null || nomeProfessor.isEmpty())) {
+        if ((cidadeProfessor == null || cidadeProfessor.isEmpty())
+                && (nomeProfessor == null || nomeProfessor.isEmpty())
+                && (registroProfessor == null || registroProfessor.isEmpty())) {
             return professorService.listarProfessores();
+
+        } else if (registroProfessor != null && !registroProfessor.isEmpty()) {
+            return professorService.pesquisarProfessoresPorRegistro(registroProfessor);
 
         } else if (cidadeProfessor != null && !cidadeProfessor.isEmpty() && (nomeProfessor == null || nomeProfessor.isEmpty())) {
             return professorService.pesquisarProfessoresPorCidade(cidadeProfessor);
