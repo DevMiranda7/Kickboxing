@@ -269,6 +269,7 @@
                     <th>Graduação</th>
                     <th>Academia</th>
                     <th>Responsável</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
 
@@ -306,11 +307,14 @@
                                                (filiado.graduacaoFiliado == 'Marrom' ? 'Marrom' : ''))))))}"></span>
                     </td>
 
-
-
                     <td th:text="${filiado.academiaFiliado}"></td>
 
                     <td th:text="${filiado.responsavelFiliado}"></td>
+
+                    <td class="status-filiado"
+                        th:classappend="${filiado.statusFiliado == 'Ativo' ? 'status-ativo' : (filiado.statusFiliado == 'Inativo' ? 'status-inativo' : '')}">
+                        <span th:text="${filiado.statusFiliado}"></span>
+                    </td>
 
                     <td>
                         <form th:id="'formExcluir_' + ${filiado.idFiliado}"
@@ -422,7 +426,38 @@
                             </div>
 
                             <div class="div-modal-img-button">
-                                <p>Selecione apenas uma faixa</p>
+                                <div class="ativo-inativo">
+                                    <p>Selecione apenas uma faixa</p>
+
+                                    <label>
+                                        <input type="radio" name="statusFiliado" value="Ativo" required>
+                                        Ativo
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="statusFiliado" value="Inativo" required>
+                                        Inativo
+                                    </label>
+
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", function () {
+                                            const radios = document.querySelectorAll('input[name="statusFiliado"]');
+
+                                            radios.forEach(radio => {
+                                                radio.dataset.checked = "false"; // Inicializa o estado de cada radio
+
+                                                radio.addEventListener("click", function () {
+                                                    if (this.dataset.checked === "true") {
+                                                        this.checked = false;
+                                                        this.dataset.checked = "false";
+                                                    } else {
+                                                        radios.forEach(r => r.dataset.checked = "false");
+                                                        this.dataset.checked = "true";
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    </script>
+                                </div>
 
                                 <input style="width: 325px;" type="file" id="imagemFiliados" name="imagemFiliado" accept="image/*" class="ant-input custom-input-upload">
 

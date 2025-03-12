@@ -206,6 +206,7 @@
                     <th>Cidade</th>
                     <th>Graduação</th>
                     <th>Equipe</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
 
@@ -237,6 +238,11 @@
                         </td>
 
                         <td th:text="${professor.equipeProfessor}"></td>
+
+                        <td
+                            th:classappend="${professor.statusProfessor == 'Ativo' ? 'status-ativo' : (professor.statusProfessor == 'Inativo' ? 'status-inativo' : '')}">
+                            <span th:text="${professor.statusProfessor}"></span>
+                        </td>
 
                         <td>
                             <form th:id="'formExcluir_' + ${professor.idProfessor}"
@@ -328,11 +334,45 @@
                                 </div>
                             </div>
 
-                            <div class="div-modal-img-button">
-                                <input style="width: 325px;" type="file" id="imagemProfessores" name="imagemProfessor" accept="image/*" class="ant-input custom-input-upload">
+                            <div class="div-modal-img-button-professor">
+                                <div class="ativo-inativo-professor">
+                                    <label>
+                                        <input type="radio" name="statusProfessor" value="Ativo" required>
+                                        Ativo
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="statusProfessor" value="Inativo" required>
+                                        Inativo
+                                    </label>
 
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", function () {
+                                            const radios = document.querySelectorAll('input[name="statusProfessor"]');
+
+                                            radios.forEach(radio => {
+                                                radio.dataset.checked = "false"; // Inicializa o estado de cada radio
+
+                                                radio.addEventListener("click", function () {
+                                                    if (this.dataset.checked === "true") {
+                                                        this.checked = false;
+                                                        this.dataset.checked = "false";
+                                                    } else {
+                                                        radios.forEach(r => r.dataset.checked = "false");
+                                                        this.dataset.checked = "true";
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    </script>
+                                </div>
+
+                                <input style="width: 325px;" type="file" id="imagemProfessores" name="imagemProfessor" accept="image/*" class="ant-input custom-input-upload">
+                            </div>
+
+                            <div class="div-btn-salvar">
                                 <button type="submit" class="anti-input custom-btn-salvar-conta">Salvar</button>
                             </div>
+
                         </form>
                     </div>
                 </div>

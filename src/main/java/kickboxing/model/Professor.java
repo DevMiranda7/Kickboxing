@@ -41,6 +41,9 @@ public class Professor {
     @Column
     private LocalDate graduadoEm;
 
+    @Column(nullable = false)
+    private String statusProfessor;
+
     public long getIdProfessor() {
         return idProfessor;
     }
@@ -119,5 +122,13 @@ public class Professor {
 
     public void setGraduadoEm(LocalDate graduadoEm) {
         this.graduadoEm = graduadoEm;
+    }
+
+    public String getStatusProfessor() {
+        return statusProfessor;
+    }
+
+    public void setStatusProfessor(String statusProfessor) {
+        this.statusProfessor = statusProfessor;
     }
 }

@@ -44,6 +44,9 @@ public class Filiado {
     @Column(nullable = false)
     private String generoFiliado;
 
+    @Column(nullable = false)
+    private String statusFiliado;
+
     public long getIdFiliado() {
         return idFiliado;
     }
@@ -130,5 +133,13 @@ public class Filiado {
 
     public void setGeneroFiliado(String generoFiliado) {
         this.generoFiliado = generoFiliado;
+    }
+
+    public String getStatusFiliado() {
+        return statusFiliado;
+    }
+
+    public void setStatusFiliado(String statusFiliado) {
+        this.statusFiliado = statusFiliado;
     }
 }

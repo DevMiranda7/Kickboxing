@@ -46,6 +46,7 @@ public class ProfessorController {
             professor.setEquipeProfessor(equipeProfessor);
             professor.setNascimentoProfessor(nascimentoProfessor);
             professor.setGeneroProfessor(generoProfessor);
+            professor.setStatusProfessor("Ativo");
 
             professorService.salvarProfessor(professor, imagemProfessor);
 
@@ -127,6 +128,7 @@ public class ProfessorController {
                                   @RequestParam("equipeProfessor") String equipeProfessor,
                                   @RequestParam("generoProfessor") String generoProfessor,
                                   @RequestParam(value = "imagemProfessor", required = false) MultipartFile imagemProfessor,
+                                  @RequestParam("statusProfessor") String statusProfessor,
                                   RedirectAttributes redirectAttributes) {
         try {
 
@@ -143,6 +145,7 @@ public class ProfessorController {
             professor.setGraduadoEm(graduadoEm);
             professor.setGeneroProfessor(generoProfessor);
             professor.setEquipeProfessor(equipeProfessor);
+            professor.setStatusProfessor(statusProfessor);
 
             professorService.salvarProfessor(professor, imagemProfessor);
 
