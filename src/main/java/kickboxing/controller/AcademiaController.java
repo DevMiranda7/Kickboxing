@@ -22,6 +22,14 @@ public class AcademiaController {
         this.academiaService = academiaService;
     }
 
+    public String listarAcademias(Model model) {
+        List<Academia> academias = academiaService.listarAcademias();
+        List<String> cidades = academiaService.listarCidades();
+        model.addAttribute("academias", academias);
+        model.addAttribute("cidades", cidades);
+        return "academiasAdm";
+    }
+
     @PostMapping("/criarAcademia")
     public String criarAcademia(@RequestParam("nomeAcademia") String nomeAcademia,
                                 @RequestParam("responsavelAcademia") String responsavelAcademia,
@@ -53,14 +61,6 @@ public class AcademiaController {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao cadastrar academia: " + e.getMessage());
             return "redirect:/academiasAdm";
         }
-    }
-
-    public String listarAcademias(Model model) {
-        List<Academia> academias = academiaService.listarAcademias();
-        List<String> cidades = academiaService.listarCidades();
-        model.addAttribute("academias", academias);
-        model.addAttribute("cidades", cidades);
-        return "academiasAdm";
     }
 
     @PostMapping("/academias/{id}")

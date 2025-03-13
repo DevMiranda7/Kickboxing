@@ -1,7 +1,6 @@
 package kickboxing.service;
 
 import kickboxing.model.Filiado;
-import kickboxing.model.Professor;
 import kickboxing.repository.FiliadoRepository;
 import kickboxing.specifications.FiliadoSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,25 @@ public class FiliadoService {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/upload/filiados";
 
+    public List<Filiado> listarFiliados() {
+        return filiadoRepository.findAll(Sort.by(Sort.Order.asc("nomeFiliado")));
+    }
+
+    public List<Filiado> pesquisarFiliados(String cidade, String nome, String registro, String tipoFaixa) {
+        Specification<Filiado> spec = FiliadoSpecification.filtrarFiliados(cidade, nome, registro, tipoFaixa);
+        return filiadoRepository.findAll(spec);
+    }
+
+    public Filiado buscarFiliadoPorId(Long id) {
+        return filiadoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Filiado não encontrado"));
+    }
+
+    public Page<Filiado> listarFiliadosPaginados(Pageable pageable) {
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Order.asc("nomeFiliado")));
+        return filiadoRepository.findAll(sortedPageable);
+    }
+
     @Transactional
     public void salvarFiliado(Filiado filiado, MultipartFile imagemFiliado) throws IOException {
         File uploadDir = new File(UPLOAD_DIR);
@@ -44,25 +62,10 @@ public class FiliadoService {
         filiadoRepository.save(filiado);
     }
 
-    public List<Filiado> listarFiliados() {
-        return filiadoRepository.findAll(Sort.by(Sort.Order.asc("nomeFiliado")));
-    }
-
-    public List<Filiado> pesquisarFiliados(String cidade, String nome, String registro, String tipoFaixa) {
-        Specification<Filiado> spec = FiliadoSpecification.filtrarFiliados(cidade, nome, registro, tipoFaixa);
-        return filiadoRepository.findAll(spec);
-    }
-
-    public Page<Filiado> listarFiliadosPaginados(Pageable pageable) {
-        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Order.asc("nomeFiliado")));
-        return filiadoRepository.findAll(sortedPageable);
-    }
-
     public void excluirFiliado(Long id) {
         Filiado filiado = filiadoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Filiado não encontrado"));
 
-        // Remover imagem
         String caminhoImagem = UPLOAD_DIR + "/" + filiado.getImagemFiliado().substring(filiado.getImagemFiliado().lastIndexOf("/") + 1);
         File imagem = new File(caminhoImagem);
         if (imagem.exists()) {
@@ -71,12 +74,4 @@ public class FiliadoService {
 
         filiadoRepository.deleteById(id);
     }
-
-    public Filiado buscarFiliadoPorId(Long id) {
-        return filiadoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Filiado não encontrado"));
-    }
-
-    //* AMBIENTE DE PRODUÇÃO ACESSE O ARQUIVO ---- "PRODUCAO.MD" ---- *//
-    //* IMPORTANTE PARA ENTENDER COMO VAI FUNCIONAR!!!!!!! *//
 }

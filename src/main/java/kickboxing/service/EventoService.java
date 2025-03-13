@@ -18,6 +18,18 @@ public class EventoService {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/upload/eventos";
 
+    public EventoService(EventoRepository eventoRepository) {
+        this.eventoRepository = eventoRepository;
+    }
+
+    public List<Evento> listarEventos() {
+        return eventoRepository.findAll();
+    }
+
+    public List<Evento> listarEventosPorMes(int mes) {
+        return eventoRepository.findByMes(mes);
+    }
+
     public void salvarEvento(Evento evento, MultipartFile imagemEvento) throws IOException {
         File uploadDir = new File(UPLOAD_DIR);
         if (!uploadDir.exists()) {
@@ -35,15 +47,10 @@ public class EventoService {
         eventoRepository.save(evento);
     }
 
-    public List<Evento> listarEventos() {
-        return eventoRepository.findAll();
-    }
-
     public void excluirEvento(Long id) {
         Evento evento = eventoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Evento não encontrado"));
 
-        // Remover imagem
         String caminhoImagem = UPLOAD_DIR + "/" + evento.getImagemEvento().substring(evento.getImagemEvento().lastIndexOf("/") + 1);
         File imagem = new File(caminhoImagem);
         if (imagem.exists()) {
@@ -52,15 +59,4 @@ public class EventoService {
 
         eventoRepository.deleteById(id);
     }
-
-    public EventoService(EventoRepository eventoRepository) {
-        this.eventoRepository = eventoRepository;
-    }
-
-    public List<Evento> listarEventosPorMes(int mes) {
-        return eventoRepository.findByMes(mes);
-    }
-
-    //* AMBIENTE DE PRODUÇÃO ACESSE O ARQUIVO ---- "PRODUCAO.MD" ---- *//
-    //* IMPORTANTE PARA ENTENDER COMO VAI FUNCIONAR!!!!!!! *//
 }

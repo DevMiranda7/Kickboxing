@@ -17,6 +17,13 @@ public class K1Service {
     @Autowired
     private K1Repository k1Repository;
 
+    public List<K1> listarK1() {
+        List<K1> k1s = k1Repository.findAll();
+        return k1s.stream()
+                .sorted((lc1, lc2) -> lc2.getPontosK1().compareTo(lc1.getPontosK1()))
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public void cadastrarK1(String nomeK1, String pontosK1) {
         try {
@@ -35,13 +42,6 @@ public class K1Service {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Formato inválido para pontos. Use números como 10,00.");
         }
-    }
-
-    public List<K1> listarK1() {
-        List<K1> k1s = k1Repository.findAll();
-        return k1s.stream()
-                .sorted((lc1, lc2) -> lc2.getPontosK1().compareTo(lc1.getPontosK1()))
-                .collect(Collectors.toList());
     }
 
     public void excluirK1(Long id) {

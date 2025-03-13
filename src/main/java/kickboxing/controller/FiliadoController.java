@@ -23,6 +23,28 @@ public class FiliadoController {
     @Autowired
     private FiliadoService filiadoService;
 
+    @GetMapping("/listarFiliados")
+    public String listarFiliados(@RequestParam(defaultValue = "0") int pagina, Model model) {
+        int tamanhoPagina = 50;
+        Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
+
+        List<Filiado> todosFiliados = filiadoService.listarFiliados();
+
+        List<String> cidades = todosFiliados.stream()
+                .map(Filiado::getCidadeFiliado)
+                .distinct()
+                .collect(Collectors.toList());
+
+        Page<Filiado> paginaFiliados = filiadoService.listarFiliadosPaginados(pageable);
+
+        model.addAttribute("cidades", cidades);
+        model.addAttribute("filiados", paginaFiliados.getContent());
+        model.addAttribute("paginaAtual", pagina);
+        model.addAttribute("totalPaginas", paginaFiliados.getTotalPages());
+
+        return "filiadosAdm";
+    }
+
     @PostMapping("/criarFiliado")
     public String criarFiliado(@RequestParam("registroFiliado") String registroFiliado,
                                @RequestParam("nomeFiliado") String nomeFiliado,
@@ -75,28 +97,6 @@ public class FiliadoController {
         }
     }
 
-    @GetMapping("/listarFiliados")
-    public String listarFiliados(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 50;
-        Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
-
-        List<Filiado> todosFiliados = filiadoService.listarFiliados();
-
-        List<String> cidades = todosFiliados.stream()
-                .map(Filiado::getCidadeFiliado)
-                .distinct()
-                .collect(Collectors.toList());
-
-        Page<Filiado> paginaFiliados = filiadoService.listarFiliadosPaginados(pageable);
-
-        model.addAttribute("cidades", cidades);
-        model.addAttribute("filiados", paginaFiliados.getContent());
-        model.addAttribute("paginaAtual", pagina);
-        model.addAttribute("totalPaginas", paginaFiliados.getTotalPages());
-
-        return "filiadosAdm";
-    }
-
     @GetMapping("/pesquisarFiliados")
     @ResponseBody
     public List<Filiado> pesquisarFiliados(
@@ -106,7 +106,6 @@ public class FiliadoController {
             @RequestParam(value = "tipoFaixa", required = false) String tipoFaixa) {
         return filiadoService.pesquisarFiliados(cidade, nome, registro, tipoFaixa);
     }
-
 
     @PostMapping("/filiados/{id}")
     public String excluirFiliados(@PathVariable Long id, RedirectAttributes redirectAttributes) {
