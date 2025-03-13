@@ -44,7 +44,8 @@ public class AcademiaService {
                 .orElseThrow(() -> new RuntimeException("Academia não encontrada"));
 
         // Remover imagem
-        File imagem = new File(System.getProperty("user.dir") + "/src/main/resources/static" + academia.getImagemAcademia());
+        String caminhoImagem = UPLOAD_DIR + "/" + academia.getImagemAcademia().substring(academia.getImagemAcademia().lastIndexOf("/") + 1);
+        File imagem = new File(caminhoImagem);
         if (imagem.exists()) {
             imagem.delete();
         }

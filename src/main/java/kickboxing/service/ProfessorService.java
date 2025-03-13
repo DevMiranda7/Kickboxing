@@ -80,7 +80,8 @@ public class ProfessorService {
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
 
         // Remover imagem
-        File imagem = new File(System.getProperty("user.dir") + "/src/main/resources/static" + professor.getImagemProfessor());
+        String caminhoImagem = UPLOAD_DIR + "/" + professor.getImagemProfessor().substring(professor.getImagemProfessor().lastIndexOf("/") + 1);
+        File imagem = new File(caminhoImagem);
         if (imagem.exists()) {
             imagem.delete();
         }
