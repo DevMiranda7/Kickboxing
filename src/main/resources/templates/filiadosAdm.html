@@ -333,7 +333,7 @@
             </table>
         </div>
 
-        <div class="pagination">
+        <div class="pagination" th:if="${totalPaginas > 1}">
             <ul>
                 <!-- Botão << -->
                 <li th:if="${paginaAtual > 0}">

@@ -693,7 +693,7 @@ html, body {
 
 .custom-input-text-area {
     width: 250px;
-    height: 100px !important;
+    height: 150px !important;
     font-size: 14px;
     border: 1px solid #aaa;
 }
@@ -803,32 +803,42 @@ html, body {
 }
 
 .span-nomeEvento {
-    margin-top: 5px;
-    font-size: 18px !important;
+    font-size: 14px;
     font-weight: bold;
+    margin-top: 8px;
+    overflow: hidden;
 }
 
 .span-descricaoEvento {
-    margin-top: 5px !important;
-    font-size: 14px !important;
-    font-weight: italic !important;
+    font-size: 13px;
+    font-style: italic;
+    margin-top: 5px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
 }
 
 .data-evento {
+    font-size: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     margin-top: 5px;
     gap: 5px;
     color: #006aff;
+    width: 100%;
 }
 
 .hora-evento {
+    font-size: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     gap: 5px;
     color: #006aff;
+    width: 100%;
 }
 
 .icon-lixo-eventos {

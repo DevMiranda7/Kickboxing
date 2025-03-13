@@ -44,7 +44,8 @@ public class PatrocinadorService {
                 .orElseThrow(() -> new RuntimeException("Patrocinador não encontrado"));
 
         // Remover imagem
-        File imagem = new File(System.getProperty("user.dir") + "/src/main/resources/static" + patrocinador.getImagemPatrocinador());
+        String caminhoImagem = UPLOAD_DIR + "/" + patrocinador.getImagemPatrocinador().substring(patrocinador.getImagemPatrocinador().lastIndexOf("/") + 1);
+        File imagem = new File(caminhoImagem);
         if (imagem.exists()) {
             imagem.delete();
         }

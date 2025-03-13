@@ -63,7 +63,8 @@ public class FiliadoService {
                 .orElseThrow(() -> new RuntimeException("Filiado não encontrado"));
 
         // Remover imagem
-        File imagem = new File(System.getProperty("user.dir") + "/src/main/resources/static" + filiado.getImagemFiliado());
+        String caminhoImagem = UPLOAD_DIR + "/" + filiado.getImagemFiliado().substring(filiado.getImagemFiliado().lastIndexOf("/") + 1);
+        File imagem = new File(caminhoImagem);
         if (imagem.exists()) {
             imagem.delete();
         }

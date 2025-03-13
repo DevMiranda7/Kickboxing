@@ -44,7 +44,8 @@ public class EventoService {
                 .orElseThrow(() -> new RuntimeException("Evento não encontrado"));
 
         // Remover imagem
-        File imagem = new File(System.getProperty("user.dir") + "/src/main/resources/static" + evento.getImagemEvento());
+        String caminhoImagem = UPLOAD_DIR + "/" + evento.getImagemEvento().substring(evento.getImagemEvento().lastIndexOf("/") + 1);
+        File imagem = new File(caminhoImagem);
         if (imagem.exists()) {
             imagem.delete();
         }
