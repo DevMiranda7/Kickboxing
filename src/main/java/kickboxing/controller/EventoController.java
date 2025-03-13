@@ -1,4 +1,4 @@
-package kickboxing.controler;
+package kickboxing.controller;
 
 import kickboxing.model.Evento;
 import kickboxing.service.EventoService;
@@ -51,6 +51,12 @@ public class EventoController {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao cadastrar evento: " + e.getMessage());
             return "redirect:/eventosAdm";
         }
+    }
+
+    public String listarEventosPub(Model model) {
+        List<Evento> eventos = eventoService.listarEventos();
+        model.addAttribute("eventos", eventos);
+        return "eventosPub";
     }
 
     public String listarEventos(Model model) {

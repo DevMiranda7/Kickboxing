@@ -1,6 +1,6 @@
-package kickboxing.controler.modalidade;
+package kickboxing.controller.modalidade;
 
-import kickboxing.service.modalidade.FullContactService;
+import kickboxing.service.modalidade.K1Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class FullContactController {
+public class K1Controller {
 
     @Autowired
-    private FullContactService fullContactService;
+    private K1Service k1Service;
 
-    public FullContactController(FullContactService fullContactService) {
-        this.fullContactService = fullContactService;
+    public K1Controller(K1Service k1Service) {
+        this.k1Service = k1Service;
     }
 
-    @PostMapping("/pontosFullContact")
-    public String cadastrarFullContact(@RequestParam String nomeFullContact,
-                                       @RequestParam String pontosFullContact,
+    @PostMapping("/pontosK1")
+    public String cadastrarK1(@RequestParam String nomeK1,
+                                       @RequestParam String pontosK1,
                                        RedirectAttributes redirectAttributes) {
         try {
-            fullContactService.cadastrarFullContact(nomeFullContact, pontosFullContact);
+            k1Service.cadastrarK1(nomeK1, pontosK1);
             redirectAttributes.addFlashAttribute("successMessage", "Pontos cadastrados com sucesso!");
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
@@ -32,10 +32,10 @@ public class FullContactController {
         return "redirect:/rankingAdm";
     }
 
-    @PostMapping("/fullContacts/{id}")
-    public String excluirFullContact(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    @PostMapping("/k1s/{id}")
+    public String excluirK1(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
-            fullContactService.excluirFullContact(id);
+            k1Service.excluirK1(id);
             redirectAttributes.addFlashAttribute("successMessage", "Excluído com sucesso!");
 
         } catch (Exception e) {

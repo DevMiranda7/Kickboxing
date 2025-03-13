@@ -1,4 +1,4 @@
-package kickboxing.controler;
+package kickboxing.controller;
 
 import jakarta.servlet.http.HttpSession;
 import kickboxing.exception.AutenticacaoException;

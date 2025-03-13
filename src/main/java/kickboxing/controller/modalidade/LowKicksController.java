@@ -1,6 +1,6 @@
-package kickboxing.controler.modalidade;
+package kickboxing.controller.modalidade;
 
-import kickboxing.service.modalidade.KBCombatService;
+import kickboxing.service.modalidade.LowKicksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class KBCombatController {
+public class LowKicksController {
 
     @Autowired
-    private KBCombatService kbCombatService;
+    private LowKicksService lowKicksService;
 
-    public KBCombatController(KBCombatService kbCombatService) {
-        this.kbCombatService = kbCombatService;
+    public LowKicksController(LowKicksService lowKicksService) {
+        this.lowKicksService = lowKicksService;
     }
 
-    @PostMapping("/pontosKBCombat")
-    public String cadastrarKBCombat(@RequestParam String nomeKBCombat,
-                                       @RequestParam String pontosKBCombat,
+    @PostMapping("/pontosLowKicks")
+    public String cadastrarLowKicks(@RequestParam String nomeLowKicks,
+                                       @RequestParam String pontosLowKicks,
                                        RedirectAttributes redirectAttributes) {
         try {
-            kbCombatService.cadastrarKBCombat(nomeKBCombat, pontosKBCombat);
+            lowKicksService.cadastrarLowKicks(nomeLowKicks, pontosLowKicks);
             redirectAttributes.addFlashAttribute("successMessage", "Pontos cadastrados com sucesso!");
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
@@ -32,10 +32,10 @@ public class KBCombatController {
         return "redirect:/rankingAdm";
     }
 
-    @PostMapping("/kbCombats/{id}")
-    public String excluirKBCombat(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    @PostMapping("/lowKickss/{id}")
+    public String excluirLowKicks(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
-            kbCombatService.excluirKBCombat(id);
+            lowKicksService.excluirLowKicks(id);
             redirectAttributes.addFlashAttribute("successMessage", "Excluído com sucesso!");
 
         } catch (Exception e) {

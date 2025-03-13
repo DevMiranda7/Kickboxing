@@ -757,8 +757,8 @@ html, body {
 }
 
 .conteiner-calendario button.active {
-    background-color: #0056b3; /* Cor de fundo quando o mês estiver ativo */
-    transform: scale(1.2); /* Efeito de aumento ao ser ativado */
+    background-color: #0056b3;
+    transform: scale(1.2);
 }
 
 
@@ -1129,9 +1129,9 @@ html, body {
 }
 
 .conteiner-academias img {
-    width: 200px;  /* Defina o tamanho fixo desejado */
-    height: 150px; /* Ajuste conforme necessário */
-    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
@@ -2131,8 +2131,8 @@ th:nth-child(10), td:nth-child(10) { /* Status */
 .btn-modalidade-low.active,
 .btn-modalidade-k1.active,
 .btn-modalidade-kb.active {
-    background-color: #006aff; /* Cor de fundo ao ser ativado */
-    transform: scale(1.05); /* Mesmo efeito do hover */
+    background-color: #006aff;
+    transform: scale(1.05);
 }
 
 .conteiner-info-cabecalho-ranking {
@@ -2371,7 +2371,6 @@ footer {
     height: auto;
 }
 /* FIM FOOTER */
-
 
 /* INICIO RESPONSIVIDADE */
 
