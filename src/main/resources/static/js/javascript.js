@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     const modalidades = {
         "btn-modalidade-light": "cabecalho-light",
@@ -13,26 +12,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const botoes = document.querySelectorAll(".conteiner-modalidades button");
     const cabecalhos = document.querySelectorAll(".div-cabecalho-modalidade");
 
-    // Oculta todos os cabeçalhos e remove 'active' dos botões no início
     cabecalhos.forEach(cabecalho => cabecalho.style.display = "none");
     botoes.forEach(botao => botao.classList.remove("active"));
 
-    // Exibe a seção "Light Combat" e marca o botão como ativo ao carregar a página
     document.getElementById("cabecalho-light").style.display = "flex";
     document.querySelector(".btn-modalidade-light").classList.add("active");
 
     botoes.forEach(botao => {
         botao.addEventListener("click", function () {
-            // Remove a classe 'active' de todos os botões
             botoes.forEach(btn => btn.classList.remove("active"));
 
-            // Adiciona a classe 'active' ao botão clicado
             botao.classList.add("active");
 
-            // Esconde todos os cabeçalhos antes de mostrar o correto
             cabecalhos.forEach(cabecalho => cabecalho.style.display = "none");
 
-            // Obtém o ID do cabeçalho correspondente e exibe
             const idCabecalho = modalidades[botao.classList[1]];
             document.getElementById(idCabecalho).style.display = "flex";
         });
@@ -40,30 +33,26 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Seleciona todos os inputs de pontos
     let inputsPontos = document.querySelectorAll("input[name^='pontos']");
 
     inputsPontos.forEach(input => {
         input.addEventListener("input", function () {
-            // Permite apenas números e vírgulas
             this.value = this.value.replace(/[^0-9,]/g, '');
 
-            // Impede mais de uma vírgula
             let partes = this.value.split(',');
             if (partes.length > 2) {
-                this.value = partes[0] + ',' + partes[1]; // Mantém apenas uma vírgula
+                this.value = partes[0] + ',' + partes[1];
             }
         });
     });
 
-    // Seleciona todos os formulários e adiciona o evento de submit
     let forms = document.querySelectorAll("form[id$='Form']");
 
     forms.forEach(form => {
         form.addEventListener("submit", function () {
             let inputPontos = form.querySelector("input[name^='pontos']");
             if (inputPontos) {
-                inputPontos.value = inputPontos.value.replace(',', '.'); // Converte vírgula para ponto antes de enviar
+                inputPontos.value = inputPontos.value.replace(',', '.');
             }
         });
     });
@@ -185,7 +174,6 @@ window.onclick = function (event) {
 };
 
 function filtrarEventos(mes) {
-    // Adiciona a classe 'active' ao botão clicado e remove dos outros
     let botoes = document.querySelectorAll(".conteiner-calendario button");
     botoes.forEach(botao => {
         if (botao.textContent === getMesNome(mes)) {
@@ -195,12 +183,13 @@ function filtrarEventos(mes) {
         }
     });
 
-    // Agora faz o fetch e exibe os eventos
+    let isEventosAdm = document.body.getAttribute("data-page") === "eventosAdm";
+
     fetch('/filtrar?mes=' + mes)
         .then(response => response.json())
         .then(eventos => {
             let containerEventos = document.querySelector(".conteiner-eventos ul");
-            containerEventos.innerHTML = ""; // Limpa a lista de eventos
+            containerEventos.innerHTML = "";
 
             eventos.forEach(evento => {
                 let eventoItem = document.createElement("li");
@@ -227,49 +216,51 @@ function filtrarEventos(mes) {
                 horaDiv.classList.add("hora-evento");
                 horaDiv.innerHTML = `<span>Hora:</span> <span>${evento.horaEvento}</span>`;
 
-                let formExcluir = document.createElement("form");
-                formExcluir.id = `formExcluir_${evento.idEvento}`;
-                formExcluir.action = `/eventos/${evento.idEvento}`;
-                formExcluir.method = "post";
-
-                let inputHidden = document.createElement("input");
-                inputHidden.type = "hidden";
-                inputHidden.name = "_method";
-                inputHidden.value = "DELETE";
-
-                let divExcluir = document.createElement("div");
-                let btnExcluir = document.createElement("button");
-                btnExcluir.type = "button";
-                btnExcluir.classList.add("icon-lixo-eventos");
-                btnExcluir.setAttribute("data-id", evento.idEvento);
-                btnExcluir.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-
-                btnExcluir.addEventListener("click", function () {
-                    Swal.fire({
-                        title: "Tem certeza?",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#d33",
-                        cancelButtonColor: "#3085d6",
-                        confirmButtonText: "Sim, excluir!",
-                        cancelButtonText: "Cancelar"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            document.getElementById(`formExcluir_${evento.idEvento}`).submit();
-                        }
-                    });
-                });
-
-                divExcluir.appendChild(btnExcluir);
-                formExcluir.appendChild(inputHidden);
-                formExcluir.appendChild(divExcluir);
-
                 eventoItem.appendChild(img);
                 eventoItem.appendChild(nomeSpan);
                 eventoItem.appendChild(descSpan);
                 eventoItem.appendChild(dataDiv);
                 eventoItem.appendChild(horaDiv);
-                eventoItem.appendChild(formExcluir);
+
+                if (isEventosAdm) {
+                    let formExcluir = document.createElement("form");
+                    formExcluir.id = `formExcluir_${evento.idEvento}`;
+                    formExcluir.action = `/eventos/${evento.idEvento}`;
+                    formExcluir.method = "post";
+
+                    let inputHidden = document.createElement("input");
+                    inputHidden.type = "hidden";
+                    inputHidden.name = "_method";
+                    inputHidden.value = "DELETE";
+
+                    let divExcluir = document.createElement("div");
+                    let btnExcluir = document.createElement("button");
+                    btnExcluir.type = "button";
+                    btnExcluir.classList.add("icon-lixo-eventos");
+                    btnExcluir.setAttribute("data-id", evento.idEvento);
+                    btnExcluir.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+
+                    btnExcluir.addEventListener("click", function () {
+                        Swal.fire({
+                            title: "Tem certeza?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#d33",
+                            cancelButtonColor: "#3085d6",
+                            confirmButtonText: "Sim, excluir!",
+                            cancelButtonText: "Cancelar"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById(`formExcluir_${evento.idEvento}`).submit();
+                            }
+                        });
+                    });
+
+                    divExcluir.appendChild(btnExcluir);
+                    formExcluir.appendChild(inputHidden);
+                    formExcluir.appendChild(divExcluir);
+                    eventoItem.appendChild(formExcluir);
+                }
 
                 containerEventos.appendChild(eventoItem);
             });
@@ -277,7 +268,6 @@ function filtrarEventos(mes) {
     .catch(error => console.error("Erro ao buscar eventos:", error));
 }
 
-// Função auxiliar para mapear o número do mês para o nome
 function getMesNome(mes) {
     const meses = [
         "JAN", "FEV", "MAR", "ABR", "MAI", "JUN",

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- FAVICON -->
     <link rel="icon" th:href="@{/images/icon.png}"/>
 
     <!--  VERIFICAÇÃO DE PROPRIEDADE DO SITE NO GOOGLE SEARCH CONSOLE -->
@@ -59,7 +58,6 @@
     <!-- Sweet Alert Componentes UI -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- CSS do projeto -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <title>Kickboxing</title>
@@ -89,19 +87,19 @@
                     <a style="color: white;">Início</a>
                 </li>
                 <li>
-                    <a >Eventos</a>
+                    <a th:href="@{/eventosPub}">Eventos</a>
                 </li>
                 <li>
-                    <a >Filiados</a>
+                    <a th:href="@{/filiadosPub}">Filiados</a>
                 </li>
                 <li>
-                    <a >Professores</a>
+                    <a th:href="@{/professoresPub}">Professores</a>
                 </li>
                 <li>
-                    <a >Academias</a>
+                    <a th:href="@{/academiasPub}">Academias</a>
                 </li>
                 <li>
-                    <a >Ranking</a>
+                    <a th:href="@{/rankingPub}">Ranking</a>
                 </li>
             </div>
         </div>

@@ -1,4 +1,4 @@
-package kickboxing.controler;
+package kickboxing.controller;
 
 import kickboxing.model.Academia;
 import kickboxing.service.AcademiaService;

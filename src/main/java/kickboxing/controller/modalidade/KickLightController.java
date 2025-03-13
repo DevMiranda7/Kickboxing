@@ -1,6 +1,6 @@
-package kickboxing.controler.modalidade;
+package kickboxing.controller.modalidade;
 
-import kickboxing.service.modalidade.PointFightService;
+import kickboxing.service.modalidade.KickLightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,21 +9,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class PointFightController {
+public class KickLightController {
 
     @Autowired
-    private PointFightService pointFightService;
+    private KickLightService kickLightService;
 
-    public PointFightController(PointFightService pointFightService) {
-        this.pointFightService = pointFightService;
+    public KickLightService getKickLightService() {
+        return kickLightService;
     }
 
-    @PostMapping("/pontosPointFight")
-    public String cadastrarPointFight(@RequestParam String nomePointFight,
-                                       @RequestParam String pontosPointFight,
+    public void setKickLightService(KickLightService kickLightService) {
+        this.kickLightService = kickLightService;
+    }
+
+    @PostMapping("/pontosKickLight")
+    public String cadastrarKickLight(@RequestParam String nomeKickLight,
+                                       @RequestParam String pontosKickLight,
                                        RedirectAttributes redirectAttributes) {
         try {
-            pointFightService.cadastrarPointFight(nomePointFight, pontosPointFight);
+            kickLightService.cadastrarKickLight(nomeKickLight, pontosKickLight);
             redirectAttributes.addFlashAttribute("successMessage", "Pontos cadastrados com sucesso!");
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
@@ -32,10 +36,10 @@ public class PointFightController {
         return "redirect:/rankingAdm";
     }
 
-    @PostMapping("/pointFights/{id}")
-    public String excluirPointFight(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    @PostMapping("/kickLights/{id}")
+    public String excluirKickLight(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
-            pointFightService.excluirPointFight(id);
+            kickLightService.excluirKickLight(id);
             redirectAttributes.addFlashAttribute("successMessage", "Excluído com sucesso!");
 
         } catch (Exception e) {

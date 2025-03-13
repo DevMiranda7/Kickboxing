@@ -1,4 +1,4 @@
-package kickboxing.controler;
+package kickboxing.controller;
 
 import jakarta.servlet.http.HttpSession;
 import kickboxing.model.Admin;
@@ -63,6 +63,28 @@ public class MapearRotasController {
         return "index";
     }
 
+
+
+    @GetMapping("/filiadosPub")
+    public String filiadosPub() {
+        return "filiadosPub";
+    }
+
+    @GetMapping("/professoresPub")
+    public String professoresPub() {
+        return "professoresPub";
+    }
+
+    @GetMapping("/academiasPub")
+    public String academiasPub() {
+        return "academiasPub";
+    }
+
+    @GetMapping("/rankingPub")
+    public String rankingPub() {
+        return "rankingPub";
+    }
+
     @GetMapping("/admin")
     public String adminPage() {
         return "admin";
@@ -98,6 +120,11 @@ public class MapearRotasController {
         }
 
         return filiadoController.listarFiliados(pagina, model);
+    }
+
+    @GetMapping("/eventosPub")
+    public String eventosPub(Model model) {
+        return eventoController.listarEventosPub(model);
     }
 
     @GetMapping("/eventosAdm")
@@ -137,7 +164,6 @@ public class MapearRotasController {
             return redirecionamento;
         }
 
-        // Adicionar todas as listas ao modelo
         List<LightCombat> lightCombats = lightCombatService.listarLightCombat();
         model.addAttribute("lightCombats", lightCombats);
 
