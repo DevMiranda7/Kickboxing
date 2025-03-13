@@ -301,6 +301,8 @@ function pesquisarAcademias() {
     const cidade = document.getElementById('select-cidade').value;
     const nome = document.getElementById('input-nome').value;
 
+    let isAcademiasAdm = document.body.getAttribute("data-page") === "academiasAdm";
+
     fetch(`/pesquisarAcademias?opcoes-cidades=${cidade}&nome=${nome}`)
         .then(response => response.json())
         .then(academias => {
@@ -344,48 +346,50 @@ function pesquisarAcademias() {
                 divInfoAcademias.appendChild(cidadeSpan);
                 divInfoAcademias.appendChild(divContato);
 
-                let formExcluir = document.createElement("form");
-                formExcluir.id = `formExcluir_${academia.idAcademia}`;
-                formExcluir.action = `/academias/${academia.idAcademia}`;
-                formExcluir.method = "post";
-
-                let inputHidden = document.createElement("input");
-                inputHidden.type = "hidden";
-                inputHidden.name = "_method";
-                inputHidden.value = "DELETE";
-
-                let btnExcluir = document.createElement("button");
-                btnExcluir.type = "button";
-                btnExcluir.classList.add("icon-lixo-eventos");
-                btnExcluir.setAttribute("data-id", academia.idAcademia);
-                btnExcluir.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-
-                btnExcluir.style.border = "none";
-                btnExcluir.style.backgroundColor = "transparent";
-                btnExcluir.style.cursor = "pointer";
-
-                btnExcluir.addEventListener("click", function () {
-                    Swal.fire({
-                        title: "Tem certeza?",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#d33",
-                        cancelButtonColor: "#3085d6",
-                        confirmButtonText: "Sim, excluir!",
-                        cancelButtonText: "Cancelar"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            document.getElementById(`formExcluir_${academia.idAcademia}`).submit();
-                        }
-                    });
-                });
-
-                formExcluir.appendChild(inputHidden);
-                formExcluir.appendChild(btnExcluir);
-
                 academiaItem.appendChild(img);
                 academiaItem.appendChild(divInfoAcademias);
-                academiaItem.appendChild(formExcluir);
+
+                if (isAcademiasAdm) {
+                    let formExcluir = document.createElement("form");
+                    formExcluir.id = `formExcluir_${academia.idAcademia}`;
+                    formExcluir.action = `/academias/${academia.idAcademia}`;
+                    formExcluir.method = "post";
+
+                    let inputHidden = document.createElement("input");
+                    inputHidden.type = "hidden";
+                    inputHidden.name = "_method";
+                    inputHidden.value = "DELETE";
+
+                    let btnExcluir = document.createElement("button");
+                    btnExcluir.type = "button";
+                    btnExcluir.classList.add("icon-lixo-eventos");
+                    btnExcluir.setAttribute("data-id", academia.idAcademia);
+                    btnExcluir.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+
+                    btnExcluir.style.border = "none";
+                    btnExcluir.style.backgroundColor = "transparent";
+                    btnExcluir.style.cursor = "pointer";
+
+                    btnExcluir.addEventListener("click", function () {
+                        Swal.fire({
+                            title: "Tem certeza?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#d33",
+                            cancelButtonColor: "#3085d6",
+                            confirmButtonText: "Sim, excluir!",
+                            cancelButtonText: "Cancelar"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById(`formExcluir_${academia.idAcademia}`).submit();
+                            }
+                        });
+                    });
+
+                    formExcluir.appendChild(inputHidden);
+                    formExcluir.appendChild(btnExcluir);
+                    academiaItem.appendChild(formExcluir);
+                }
 
                 containerAcademias.appendChild(academiaItem);
             });
@@ -431,6 +435,8 @@ function pesquisarProfessores() {
     const cidade = document.getElementById('select-cidade-professores').value;
     const nomeProfessor = document.getElementById('input-nome-professor').value;
     const registroProfessor = document.getElementById('input-registro-professor').value;
+
+    let isProfessoresAdm = document.body.getAttribute("data-page") === "professoresAdm";
 
     fetch(`/pesquisarProfessores?opcoes-cidades-professores=${cidade}&nome-professor=${nomeProfessor}&registro-professor=${registroProfessor}`)
         .then(response => response.json())
@@ -492,46 +498,6 @@ function pesquisarProfessores() {
                 tdStatus.textContent = professor.statusProfessor;
                 tdStatus.classList.add(professor.statusProfessor === "Ativo" ? "status-ativo" : "status-inativo");
 
-                let tdExcluir = document.createElement("td");
-                let formExcluir = document.createElement("form");
-                formExcluir.id = `formExcluir_${professor.idProfessor}`;
-                formExcluir.action = `/professores/${professor.idProfessor}`;
-                formExcluir.method = "post";
-
-                let inputHidden = document.createElement("input");
-                inputHidden.type = "hidden";
-                inputHidden.name = "_method";
-                inputHidden.value = "DELETE";
-
-                let btnExcluir = document.createElement("button");
-                btnExcluir.type = "button";
-                btnExcluir.classList.add("icon-lixo-professores");
-                btnExcluir.setAttribute("data-id", professor.idProfessor);
-                btnExcluir.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-                btnExcluir.style.border = "none";
-                btnExcluir.style.backgroundColor = "transparent";
-                btnExcluir.style.cursor = "pointer";
-
-                btnExcluir.addEventListener("click", function () {
-                    Swal.fire({
-                        title: "Tem certeza?",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#d33",
-                        cancelButtonColor: "#3085d6",
-                        confirmButtonText: "Sim, excluir!",
-                        cancelButtonText: "Cancelar"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            document.getElementById(`formExcluir_${professor.idProfessor}`).submit();
-                        }
-                    });
-                });
-
-                formExcluir.appendChild(inputHidden);
-                formExcluir.appendChild(btnExcluir);
-                tdExcluir.appendChild(formExcluir);
-
                 tr.appendChild(tdImg);
                 tr.appendChild(tdRegistro);
                 tr.appendChild(tdNome);
@@ -541,7 +507,49 @@ function pesquisarProfessores() {
                 tr.appendChild(tdGraduacao);
                 tr.appendChild(tdEquipe);
                 tr.appendChild(tdStatus);
-                tr.appendChild(tdExcluir);
+
+                if (isProfessoresAdm) {
+                    let tdExcluir = document.createElement("td");
+                    let formExcluir = document.createElement("form");
+                    formExcluir.id = `formExcluir_${professor.idProfessor}`;
+                    formExcluir.action = `/professores/${professor.idProfessor}`;
+                    formExcluir.method = "post";
+
+                    let inputHidden = document.createElement("input");
+                    inputHidden.type = "hidden";
+                    inputHidden.name = "_method";
+                    inputHidden.value = "DELETE";
+
+                    let btnExcluir = document.createElement("button");
+                    btnExcluir.type = "button";
+                    btnExcluir.classList.add("icon-lixo-professores");
+                    btnExcluir.setAttribute("data-id", professor.idProfessor);
+                    btnExcluir.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+                    btnExcluir.style.border = "none";
+                    btnExcluir.style.backgroundColor = "transparent";
+                    btnExcluir.style.cursor = "pointer";
+
+                    btnExcluir.addEventListener("click", function () {
+                        Swal.fire({
+                            title: "Tem certeza?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#d33",
+                            cancelButtonColor: "#3085d6",
+                            confirmButtonText: "Sim, excluir!",
+                            cancelButtonText: "Cancelar"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById(`formExcluir_${professor.idProfessor}`).submit();
+                            }
+                        });
+                    });
+
+                    formExcluir.appendChild(inputHidden);
+                    formExcluir.appendChild(btnExcluir);
+                    tdExcluir.appendChild(formExcluir);
+                    tr.appendChild(tdExcluir);
+                }
 
                 tbody.appendChild(tr);
             });
@@ -697,45 +705,49 @@ function pesquisarFiliados() {
                 tdStatus.textContent = filiado.statusFiliado;
                 tdStatus.classList.add(filiado.statusFiliado === "Ativo" ? "status-ativo" : "status-inativo");
 
-                let tdExcluir = document.createElement("td");
-                let formExcluir = document.createElement("form");
-                formExcluir.id = `formExcluir_${filiado.idFiliado}`;
-                formExcluir.action = `/filiados/${filiado.idFiliado}`;
-                formExcluir.method = "post";
+                // Verifica se está na página de administração antes de adicionar o botão de exclusão
+                if (document.body.classList.contains("pagina-filiadosAdm")) {
+                    let tdExcluir = document.createElement("td");
+                    let formExcluir = document.createElement("form");
+                    formExcluir.id = `formExcluir_${filiado.idFiliado}`;
+                    formExcluir.action = `/filiados/${filiado.idFiliado}`;
+                    formExcluir.method = "post";
 
-                let inputHidden = document.createElement("input");
-                inputHidden.type = "hidden";
-                inputHidden.name = "_method";
-                inputHidden.value = "DELETE";
+                    let inputHidden = document.createElement("input");
+                    inputHidden.type = "hidden";
+                    inputHidden.name = "_method";
+                    inputHidden.value = "DELETE";
 
-                let btnExcluir = document.createElement("button");
-                btnExcluir.type = "button";
-                btnExcluir.classList.add("icon-lixo-filiados");
-                btnExcluir.setAttribute("data-id", filiado.idFiliado);
-                btnExcluir.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-                btnExcluir.style.border = "none";
-                btnExcluir.style.backgroundColor = "transparent";
-                btnExcluir.style.cursor = "pointer";
+                    let btnExcluir = document.createElement("button");
+                    btnExcluir.type = "button";
+                    btnExcluir.classList.add("icon-lixo-filiados");
+                    btnExcluir.setAttribute("data-id", filiado.idFiliado);
+                    btnExcluir.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+                    btnExcluir.style.border = "none";
+                    btnExcluir.style.backgroundColor = "transparent";
+                    btnExcluir.style.cursor = "pointer";
 
-                btnExcluir.addEventListener("click", function () {
-                    Swal.fire({
-                        title: "Tem certeza?",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#d33",
-                        cancelButtonColor: "#3085d6",
-                        confirmButtonText: "Sim, excluir!",
-                        cancelButtonText: "Cancelar"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            document.getElementById(`formExcluir_${filiado.idFiliado}`).submit();
-                        }
+                    btnExcluir.addEventListener("click", function () {
+                        Swal.fire({
+                            title: "Tem certeza?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#d33",
+                            cancelButtonColor: "#3085d6",
+                            confirmButtonText: "Sim, excluir!",
+                            cancelButtonText: "Cancelar"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById(`formExcluir_${filiado.idFiliado}`).submit();
+                            }
+                        });
                     });
-                });
 
-                formExcluir.appendChild(inputHidden);
-                formExcluir.appendChild(btnExcluir);
-                tdExcluir.appendChild(formExcluir);
+                    formExcluir.appendChild(inputHidden);
+                    formExcluir.appendChild(btnExcluir);
+                    tdExcluir.appendChild(formExcluir);
+                    tr.appendChild(tdExcluir);
+                }
 
                 tr.appendChild(tdImg);
                 tr.appendChild(tdRegistro);
@@ -747,14 +759,12 @@ function pesquisarFiliados() {
                 tr.appendChild(tdAcademia);
                 tr.appendChild(tdResponsavel);
                 tr.appendChild(tdStatus);
-                tr.appendChild(tdExcluir);
 
                 tbody.appendChild(tr);
             });
         })
         .catch(error => console.error("Erro ao buscar filiados:", error));
 }
-
 
 function openModalLightCombat() {
     document.getElementById("lightCombatModal").style.display = "block";

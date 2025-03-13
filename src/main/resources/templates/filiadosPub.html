@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link rel="icon" th:href="@{/images/icon.png}"/>
+
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome para o ícone de menu -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Ant Design Componentes UI -->
+    <link href="https://cdn.jsdelivr.net/npm/antd@4.18.6/dist/antd.min.css" rel="stylesheet">
+
+    <!-- Sweet Alert Componentes UI -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <title>Filiados</title>
+</head>
+
+<body data-page="filiadosPub">
+    <!--INICIO NAV-->
+    <div class="div-top-publica">
+        <h1 class="titulo-h1">Federação Gaúcha de Kickboxing</h1>
+
+        <div class="div-contato-publica">
+            <i class="fa-brands fa-instagram custon-icon-contato"></i>
+
+            <i class="fa-brands fa-facebook custon-icon-contato"></i>
+
+            <i class="fa-brands fa-whatsapp custon-icon-contato"></i>
+        </div>
+    </div>
+    <nav class="conteirner-nav-publica">
+        <div>
+            <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-nav-logo">
+        </div>
+
+        <div>
+            <div class="nav-list-publica">
+                <li>
+                    <a th:href="@{/index}">Início</a>
+                </li>
+                <li>
+                    <a th:href="@{/eventosPub}">Eventos</a>
+                </li>
+                <li>
+                    <a th:href="@{/filiadosPub}" style="color: white;">Filiados</a>
+                </li>
+                <li>
+                    <a th:href="@{/professoresPub}">Professores</a>
+                </li>
+                <li>
+                    <a th:href="@{/academiasPub}">Academias</a>
+                </li>
+                <li>
+                    <a th:href="@{/rankingPub}">Ranking</a>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <!--FIM NAV-->
+
+    <!--INICIO CONTEUDO-->
+    <section class="container">
+        <!-- REGISTROS FILIADOS -->
+        <form th:action="@{/pesquisarFiliados}" method="get" onsubmit="return false;">
+            <div class="conteiner-pesquisar-filiados" style="margin-top: 50px;">
+
+                <div class="radio-margin">
+                    <h3>Selecione a Faixa:</h3>
+                    <label>
+                        <input type="radio" name="tipoFaixa" value="colorida" required onclick="desabilitarRadio(this)">
+                        Colorida
+                    </label>
+                    <label>
+                        <input type="radio" name="tipoFaixa" value="preta" required onclick="desabilitarRadio(this)">
+                        Preta
+                    </label>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const radios = document.querySelectorAll('input[name="tipoFaixa"]');
+
+                            radios.forEach(radio => {
+                                radio.addEventListener("click", function () {
+                                    if (this.checked && this.dataset.checked === "true") {
+                                        this.checked = false;
+                                        this.dataset.checked = "false";
+                                    } else {
+                                        radios.forEach(r => r.dataset.checked = "false");
+                                        this.dataset.checked = "true";
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+
+                </div>
+
+                <div class="p-margin">
+                    <p>Registro:</p>
+                    <input type="text" class="ant-input custom-input-editar-registro" id="input-registro-filiado" placeholder="N° de Registro">
+                </div>
+
+                <div class="p-margin">
+                    <p>Nome do Filiado:</p>
+                    <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome-filiado" placeholder="Nome do Filiado">
+                </div>
+
+                <div class="p-margin">
+                    <p>Escolha a Cidade:</p>
+                    <select class="ant-input" name="opcoes-cidades-filiados" id="select-cidade-filiados">
+                        <option value="">Selecionar Cidade</option>
+                        <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>
+                    </select>
+                </div>
+
+                <div class="div-btn-pesquisar">
+                    <button class="ant-input custom-btn-pesquisar-filiados" type="button" onclick="pesquisarFiliados()">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="conteiner-filiados">
+            <table>
+                <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Registro</th>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>M/F</th>
+                    <th>Cidade</th>
+                    <th>Graduação</th>
+                    <th>Academia</th>
+                    <th>Responsável</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="filiado : ${filiados}">
+                    <td>
+                        <img th:src="@{${filiado.imagemFiliado}}" alt="Imagem do filiado"
+                             th:attr="data-id=${filiado.idFiliado},
+                                  data-registro=${filiado.registroFiliado},
+                                  data-nome=${filiado.nomeFiliado},
+                                  data-cidade=${filiado.cidadeFiliado},
+                                  data-academia=${filiado.academiaFiliado},
+                                  data-responsavel=${filiado.responsavelFiliado},
+                                  data-genero=${filiado.generoFiliado},
+                                  data-graduado=${filiado.graduadoEm},
+                                  data-graduacao=${filiado.graduacaoFiliado}"
+                             onclick="openModalImagemFiliado(this)" style="border-radius: 10px;">
+
+                    </td>
+
+                    <td th:text="${filiado.registroFiliado}"></td>
+                    <td th:text="${filiado.nomeFiliado}"></td>
+                    <td th:text="${#temporals.format(filiado.nascimentoFiliado, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${filiado.generoFiliado == 'Masculino' ? 'M' : (filiado.generoFiliado == 'Feminino' ? 'F' : '')}"></td>
+                    <td th:text="${filiado.cidadeFiliado}"></td>
+
+                    <td>
+                            <span th:text="${filiado.graduacaoFiliado}"
+                                  th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' :
+                                                   (filiado.graduacaoFiliado.contains('Preta') ? 'Preta' :
+                                                   (filiado.graduacaoFiliado == 'Amarela' ? 'Amarela' :
+                                                   (filiado.graduacaoFiliado == 'Laranja' ? 'Laranja' :
+                                                   (filiado.graduacaoFiliado == 'Verde' ? 'Verde' :
+                                                   (filiado.graduacaoFiliado == 'Azul' ? 'Azul' :
+                                                   (filiado.graduacaoFiliado == 'Marrom' ? 'Marrom' : ''))))))}"></span>
+                    </td>
+
+                    <td th:text="${filiado.academiaFiliado}"></td>
+
+                    <td th:text="${filiado.responsavelFiliado}"></td>
+
+                    <td class="status-filiado"
+                        th:classappend="${filiado.statusFiliado == 'Ativo' ? 'status-ativo' : (filiado.statusFiliado == 'Inativo' ? 'status-inativo' : '')}">
+                        <span th:text="${filiado.statusFiliado}"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination" th:if="${totalPaginas > 1}">
+            <ul>
+                <!-- Botão << -->
+                <li th:if="${paginaAtual > 0}">
+                    <a th:href="@{/filiadosAdm(pagina=0)}">&lt;&lt;</a>
+                </li>
+
+                <!-- Botão < -->
+                <li th:if="${paginaAtual > 0}">
+                    <a th:href="'/filiadosAdm?pagina=' + (${paginaAtual} - 1)">&lt;</a>
+                </li>
+
+                <!-- Páginas limitadas a 5 -->
+                <li th:each="i : ${#numbers.sequence(0, totalPaginas - 1)}"
+                    th:if="${i >= paginaAtual - 2 && i <= paginaAtual + 2}"
+                    th:classappend="${i == paginaAtual ? 'active' : ''}">
+                    <a th:href="'/filiadosAdm?pagina=' + ${i}">[[${i + 1}]]</a>
+                </li>
+
+                <!-- Botão > -->
+                <li th:if="${paginaAtual < totalPaginas - 1}">
+                    <a th:href="'/filiadosAdm?pagina=' + (${paginaAtual} + 1)">&gt;</a>
+                </li>
+
+                <!-- Botão >> -->
+                <li th:if="${paginaAtual < totalPaginas - 1}">
+                    <a th:href="'/filiadosAdm?pagina=' + (${totalPaginas - 1})">&gt;&gt;</a>
+                </li>
+            </ul>
+        </div>
+        <!--REGISTROS FILIADOS-->
+    </section>
+    <!--FIM CONTEUDO-->
+
+    <!--INICIO RODAPÉ -->
+    <footer>
+        <div class="div-footer-logo">
+            <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-footer-logo">
+            <a href="https://mycodinghub.tech/" target="_blank">
+                <img th:src="@{/images/logo-mycoding.png}" alt="Logo da My Coding" class="img-footer-logo-mycoding">
+            </a>
+        </div>
+
+        <div>
+            <p>Todos os direitos reservados!</p>
+        </div>
+    </footer>
+    <!--FIM RODAPÉ -->
+
+    <script th:src="@{/js/javascript.js}"></script>
+</body>
+</html>

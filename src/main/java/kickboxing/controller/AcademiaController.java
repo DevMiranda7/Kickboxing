@@ -22,6 +22,14 @@ public class AcademiaController {
         this.academiaService = academiaService;
     }
 
+    public String listarAcademiasPub(Model model) {
+        List<Academia> academias = academiaService.listarAcademias();
+        List<String> cidades = academiaService.listarCidades();
+        model.addAttribute("academias", academias);
+        model.addAttribute("cidades", cidades);
+        return "academiasPub";
+    }
+
     public String listarAcademias(Model model) {
         List<Academia> academias = academiaService.listarAcademias();
         List<String> cidades = academiaService.listarCidades();

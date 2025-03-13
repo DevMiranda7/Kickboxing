@@ -23,9 +23,31 @@ public class ProfessorController {
     @Autowired
     private ProfessorService professorService;
 
+    @GetMapping("/listarProfessoresPub")
+    public String listarProfessoresPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
+        int tamanhoPagina = 50;
+        Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
+
+        List<Professor> todosProfessores = professorService.listarProfessores();
+
+        List<String> cidades = todosProfessores.stream()
+                .map(Professor::getCidadeProfessor)
+                .distinct()
+                .collect(Collectors.toList());
+
+        Page<Professor> paginaProfessores = professorService.listarProfessoresPaginados(pageable);
+
+        model.addAttribute("cidades", cidades);
+        model.addAttribute("professores", paginaProfessores.getContent());
+        model.addAttribute("paginaAtual", pagina);
+        model.addAttribute("totalPaginas", paginaProfessores.getTotalPages());
+
+        return "professoresPub";
+    }
+
     @GetMapping("/listarProfessores")
     public String listarProfessores(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 8;
+        int tamanhoPagina = 50;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Professor> todosProfessores = professorService.listarProfessores();

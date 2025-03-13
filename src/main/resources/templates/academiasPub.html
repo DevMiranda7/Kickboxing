@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link rel="icon" th:href="@{/images/icon.png}"/>
+
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome para o ícone de menu -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Ant Design Componentes UI -->
+    <link href="https://cdn.jsdelivr.net/npm/antd@4.18.6/dist/antd.min.css" rel="stylesheet">
+
+    <!-- Sweet Alert Componentes UI -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <title>Academias</title>
+</head>
+
+<body data-page="academiasPub">
+    <!--INICIO NAV-->
+    <div class="div-top-publica">
+        <h1 class="titulo-h1">Federação Gaúcha de Kickboxing</h1>
+
+        <div class="div-contato-publica">
+            <i class="fa-brands fa-instagram custon-icon-contato"></i>
+
+            <i class="fa-brands fa-facebook custon-icon-contato"></i>
+
+            <i class="fa-brands fa-whatsapp custon-icon-contato"></i>
+        </div>
+    </div>
+    <nav class="conteirner-nav-publica">
+        <div>
+            <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-nav-logo">
+        </div>
+
+        <div>
+            <div class="nav-list-publica">
+                <li>
+                    <a th:href="@{/index}">Início</a>
+                </li>
+                <li>
+                    <a th:href="@{/eventosPub}">Eventos</a>
+                </li>
+                <li>
+                    <a th:href="@{/filiadosPub}">Filiados</a>
+                </li>
+                <li>
+                    <a th:href="@{/professoresPub}">Professores</a>
+                </li>
+                <li>
+                    <a th:href="@{/academiasPub}" style="color: white;">Academias</a>
+                </li>
+                <li>
+                    <a th:href="@{/rankingPub}">Ranking</a>
+                </li>
+            </div>
+        </div>
+    </nav>
+    <!--FIM NAV-->
+
+    <!--INICIO CONTEUDO-->
+    <section class="container">
+        <!-- REGISTROS ACADEMIAS -->
+        <form th:action="@{/pesquisarAcademias}" method="get" onsubmit="return false;">
+            <div class="conteiner-pesquisar" style="margin-top: 50px;">
+
+                <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome" placeholder="Nome da academia">
+
+                <select class="ant-input" name="opcoes-cidades" id="select-cidade">
+                    <option value="">Selecionar Cidade</option>
+                    <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>
+                </select>
+
+                <button class="ant-input custom-btn-pesquisar" type="button" onclick="pesquisarAcademias()">Pesquisar</button>
+            </div>
+        </form>
+
+        <div class="conteiner-academias">
+            <ul>
+                <li th:each="academia : ${academias}">
+
+                    <img th:src="@{${academia.imagemAcademia}}" alt="Imagem da academia" width="200"
+                         onclick="openModalImagemAcademia(this.src)">
+
+                    <div class="div-info-academias">
+                        <span th:text="${academia.nomeAcademia}" class="span-nomeAcademia"></span>
+                        <div class="div-tecnico">
+                            <span>Responsável Técnico:</span>
+                            <span th:text="${academia.responsavelAcademia}" class="academia-responsavel-tecnico"></span>
+                        </div>
+
+                        <div class="div-endereco">
+                            <span th:text="${academia.enderecoAcademia}"></span>
+                        </div>
+
+                        <div class="div-bairro">
+                            <span th:text="${academia.bairroAcademia}"></span>
+                            <span>-</span>
+                            <span th:text="${academia.cidadeAcademia}"></span>
+                        </div>
+
+                        <div class="div-contato-academia">
+                            <span th:text="${academia.contatoAcademia}" class="academia-contato"></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- INICIO MODAL IMAGEM ACADEMIA-->
+        <div id="imagemAcademiaModal" class="imagem-academia-modal">
+            <div class="imagem-academia-modal-content">
+                <span class="close-imagem-academia-modal" onclick="closeModalAcademiaEvento()">&times;</span>
+                <img id="imagemAcademiaModalImage" src="" alt="Imagem da academia" />
+            </div>
+        </div>
+        <!-- FIM MODAL IMAGEM ACADEMIA-->
+        <!-- REGISTROS ACADEMIAS -->
+    </section>
+    <!--FIM CONTEUDO-->
+
+    <!--INICIO RODAPÉ -->
+    <footer>
+        <div class="div-footer-logo">
+            <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-footer-logo">
+            <a href="https://mycodinghub.tech/" target="_blank">
+                <img th:src="@{/images/logo-mycoding.png}" alt="Logo da My Coding" class="img-footer-logo-mycoding">
+            </a>
+        </div>
+
+        <div>
+            <p>Todos os direitos reservados!</p>
+        </div>
+    </footer>
+    <!--FIM RODAPÉ -->
+
+    <script th:src="@{/js/javascript.js}"></script>
+</body>
+</html>

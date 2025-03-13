@@ -23,9 +23,31 @@ public class FiliadoController {
     @Autowired
     private FiliadoService filiadoService;
 
+    @GetMapping("/listarFiliadosPub")
+    public String listarFiliadosPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
+        int tamanhoPagina = 5;
+        Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
+
+        List<Filiado> todosFiliados = filiadoService.listarFiliados();
+
+        List<String> cidades = todosFiliados.stream()
+                .map(Filiado::getCidadeFiliado)
+                .distinct()
+                .collect(Collectors.toList());
+
+        Page<Filiado> paginaFiliados = filiadoService.listarFiliadosPaginados(pageable);
+
+        model.addAttribute("cidades", cidades);
+        model.addAttribute("filiados", paginaFiliados.getContent());
+        model.addAttribute("paginaAtual", pagina);
+        model.addAttribute("totalPaginas", paginaFiliados.getTotalPages());
+
+        return "filiadosPub";
+    }
+
     @GetMapping("/listarFiliados")
     public String listarFiliados(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 50;
+        int tamanhoPagina = 5;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Filiado> todosFiliados = filiadoService.listarFiliados();
