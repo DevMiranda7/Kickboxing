@@ -19,15 +19,6 @@ import java.util.List;
 public class MapearRotasController {
 
     @Autowired
-    private AdminService adminService;
-
-    @Autowired
-    private PatrocinadorController patrocinadorController;
-
-    @Autowired
-    private AcademiaController academiaController;
-
-    @Autowired
     private EventoController eventoController;
 
     @Autowired
@@ -35,6 +26,12 @@ public class MapearRotasController {
 
     @Autowired
     private ProfessorController professorController;
+
+    @Autowired
+    private AcademiaController academiaController;
+
+    @Autowired
+    private PatrocinadorController patrocinadorController;
 
     @Autowired
     private LightCombatService lightCombatService;
@@ -57,69 +54,13 @@ public class MapearRotasController {
     @Autowired
     private KBCombatService kbCombatService;
 
+    @Autowired
+    private AdminService adminService;
+
 
     @GetMapping("/index")
     public String indexPage() {
         return "index";
-    }
-
-
-
-    @GetMapping("/filiadosPub")
-    public String filiadosPub() {
-        return "filiadosPub";
-    }
-
-    @GetMapping("/professoresPub")
-    public String professoresPub() {
-        return "professoresPub";
-    }
-
-    @GetMapping("/academiasPub")
-    public String academiasPub() {
-        return "academiasPub";
-    }
-
-    @GetMapping("/rankingPub")
-    public String rankingPub() {
-        return "rankingPub";
-    }
-
-    @GetMapping("/admin")
-    public String adminPage() {
-        return "admin";
-    }
-
-    private boolean isAdminLogado(HttpSession session) {
-        return session.getAttribute("adminLogado") != null;
-    }
-
-    private String verificarSessao(HttpSession session, RedirectAttributes redirectAttributes) {
-        if (!isAdminLogado(session)) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Você precisa ser um administrador autenticado.");
-            return "redirect:/index";
-        }
-        return null;
-    }
-
-    @GetMapping("/professoresAdm")
-    public String professoresAdmPage(@RequestParam(defaultValue = "0") int pagina, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
-        String redirecionamento = verificarSessao(session, redirectAttributes);
-        if (redirecionamento != null) {
-            return redirecionamento;
-        }
-
-        return professorController.listarProfessores(pagina, model);
-    }
-
-    @GetMapping("/filiadosAdm")
-    public String filiadosAdmPage(@RequestParam(defaultValue = "0") int pagina, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
-        String redirecionamento = verificarSessao(session, redirectAttributes);
-        if (redirecionamento != null) {
-            return redirecionamento;
-        }
-
-        return filiadoController.listarFiliados(pagina, model);
     }
 
     @GetMapping("/eventosPub")
@@ -137,6 +78,41 @@ public class MapearRotasController {
         return eventoController.listarEventos(model);
     }
 
+    @GetMapping("/filiadosPub")
+    public String filiadosPub() {
+        return "filiadosPub";
+    }
+
+    @GetMapping("/filiadosAdm")
+    public String filiadosAdmPage(@RequestParam(defaultValue = "0") int pagina, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
+        String redirecionamento = verificarSessao(session, redirectAttributes);
+        if (redirecionamento != null) {
+            return redirecionamento;
+        }
+
+        return filiadoController.listarFiliados(pagina, model);
+    }
+
+    @GetMapping("/professoresPub")
+    public String professoresPub() {
+        return "professoresPub";
+    }
+
+    @GetMapping("/professoresAdm")
+    public String professoresAdmPage(@RequestParam(defaultValue = "0") int pagina, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
+        String redirecionamento = verificarSessao(session, redirectAttributes);
+        if (redirecionamento != null) {
+            return redirecionamento;
+        }
+
+        return professorController.listarProfessores(pagina, model);
+    }
+
+    @GetMapping("/academiasPub")
+    public String academiasPub() {
+        return "academiasPub";
+    }
+
     @GetMapping("/academiasAdm")
     public String academiasAdmPage(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         String redirecionamento = verificarSessao(session, redirectAttributes);
@@ -147,14 +123,9 @@ public class MapearRotasController {
         return academiaController.listarAcademias(model);
     }
 
-    @GetMapping("/patrocinadoresAdm")
-    public String patrocinadoresAdmPage(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
-        String redirecionamento = verificarSessao(session, redirectAttributes);
-        if (redirecionamento != null) {
-            return redirecionamento;
-        }
-
-        return patrocinadorController.listarPatrocinadores(model);
+    @GetMapping("/rankingPub")
+    public String rankingPub() {
+        return "rankingPub";
     }
 
     @GetMapping("/rankingAdm")
@@ -188,17 +159,19 @@ public class MapearRotasController {
         return "rankingAdm";
     }
 
-
-    @GetMapping("/recuperarSenha")
-    public String mostrarFormularioRecuperacao(@RequestParam("token") String token, Model model) {
-        if (adminService.isTokenValido(token)) {
-            model.addAttribute("token", token);
-            return "recuperarSenha";
-
-        } else {
-            model.addAttribute("errorMessage", "Token de recuperação inválido ou expirado.");
-            return "redirect:/index";
+    @GetMapping("/patrocinadoresAdm")
+    public String patrocinadoresAdmPage(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
+        String redirecionamento = verificarSessao(session, redirectAttributes);
+        if (redirecionamento != null) {
+            return redirecionamento;
         }
+
+        return patrocinadorController.listarPatrocinadores(model);
+    }
+
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "admin";
     }
 
     @GetMapping("/administracao")
@@ -217,5 +190,29 @@ public class MapearRotasController {
 
         model.addAttribute("admin", admin);
         return "administracao";
+    }
+
+    @GetMapping("/recuperarSenha")
+    public String mostrarFormularioRecuperacao(@RequestParam("token") String token, Model model) {
+        if (adminService.isTokenValido(token)) {
+            model.addAttribute("token", token);
+            return "recuperarSenha";
+
+        } else {
+            model.addAttribute("errorMessage", "Token de recuperação inválido ou expirado.");
+            return "redirect:/index";
+        }
+    }
+
+    private String verificarSessao(HttpSession session, RedirectAttributes redirectAttributes) {
+        if (!isAdminLogado(session)) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Você precisa ser um administrador autenticado.");
+            return "redirect:/index";
+        }
+        return null;
+    }
+
+    private boolean isAdminLogado(HttpSession session) {
+        return session.getAttribute("adminLogado") != null;
     }
 }

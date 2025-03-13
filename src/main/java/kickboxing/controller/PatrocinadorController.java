@@ -20,6 +20,12 @@ public class PatrocinadorController {
     @Autowired
     private PatrocinadorService patrocinadorService;
 
+    public String listarPatrocinadores(Model model) {
+        List<Patrocinador> patrocinadores = patrocinadorService.listarPatrocinadores();
+        model.addAttribute("patrocinadores", patrocinadores);
+        return "patrocinadoresAdm";
+    }
+
     @PostMapping("/criarPatrocinador")
     public String criarPatrocinador(@RequestParam("linkPatrocinador") String linkPatrocinador,
                                     @RequestParam("imagemPatrocinador") MultipartFile imagemPatrocinador,
@@ -40,12 +46,6 @@ public class PatrocinadorController {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao cadastrar patrocinador: " + e.getMessage());
             return "redirect:/patrocinadoresAdm";
         }
-    }
-
-    public String listarPatrocinadores(Model model) {
-        List<Patrocinador> patrocinadores = patrocinadorService.listarPatrocinadores();
-        model.addAttribute("patrocinadores", patrocinadores);
-        return "patrocinadoresAdm";
     }
 
     @PostMapping("/patrocinadores/{id}")

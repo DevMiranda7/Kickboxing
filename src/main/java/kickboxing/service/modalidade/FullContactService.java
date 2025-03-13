@@ -17,6 +17,13 @@ public class FullContactService {
     @Autowired
     private FullContactRepository fullContactRepository;
 
+    public List<FullContact> listarFullContact() {
+        List<FullContact> fullContacts = fullContactRepository.findAll();
+        return fullContacts.stream()
+                .sorted((lc1, lc2) -> lc2.getPontosFullContact().compareTo(lc1.getPontosFullContact()))
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public void cadastrarFullContact(String nomeFullContact, String pontosFullContact) {
         try {
@@ -35,13 +42,6 @@ public class FullContactService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Formato inválido para pontos. Use números como 10,00.");
         }
-    }
-
-    public List<FullContact> listarFullContact() {
-        List<FullContact> fullContacts = fullContactRepository.findAll();
-        return fullContacts.stream()
-                .sorted((lc1, lc2) -> lc2.getPontosFullContact().compareTo(lc1.getPontosFullContact()))
-                .collect(Collectors.toList());
     }
 
     public void excluirFullContact(Long id) {

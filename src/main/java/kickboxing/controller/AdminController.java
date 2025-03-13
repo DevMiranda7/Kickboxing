@@ -133,7 +133,6 @@ public class AdminController {
                 return "redirect:/administracao";
             }
 
-            // Valida a senha antes de permitir a edição
             if (!BCrypt.checkpw(senhaConfirmacao, adminLogado.getSenha())) {
                 redirectAttributes.addFlashAttribute("errorMessage", "Senha incorreta.");
                 return "redirect:/administracao";
@@ -151,5 +150,4 @@ public class AdminController {
             return "redirect:/administracao";
         }
     }
-
 }

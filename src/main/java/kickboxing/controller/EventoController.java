@@ -24,6 +24,25 @@ public class EventoController {
         this.eventoService = eventoService;
     }
 
+    public String listarEventosPub(Model model) {
+        List<Evento> eventos = eventoService.listarEventos();
+        model.addAttribute("eventos", eventos);
+        return "eventosPub";
+    }
+
+    public String listarEventos(Model model) {
+        List<Evento> eventos = eventoService.listarEventos();
+        model.addAttribute("eventos", eventos);
+        return "eventosAdm";
+    }
+
+    @GetMapping("/filtrar")
+    @ResponseBody
+    public List<Evento> filtrarEventosPorMes(@RequestParam("mes") int mes) {
+        List<Evento> eventosFiltrados = eventoService.listarEventosPorMes(mes);
+        return eventosFiltrados;
+    }
+
     @PostMapping("/criarEvento")
     public String criarEvento(@RequestParam("nomeEvento") String nomeEvento,
                               @RequestParam("descricaoEvento") String descricaoEvento,
@@ -53,18 +72,6 @@ public class EventoController {
         }
     }
 
-    public String listarEventosPub(Model model) {
-        List<Evento> eventos = eventoService.listarEventos();
-        model.addAttribute("eventos", eventos);
-        return "eventosPub";
-    }
-
-    public String listarEventos(Model model) {
-        List<Evento> eventos = eventoService.listarEventos();
-        model.addAttribute("eventos", eventos);
-        return "eventosAdm";
-    }
-
     @PostMapping("/eventos/{id}")
     public String excluirEvento(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
@@ -75,12 +82,5 @@ public class EventoController {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao excluir Evento: " + e.getMessage());
         }
         return "redirect:/eventosAdm";
-    }
-
-    @GetMapping("/filtrar")
-    @ResponseBody
-    public List<Evento> filtrarEventosPorMes(@RequestParam("mes") int mes) {
-        List<Evento> eventosFiltrados = eventoService.listarEventosPorMes(mes);
-        return eventosFiltrados;
     }
 }

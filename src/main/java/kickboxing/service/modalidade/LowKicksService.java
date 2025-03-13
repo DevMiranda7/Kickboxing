@@ -17,6 +17,13 @@ public class LowKicksService {
     @Autowired
     private LowKicksRepository lowKicksRepository;
 
+    public List<LowKicks> listarLowKicks() {
+        List<LowKicks> lowKickss = lowKicksRepository.findAll();
+        return lowKickss.stream()
+                .sorted((lc1, lc2) -> lc2.getPontosLowKicks().compareTo(lc1.getPontosLowKicks()))
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public void cadastrarLowKicks(String nomeLowKicks, String pontosLowKicks) {
         try {
@@ -35,13 +42,6 @@ public class LowKicksService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Formato inválido para pontos. Use números como 10,00.");
         }
-    }
-
-    public List<LowKicks> listarLowKicks() {
-        List<LowKicks> lowKickss = lowKicksRepository.findAll();
-        return lowKickss.stream()
-                .sorted((lc1, lc2) -> lc2.getPontosLowKicks().compareTo(lc1.getPontosLowKicks()))
-                .collect(Collectors.toList());
     }
 
     public void excluirLowKicks(Long id) {

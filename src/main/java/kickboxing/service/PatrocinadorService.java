@@ -18,6 +18,10 @@ public class PatrocinadorService {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/upload/patrocinadores";
 
+    public List<Patrocinador> listarPatrocinadores() {
+        return patrocinadorRepository.findAll();
+    }
+
     public void salvarPatrocinador(Patrocinador patrocinador, MultipartFile imagemPatrocinador) throws IOException {
         File uploadDir = new File(UPLOAD_DIR);
         if (!uploadDir.exists()) {
@@ -35,15 +39,10 @@ public class PatrocinadorService {
         patrocinadorRepository.save(patrocinador);
     }
 
-    public List<Patrocinador> listarPatrocinadores() {
-        return patrocinadorRepository.findAll();
-    }
-
     public void excluirPatrocinador(Long id) {
         Patrocinador patrocinador = patrocinadorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Patrocinador não encontrado"));
 
-        // Remover imagem
         String caminhoImagem = UPLOAD_DIR + "/" + patrocinador.getImagemPatrocinador().substring(patrocinador.getImagemPatrocinador().lastIndexOf("/") + 1);
         File imagem = new File(caminhoImagem);
         if (imagem.exists()) {
@@ -52,8 +51,4 @@ public class PatrocinadorService {
 
         patrocinadorRepository.deleteById(id);
     }
-
-
-    //* AMBIENTE DE PRODUÇÃO ACESSE O ARQUIVO ---- "PRODUCAO.MD" ---- *//
-    //* IMPORTANTE PARA ENTENDER COMO VAI FUNCIONAR!!!!!!! *//
 }

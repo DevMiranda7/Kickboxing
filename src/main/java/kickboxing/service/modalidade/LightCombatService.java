@@ -16,6 +16,13 @@ public class LightCombatService {
     @Autowired
     private LightCombatRepository lightCombatRepository;
 
+    public List<LightCombat> listarLightCombat() {
+        List<LightCombat> lightCombats = lightCombatRepository.findAll();
+        return lightCombats.stream()
+                .sorted((lc1, lc2) -> lc2.getPontosLightCombat().compareTo(lc1.getPontosLightCombat()))
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public void cadastrarLightCombat(String nomeLightCombat, String pontosLightCombat) {
         try {
@@ -34,13 +41,6 @@ public class LightCombatService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Formato inválido para pontos. Use números como 10,00.");
         }
-    }
-
-    public List<LightCombat> listarLightCombat() {
-        List<LightCombat> lightCombats = lightCombatRepository.findAll();
-        return lightCombats.stream()
-                .sorted((lc1, lc2) -> lc2.getPontosLightCombat().compareTo(lc1.getPontosLightCombat()))
-                .collect(Collectors.toList());
     }
 
     public void excluirLightCombat(Long id) {

@@ -17,6 +17,13 @@ public class PointFightService {
     @Autowired
     private PointFightRepository pointFightRepository;
 
+    public List<PointFight> listarPointFight() {
+        List<PointFight> pointFights = pointFightRepository.findAll();
+        return pointFights.stream()
+                .sorted((lc1, lc2) -> lc2.getPontosPointFight().compareTo(lc1.getPontosPointFight()))
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public void cadastrarPointFight(String nomePointFight, String pontosPointFight) {
         try {
@@ -35,13 +42,6 @@ public class PointFightService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Formato inválido para pontos. Use números como 10,00.");
         }
-    }
-
-    public List<PointFight> listarPointFight() {
-        List<PointFight> pointFights = pointFightRepository.findAll();
-        return pointFights.stream()
-                .sorted((lc1, lc2) -> lc2.getPontosPointFight().compareTo(lc1.getPontosPointFight()))
-                .collect(Collectors.toList());
     }
 
     public void excluirPointFight(Long id) {

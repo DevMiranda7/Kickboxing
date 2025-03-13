@@ -24,23 +24,6 @@ public class ProfessorService {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/upload/professores";
 
-    public void salvarProfessor(Professor professor, MultipartFile imagemProfessor) throws IOException {
-        File uploadDir = new File(UPLOAD_DIR);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdirs();
-        }
-
-        if (!imagemProfessor.isEmpty()) {
-            String nomeArquivo = System.currentTimeMillis() + "_" + imagemProfessor.getOriginalFilename();
-            File destino = new File(uploadDir, nomeArquivo);
-            imagemProfessor.transferTo(destino);
-
-            professor.setImagemProfessor("/upload/professores/" + nomeArquivo);
-        }
-
-        professorRepository.save(professor);
-    }
-
     public List<Professor> listarProfessores() {
         return professorRepository.findAll(Sort.by(Sort.Order.asc("nomeProfessor")));
     }
@@ -75,11 +58,32 @@ public class ProfessorService {
         return professorRepository.findAll(pageableComOrdenacao);
     }
 
+    public Professor buscarProfessorPorId(Long id) {
+        return professorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
+    }
+
+    public void salvarProfessor(Professor professor, MultipartFile imagemProfessor) throws IOException {
+        File uploadDir = new File(UPLOAD_DIR);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        if (!imagemProfessor.isEmpty()) {
+            String nomeArquivo = System.currentTimeMillis() + "_" + imagemProfessor.getOriginalFilename();
+            File destino = new File(uploadDir, nomeArquivo);
+            imagemProfessor.transferTo(destino);
+
+            professor.setImagemProfessor("/upload/professores/" + nomeArquivo);
+        }
+
+        professorRepository.save(professor);
+    }
+
     public void excluirProfessor(Long id) {
         Professor professor = professorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
 
-        // Remover imagem
         String caminhoImagem = UPLOAD_DIR + "/" + professor.getImagemProfessor().substring(professor.getImagemProfessor().lastIndexOf("/") + 1);
         File imagem = new File(caminhoImagem);
         if (imagem.exists()) {
@@ -88,12 +92,4 @@ public class ProfessorService {
 
         professorRepository.deleteById(id);
     }
-
-    public Professor buscarProfessorPorId(Long id) {
-        return professorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
-    }
-
-    //* AMBIENTE DE PRODUÇÃO ACESSE O ARQUIVO ---- "PRODUCAO.MD" ---- *//
-    //* IMPORTANTE PARA ENTENDER COMO VAI FUNCIONAR!!!!!!! *//
 }

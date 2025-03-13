@@ -18,39 +18,8 @@ public class AcademiaService {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/upload/academias";
 
-    public void salvarAcademia(Academia academia, MultipartFile imagemAcademia) throws IOException {
-        File uploadDir = new File(UPLOAD_DIR);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdirs();
-        }
-
-        if (!imagemAcademia.isEmpty()) {
-            String nomeArquivo = System.currentTimeMillis() + "_" + imagemAcademia.getOriginalFilename();
-            File destino = new File(uploadDir, nomeArquivo);
-            imagemAcademia.transferTo(destino);
-
-            academia.setImagemAcademia("/upload/academias/" + nomeArquivo);
-        }
-
-        academiaRepository.save(academia);
-    }
-
     public List<Academia> listarAcademias() {
         return academiaRepository.findAll();
-    }
-
-    public void excluirAcademia(Long id) {
-        Academia academia = academiaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Academia não encontrada"));
-
-        // Remover imagem
-        String caminhoImagem = UPLOAD_DIR + "/" + academia.getImagemAcademia().substring(academia.getImagemAcademia().lastIndexOf("/") + 1);
-        File imagem = new File(caminhoImagem);
-        if (imagem.exists()) {
-            imagem.delete();
-        }
-
-        academiaRepository.deleteById(id);
     }
 
     public List<String> listarCidades() {
@@ -69,6 +38,33 @@ public class AcademiaService {
         return academiaRepository.findByCidadeAcademiaAndNomeAcademia(cidade, nome);
     }
 
-    //* AMBIENTE DE PRODUÇÃO ACESSE O ARQUIVO ---- "PRODUCAO.MD" ---- *//
-    //* IMPORTANTE PARA ENTENDER COMO VAI FUNCIONAR!!!!!!! *//
+    public void salvarAcademia(Academia academia, MultipartFile imagemAcademia) throws IOException {
+        File uploadDir = new File(UPLOAD_DIR);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        if (!imagemAcademia.isEmpty()) {
+            String nomeArquivo = System.currentTimeMillis() + "_" + imagemAcademia.getOriginalFilename();
+            File destino = new File(uploadDir, nomeArquivo);
+            imagemAcademia.transferTo(destino);
+
+            academia.setImagemAcademia("/upload/academias/" + nomeArquivo);
+        }
+
+        academiaRepository.save(academia);
+    }
+
+    public void excluirAcademia(Long id) {
+        Academia academia = academiaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Academia não encontrada"));
+
+        String caminhoImagem = UPLOAD_DIR + "/" + academia.getImagemAcademia().substring(academia.getImagemAcademia().lastIndexOf("/") + 1);
+        File imagem = new File(caminhoImagem);
+        if (imagem.exists()) {
+            imagem.delete();
+        }
+
+        academiaRepository.deleteById(id);
+    }
 }

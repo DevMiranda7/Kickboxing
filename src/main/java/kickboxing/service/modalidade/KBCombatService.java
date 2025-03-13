@@ -17,6 +17,13 @@ public class KBCombatService {
     @Autowired
     private KBCombatRepository kbCombatRepository;
 
+    public List<KBCombat> listarKBCombat() {
+        List<KBCombat> kbCombats = kbCombatRepository.findAll();
+        return kbCombats.stream()
+                .sorted((lc1, lc2) -> lc2.getPontosKBCombat().compareTo(lc1.getPontosKBCombat()))
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public void cadastrarKBCombat(String nomeKBCombat, String pontosKBCombat) {
         try {
@@ -35,13 +42,6 @@ public class KBCombatService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Formato inválido para pontos. Use números como 10,00.");
         }
-    }
-
-    public List<KBCombat> listarKBCombat() {
-        List<KBCombat> kbCombats = kbCombatRepository.findAll();
-        return kbCombats.stream()
-                .sorted((lc1, lc2) -> lc2.getPontosKBCombat().compareTo(lc1.getPontosKBCombat()))
-                .collect(Collectors.toList());
     }
 
     public void excluirKBCombat(Long id) {

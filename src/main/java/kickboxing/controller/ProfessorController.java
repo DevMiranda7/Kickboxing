@@ -23,6 +23,28 @@ public class ProfessorController {
     @Autowired
     private ProfessorService professorService;
 
+    @GetMapping("/listarProfessores")
+    public String listarProfessores(@RequestParam(defaultValue = "0") int pagina, Model model) {
+        int tamanhoPagina = 8;
+        Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
+
+        List<Professor> todosProfessores = professorService.listarProfessores();
+
+        List<String> cidades = todosProfessores.stream()
+                .map(Professor::getCidadeProfessor)
+                .distinct()
+                .collect(Collectors.toList());
+
+        Page<Professor> paginaProfessores = professorService.listarProfessoresPaginados(pageable);
+
+        model.addAttribute("cidades", cidades);
+        model.addAttribute("professores", paginaProfessores.getContent());
+        model.addAttribute("paginaAtual", pagina);
+        model.addAttribute("totalPaginas", paginaProfessores.getTotalPages());
+
+        return "professoresAdm";
+    }
+
     @PostMapping("/criarProfessor")
     public String criarProfessor(@RequestParam("registroProfessor") String registroProfessor,
                                  @RequestParam("nomeProfessor") String nomeProfessor,
@@ -68,28 +90,6 @@ public class ProfessorController {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao cadastrar professor: " + e.getMessage());
             return "redirect:/professoresAdm";
         }
-    }
-
-    @GetMapping("/listarProfessores")
-    public String listarProfessores(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 8;
-        Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
-
-        List<Professor> todosProfessores = professorService.listarProfessores();
-
-        List<String> cidades = todosProfessores.stream()
-                .map(Professor::getCidadeProfessor)
-                .distinct()
-                .collect(Collectors.toList());
-
-        Page<Professor> paginaProfessores = professorService.listarProfessoresPaginados(pageable);
-
-        model.addAttribute("cidades", cidades);
-        model.addAttribute("professores", paginaProfessores.getContent());
-        model.addAttribute("paginaAtual", pagina);
-        model.addAttribute("totalPaginas", paginaProfessores.getTotalPages());
-
-        return "professoresAdm";
     }
 
     @GetMapping("/pesquisarProfessores")
