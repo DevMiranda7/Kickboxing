@@ -79,8 +79,8 @@ public class MapearRotasController {
     }
 
     @GetMapping("/filiadosPub")
-    public String filiadosPub() {
-        return "filiadosPub";
+    public String filiadosPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
+        return filiadoController.listarFiliadosPub(pagina, model);
     }
 
     @GetMapping("/filiadosAdm")
@@ -94,8 +94,8 @@ public class MapearRotasController {
     }
 
     @GetMapping("/professoresPub")
-    public String professoresPub() {
-        return "professoresPub";
+    public String professoresPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
+        return professorController.listarProfessoresPub(pagina, model);
     }
 
     @GetMapping("/professoresAdm")
@@ -109,8 +109,8 @@ public class MapearRotasController {
     }
 
     @GetMapping("/academiasPub")
-    public String academiasPub() {
-        return "academiasPub";
+    public String academiasPub(Model model) {
+        return academiaController.listarAcademiasPub(model);
     }
 
     @GetMapping("/academiasAdm")
@@ -124,7 +124,28 @@ public class MapearRotasController {
     }
 
     @GetMapping("/rankingPub")
-    public String rankingPub() {
+    public String rankingPub(Model model) {
+        List<LightCombat> lightCombats = lightCombatService.listarLightCombat();
+        model.addAttribute("lightCombats", lightCombats);
+
+        List<KickLight> kicklights = kickLightService.listarKickLight();
+        model.addAttribute("kicklights", kicklights);
+
+        List<PointFight> pointFights = pointFightService.listarPointFight();
+        model.addAttribute("pointFights", pointFights);
+
+        List<FullContact> fullContacts = fullContactService.listarFullContact();
+        model.addAttribute("fullContacts", fullContacts);
+
+        List<LowKicks> lowKickss = lowKicksService.listarLowKicks();
+        model.addAttribute("lowKickss", lowKickss);
+
+        List<K1> k1s = k1Service.listarK1();
+        model.addAttribute("k1s", k1s);
+
+        List<KBCombat> kbCombats = kbCombatService.listarKBCombat();
+        model.addAttribute("kbCombats", kbCombats);
+
         return "rankingPub";
     }
 
