@@ -180,6 +180,11 @@ public class MapearRotasController {
         return "rankingAdm";
     }
 
+    @GetMapping("/blackBeltsPub")
+    public String blackBeltsPubPage() {
+        return "blackBeltsPub";
+    }
+
     @GetMapping("/patrocinadoresAdm")
     public String patrocinadoresAdmPage(HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         String redirecionamento = verificarSessao(session, redirectAttributes);

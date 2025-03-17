@@ -23,9 +23,10 @@
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
-    <title>Eventos</title>
+    <title>Black Belts</title>
 </head>
-<body data-page="eventosPub">
+
+<body data-page="blackBeltsPub">
     <!--INICIO NAV-->
     <div class="div-top-publica">
         <h1 class="titulo-h1">Federação Gaúcha de Kickboxing</h1>
@@ -49,7 +50,7 @@
                     <a th:href="@{/index}">Início</a>
                 </li>
                 <li>
-                    <a th:href="@{/eventosPub}" style="color: white;">Eventos</a>
+                    <a th:href="@{/eventosPub}">Eventos</a>
                 </li>
                 <li>
                     <a th:href="@{/filiadosPub}">Filiados</a>
@@ -64,7 +65,7 @@
                     <a th:href="@{/rankingPub}">Ranking</a>
                 </li>
                 <li>
-                    <a th:href="@{/blackBeltsPub}">Black Belts</a>
+                    <a th:href="@{/blackBeltsPub}" style="color: white;">Black Belts</a>
                 </li>
             </div>
         </div>
@@ -73,56 +74,7 @@
 
     <!--INICIO CONTEUDO-->
     <section class="container">
-        <!-- REGISTROS EVENTOS -->
-        <div class="div-calendario-h2" style="margin-top: 50px;">
-            <h2>Calendário 2025</h2>
-        </div>
-
-        <div class="conteiner-calendario">
-            <button onclick="filtrarEventos(1)">JAN</button>
-            <button onclick="filtrarEventos(2)">FEV</button>
-            <button onclick="filtrarEventos(3)">MAR</button>
-            <button onclick="filtrarEventos(4)">ABR</button>
-            <button onclick="filtrarEventos(5)">MAI</button>
-            <button onclick="filtrarEventos(6)">JUN</button>
-            <button onclick="filtrarEventos(7)">JUL</button>
-            <button onclick="filtrarEventos(8)">AGO</button>
-            <button onclick="filtrarEventos(9)">SET</button>
-            <button onclick="filtrarEventos(10)">OUT</button>
-            <button onclick="filtrarEventos(11)">NOV</button>
-            <button onclick="filtrarEventos(12)">DEZ</button>
-        </div>
-
-        <div class="conteiner-eventos">
-            <ul>
-                <li th:each="evento : ${eventos}">
-                    <img th:src="@{${evento.imagemEvento}}" alt="Imagem do evento"
-                         onclick="openModalImagemEvento(this.src)">
-
-                    <span th:text="${evento.nomeEvento}" class="span-nomeEvento"></span>
-                    <span th:text="${evento.descricaoEvento}" class="span-descricaoEvento"></span>
-
-                    <div class="data-evento">
-                        <span>Data:</span>
-                        <span th:text="${#temporals.format(evento.dataEvento, 'dd/MM/yyyy')}"></span>
-                    </div>
-                    <div class="hora-evento">
-                        <span>Hora:</span>
-                        <span th:text="${evento.horaEvento}"></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- INICIO MODAL IMAGEM EVENTO-->
-        <div id="imagemEventoModal" class="imagem-evento-modal">
-            <div class="imagem-evento-modal-content">
-                <span class="close-imagem-evento-modal" onclick="closeModalImagemEvento()">&times;</span>
-                <img id="imagemEventoModalImage" src="" alt="Imagem do evento" />
-            </div>
-        </div>
-        <!-- FIM MODAL IMAGEM EVENTO-->
-        <!-- REGISTROS EVENTOS-->
+        <h1>FAIXAS PRETAS</h1>
     </section>
     <!--FIM CONTEUDO-->
 
