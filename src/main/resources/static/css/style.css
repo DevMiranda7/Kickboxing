@@ -123,12 +123,6 @@ html, body {
 .nav-list-publica a:hover{
     color: white;
 }
-
-.nav-black-belts {
-    font-family: "Rubik Burned", system-ui;
-    font-weight: bold;
-    font-style: normal;
-}
 /* FIM NAV PUBLICA */
 
 /* INICIO NAV ADMINISTRACAO */
@@ -884,9 +878,8 @@ html, body {
     transform: scale(1.2);
 }
 
-
 .conteiner-eventos ul {
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -895,7 +888,7 @@ html, body {
     margin-top: 60px;
     margin-left: auto;
     margin-right: auto;
-    gap: 50px;
+    gap: 70px;
     flex-wrap: wrap;
 }
 
@@ -903,12 +896,22 @@ html, body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     margin-bottom: 20px;
-    flex: 1 1 calc(16.66% - 30px);
-    max-width: calc(16.66% - 30px);
+    flex: 1 1 calc(20% - 30px);
+    max-width: calc(20% - 30px);
     box-sizing: border-box;
-    text-align: center;
+}
+
+.div-img-data-evento {
+    display: flex;
+    flex-direction: row;
+}
+
+.div-dt-hora {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-left: 10px;
 }
 
 .conteiner-eventos img {
@@ -917,12 +920,6 @@ html, body {
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-}
-
-.conteiner-eventos img:hover {
-    transform: scale(1.2);
-    margin-bottom: 20px;
 }
 
 .span-nomeEvento {
@@ -936,32 +933,28 @@ html, body {
     font-size: 13px;
     font-style: italic;
     margin-top: 5px;
-    text-align: center;
     overflow: hidden;
-    width: 100%;
+    width: 94%;
+
 }
 
 .data-evento {
     font-size: 12px;
     display: flex;
-    justify-content: center;
     align-items: center;
     overflow: hidden;
     margin-top: 5px;
     gap: 5px;
     color: #006aff;
-    width: 100%;
 }
 
 .hora-evento {
     font-size: 12px;
     display: flex;
-    justify-content: center;
     align-items: center;
     overflow: hidden;
     gap: 5px;
     color: #006aff;
-    width: 100%;
 }
 
 .icon-lixo-eventos {
@@ -969,11 +962,12 @@ html, body {
     font-size: 20px;
     height: auto;
     cursor: pointer;
-    margin-top: 10px;
     border: none;
     background: none;
     outline: none;
     transition: transform 0.1s ease-in-out;
+    margin-bottom: 8px;
+    margin-right: 80px;
 }
 
 .icon-lixo-eventos:hover {

@@ -11,7 +11,6 @@
     <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Burned&display=swap" rel="stylesheet">
 
     <!-- Font Awesome para o ícone de menu -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -65,7 +64,7 @@
                     <a th:href="@{/rankingPub}">Ranking</a>
                 </li>
                 <li>
-                    <a th:href="@{/blackBeltsPub}" target="_blank" class="nav-black-belts">Black Belts</a>
+                    <a th:href="@{/blackBeltsPub}" target="_blank">Black Belts</a>
                 </li>
             </div>
         </div>
@@ -97,20 +96,26 @@
         <div class="conteiner-eventos">
             <ul>
                 <li th:each="evento : ${eventos}">
-                    <img th:src="@{${evento.imagemEvento}}" alt="Imagem do evento"
-                         onclick="openModalImagemEvento(this.src)">
+                    <div class="div-img-data-evento">
+                        <img th:src="@{${evento.imagemEvento}}" alt="Imagem do evento"
+                             onclick="openModalImagemEvento(this.src)">
+
+                        <div class="div-dt-hora">
+                            <div class="hora-evento">
+                                <span>Hora:</span>
+                                <span th:text="${evento.horaEvento}"></span>
+                            </div>
+
+                            <div class="data-evento">
+                                <span>Data:</span>
+                                <span th:text="${#temporals.format(evento.dataEvento, 'dd/MM/yyyy')}"></span>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <span th:text="${evento.nomeEvento}" class="span-nomeEvento"></span>
                     <span th:text="${evento.descricaoEvento}" class="span-descricaoEvento"></span>
-
-                    <div class="data-evento">
-                        <span>Data:</span>
-                        <span th:text="${#temporals.format(evento.dataEvento, 'dd/MM/yyyy')}"></span>
-                    </div>
-                    <div class="hora-evento">
-                        <span>Hora:</span>
-                        <span th:text="${evento.horaEvento}"></span>
-                    </div>
                 </li>
             </ul>
         </div>
