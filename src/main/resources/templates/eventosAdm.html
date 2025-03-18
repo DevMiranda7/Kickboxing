@@ -84,11 +84,11 @@
                 <div class="conteiner-cadastrar-eventos">
                 
                     <div class="div-cadastrar-eventos-text">
-                        <input type="text" id="nome-evento" name="nomeEvento" placeholder="Título" maxlength="70"
+                        <input type="text" id="nome-evento" name="nomeEvento" placeholder="Título"
                         class="ant-input custom-input-editar" required>
 
                         <textarea id="descricao-evento" name="descricaoEvento" placeholder="Descrição" 
-                        class="ant-input custom-input-text-area" maxlength="170" required></textarea>
+                        class="ant-input custom-input-text-area" required></textarea>
                     </div>
 
                     <div class="div-cadastrar-eventos-data">
@@ -136,31 +136,36 @@
         <div class="conteiner-eventos">
             <ul>
                 <li th:each="evento : ${eventos}">
-                    <img th:src="@{${evento.imagemEvento}}" alt="Imagem do evento"
-                         onclick="openModalImagemEvento(this.src)">
+                    <div class="div-img-data-evento">
+                        <img th:src="@{${evento.imagemEvento}}" alt="Imagem do evento"
+                             onclick="openModalImagemEvento(this.src)">
+
+                        <div class="div-dt-hora">
+                            <form th:id="'formExcluir_' + ${evento.idEvento}"
+                                  th:action="@{/eventos/{id}(id=${evento.idEvento})}"
+                                  method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+
+                                <button type="button" class="icon-lixo-eventos" th:attr="data-id=${evento.idEvento}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+
+                            <div class="hora-evento">
+                                <span>Hora:</span>
+                                <span th:text="${evento.horaEvento}"></span>
+                            </div>
+
+                            <div class="data-evento">
+                                <span>Data:</span>
+                                <span th:text="${#temporals.format(evento.dataEvento, 'dd/MM/yyyy')}"></span>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <span th:text="${evento.nomeEvento}" class="span-nomeEvento"></span>
                     <span th:text="${evento.descricaoEvento}" class="span-descricaoEvento"></span>
-
-                    <div class="data-evento">
-                        <span>Data:</span>
-                        <span th:text="${#temporals.format(evento.dataEvento, 'dd/MM/yyyy')}"></span>
-                    </div>
-                    <div class="hora-evento">
-                        <span>Hora:</span>
-                        <span th:text="${evento.horaEvento}"></span>
-                    </div>
-
-                    <form th:id="'formExcluir_' + ${evento.idEvento}"
-                          th:action="@{/eventos/{id}(id=${evento.idEvento})}"
-                          method="post">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <div>
-                            <button type="button" class="icon-lixo-eventos" th:attr="data-id=${evento.idEvento}">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </form>
                 </li>
             </ul>
         </div>

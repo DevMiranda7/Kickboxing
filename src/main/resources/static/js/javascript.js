@@ -194,33 +194,16 @@ function filtrarEventos(mes) {
             eventos.forEach(evento => {
                 let eventoItem = document.createElement("li");
 
+                let divImgDataEvento = document.createElement("div");
+                divImgDataEvento.classList.add("div-img-data-evento");
+
                 let img = document.createElement("img");
                 img.src = evento.imagemEvento;
                 img.alt = "Imagem do evento";
-                img.width = 200;
                 img.onclick = () => openModalImagemEvento(img.src);
 
-                let nomeSpan = document.createElement("span");
-                nomeSpan.textContent = evento.nomeEvento;
-                nomeSpan.classList.add("span-nomeEvento");
-
-                let descSpan = document.createElement("span");
-                descSpan.textContent = evento.descricaoEvento;
-                descSpan.classList.add("span-descricaoEvento");
-
-                let dataDiv = document.createElement("div");
-                dataDiv.classList.add("data-evento");
-                dataDiv.innerHTML = `<span>Data:</span> <span>${evento.dataEvento}</span>`;
-
-                let horaDiv = document.createElement("div");
-                horaDiv.classList.add("hora-evento");
-                horaDiv.innerHTML = `<span>Hora:</span> <span>${evento.horaEvento}</span>`;
-
-                eventoItem.appendChild(img);
-                eventoItem.appendChild(nomeSpan);
-                eventoItem.appendChild(descSpan);
-                eventoItem.appendChild(dataDiv);
-                eventoItem.appendChild(horaDiv);
+                let divDtHora = document.createElement("div");
+                divDtHora.classList.add("div-dt-hora");
 
                 if (isEventosAdm) {
                     let formExcluir = document.createElement("form");
@@ -233,7 +216,6 @@ function filtrarEventos(mes) {
                     inputHidden.name = "_method";
                     inputHidden.value = "DELETE";
 
-                    let divExcluir = document.createElement("div");
                     let btnExcluir = document.createElement("button");
                     btnExcluir.type = "button";
                     btnExcluir.classList.add("icon-lixo-eventos");
@@ -256,11 +238,36 @@ function filtrarEventos(mes) {
                         });
                     });
 
-                    divExcluir.appendChild(btnExcluir);
                     formExcluir.appendChild(inputHidden);
-                    formExcluir.appendChild(divExcluir);
-                    eventoItem.appendChild(formExcluir);
+                    formExcluir.appendChild(btnExcluir);
+                    divDtHora.appendChild(formExcluir);
                 }
+
+                let horaDiv = document.createElement("div");
+                horaDiv.classList.add("hora-evento");
+                horaDiv.innerHTML = `<span>Hora:</span> <span>${evento.horaEvento}</span>`;
+
+                let dataDiv = document.createElement("div");
+                dataDiv.classList.add("data-evento");
+                dataDiv.innerHTML = `<span>Data:</span> <span>${evento.dataEvento}</span>`;
+
+                divDtHora.appendChild(horaDiv);
+                divDtHora.appendChild(dataDiv);
+
+                divImgDataEvento.appendChild(img);
+                divImgDataEvento.appendChild(divDtHora);
+
+                let nomeSpan = document.createElement("span");
+                nomeSpan.textContent = evento.nomeEvento;
+                nomeSpan.classList.add("span-nomeEvento");
+
+                let descSpan = document.createElement("span");
+                descSpan.textContent = evento.descricaoEvento;
+                descSpan.classList.add("span-descricaoEvento");
+
+                eventoItem.appendChild(divImgDataEvento);
+                eventoItem.appendChild(nomeSpan);
+                eventoItem.appendChild(descSpan);
 
                 containerEventos.appendChild(eventoItem);
             });
