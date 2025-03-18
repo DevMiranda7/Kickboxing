@@ -181,8 +181,8 @@ public class MapearRotasController {
     }
 
     @GetMapping("/blackBeltsPub")
-    public String blackBeltsPubPage() {
-        return "blackBeltsPub";
+    public String blackBeltsPubPage(@RequestParam(defaultValue = "0") int pagina, Model model) {
+        return filiadoController.listarFiliadosBlackBeltsPub(pagina, model);
     }
 
     @GetMapping("/patrocinadoresAdm")

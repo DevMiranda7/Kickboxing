@@ -11,6 +11,9 @@
     <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Burned&display=swap" rel="stylesheet">
+
+    <link rel="preload" as="image" href="/images/fundo.png">
 
     <!-- Font Awesome para o ícone de menu -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -26,72 +29,60 @@
     <title>Black Belts</title>
 </head>
 
-<body data-page="blackBeltsPub">
-    <!--INICIO NAV-->
-    <div class="div-top-publica">
-        <h1 class="titulo-h1">Federação Gaúcha de Kickboxing</h1>
+<body data-page="blackBeltsPub" style="background-color: white;">
 
-        <div class="div-contato-publica">
-            <i class="fa-brands fa-instagram custon-icon-contato"></i>
-
-            <i class="fa-brands fa-facebook custon-icon-contato"></i>
-
-            <i class="fa-brands fa-whatsapp custon-icon-contato"></i>
-        </div>
-    </div>
-    <nav class="conteirner-nav-publica">
-        <div>
-            <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-nav-logo">
-        </div>
-
-        <div>
-            <div class="nav-list-publica">
-                <li>
-                    <a th:href="@{/index}">Início</a>
-                </li>
-                <li>
-                    <a th:href="@{/eventosPub}">Eventos</a>
-                </li>
-                <li>
-                    <a th:href="@{/filiadosPub}">Filiados</a>
-                </li>
-                <li>
-                    <a th:href="@{/professoresPub}">Professores</a>
-                </li>
-                <li>
-                    <a th:href="@{/academiasPub}">Academias</a>
-                </li>
-                <li>
-                    <a th:href="@{/rankingPub}">Ranking</a>
-                </li>
-                <li>
-                    <a th:href="@{/blackBeltsPub}" style="color: white;">Black Belts</a>
-                </li>
-            </div>
-        </div>
-    </nav>
-    <!--FIM NAV-->
 
     <!--INICIO CONTEUDO-->
-    <section class="container">
-        <h1>FAIXAS PRETAS</h1>
+    <section class="container-black ">
+        <div class="conteiner-black-belt">
+            <ul>
+                <li th:each="filiado : ${filiados}">
+                    <img th:src="@{${filiado.imagemFiliado}}" alt="Imagem do Faixa Preta" width="200"
+                         class="img-black-belt">
+
+                    <span th:text="${#strings.arraySplit(filiado.nomeFiliado, ' ')[0] + ' ' +
+                        (#strings.arraySplit(filiado.nomeFiliado, ' ').length > 1 ? #strings.arraySplit(filiado.nomeFiliado, ' ')[1] : '')}"
+                        class="span-black-belt">
+                    </span>
+
+                    <span th:text="${filiado.graduacaoFiliado}" class="span-black-belt-nome"
+                          th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' : 'Preta'}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="pagination-black-belts" th:if="${totalPaginas > 1}">
+            <ul>
+                <!-- Botão << -->
+                <li th:if="${paginaAtual > 0}">
+                    <a th:href="@{/blackBeltsPub(pagina=0)}">&lt;&lt;</a>
+                </li>
+
+                <!-- Botão < -->
+                <li th:if="${paginaAtual > 0}">
+                    <a th:href="'/blackBeltsPub?pagina=' + (${paginaAtual} - 1)">&lt;</a>
+                </li>
+
+                <!-- Páginas limitadas a 5 -->
+                <li th:each="i : ${#numbers.sequence(0, totalPaginas - 1)}"
+                    th:if="${i >= paginaAtual - 2 && i <= paginaAtual + 2}"
+                    th:classappend="${i == paginaAtual ? 'active' : ''}">
+                    <a th:href="'/blackBeltsPub?pagina=' + ${i}">[[${i + 1}]]</a>
+                </li>
+
+                <!-- Botão > -->
+                <li th:if="${paginaAtual < totalPaginas - 1}">
+                    <a th:href="'/blackBeltsPub?pagina=' + (${paginaAtual} + 1)">&gt;</a>
+                </li>
+
+                <!-- Botão >> -->
+                <li th:if="${paginaAtual < totalPaginas - 1}">
+                    <a th:href="'/blackBeltsPub?pagina=' + (${totalPaginas - 1})">&gt;&gt;</a>
+                </li>
+            </ul>
+        </div>
     </section>
     <!--FIM CONTEUDO-->
-
-    <!--INICIO RODAPÉ -->
-    <footer>
-        <div class="div-footer-logo">
-            <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-footer-logo">
-            <a href="https://mycodinghub.tech/" target="_blank">
-                <img th:src="@{/images/logo-mycoding.png}" alt="Logo da My Coding" class="img-footer-logo-mycoding">
-            </a>
-        </div>
-
-        <div>
-            <p>Todos os direitos reservados!</p>
-        </div>
-    </footer>
-    <!--FIM RODAPÉ -->
 
     <script th:src="@{/js/javascript.js}"></script>
 </body>

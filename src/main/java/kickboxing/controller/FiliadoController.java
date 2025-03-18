@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Controller
@@ -25,7 +26,7 @@ public class FiliadoController {
 
     @GetMapping("/listarFiliadosPub")
     public String listarFiliadosPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 5;
+        int tamanhoPagina = 50;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Filiado> todosFiliados = filiadoService.listarFiliados();
@@ -47,7 +48,7 @@ public class FiliadoController {
 
     @GetMapping("/listarFiliados")
     public String listarFiliados(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 5;
+        int tamanhoPagina = 50;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Filiado> todosFiliados = filiadoService.listarFiliados();
@@ -65,6 +66,20 @@ public class FiliadoController {
         model.addAttribute("totalPaginas", paginaFiliados.getTotalPages());
 
         return "filiadosAdm";
+    }
+
+    @GetMapping("/listarFiliadosBlackBeltsPub")
+    public String listarFiliadosBlackBeltsPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
+        int tamanhoPagina = 10;
+        Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
+
+        Page<Filiado> paginaFiliados = filiadoService.listarFiliadosBlackBeltsPaginados(pageable);
+
+        model.addAttribute("filiados", paginaFiliados.getContent());
+        model.addAttribute("paginaAtual", pagina);
+        model.addAttribute("totalPaginas", paginaFiliados.getTotalPages());
+
+        return "blackBeltsPub";
     }
 
     @PostMapping("/criarFiliado")
