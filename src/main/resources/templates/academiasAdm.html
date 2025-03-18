@@ -126,7 +126,7 @@
 
                 <input type="text" class="ant-input custon-input-nome-pesquisa" id="input-nome" placeholder="Nome da academia">
 
-                <select class="ant-input" name="opcoes-cidades" id="select-cidade">
+                <select class="ant-input custon-input-nome-selecionar" name="opcoes-cidades" id="select-cidade">
                     <option value="">Selecionar Cidade</option>
                     <option th:each="cidade : ${cidades}" th:value="${cidade}" th:text="${cidade}"></option>
                 </select>
@@ -169,7 +169,7 @@
                           method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <div>
-                            <button type="button" class="icon-lixo-eventos" th:attr="data-id=${academia.idAcademia}">
+                            <button type="button" class="icon-lixo-academias" th:attr="data-id=${academia.idAcademia}">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>

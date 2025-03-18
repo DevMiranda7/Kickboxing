@@ -369,7 +369,7 @@ function pesquisarAcademias() {
 
                     let btnExcluir = document.createElement("button");
                     btnExcluir.type = "button";
-                    btnExcluir.classList.add("icon-lixo-eventos");
+                    btnExcluir.classList.add("icon-lixo-academias");
                     btnExcluir.setAttribute("data-id", academia.idAcademia);
                     btnExcluir.innerHTML = `<i class="fa-solid fa-trash"></i>`;
 
