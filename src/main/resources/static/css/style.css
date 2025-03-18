@@ -84,6 +84,7 @@ html, body {
     transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
 }
 
+.custon-icon-contato-belt:hover,
 .custon-icon-contato:hover {
     transform: scale(1.2);
 }
@@ -94,7 +95,7 @@ html, body {
         #c60c30 33.33%, #c60c30 66.66%,
         #ffcc29 66.66%
     );
-    height: 80px;
+    height: 70px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -122,6 +123,12 @@ html, body {
 .nav-list-publica a:hover{
     color: white;
 }
+
+.nav-black-belts {
+    font-family: "Rubik Burned", system-ui;
+    font-weight: bold;
+    font-style: normal;
+}
 /* FIM NAV PUBLICA */
 
 /* INICIO NAV ADMINISTRACAO */
@@ -131,7 +138,7 @@ html, body {
         #c60c30 33.33%, #c60c30 66.66%,
         #ffcc29 66.66%
     );
-    height: 80px;
+    height: 70px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -210,6 +217,122 @@ html, body {
 }
 /* FIM NAV ADMINISTRACAO */
 
+/* INICIO REGISTRO BLACK BELT */
+.container-black {
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    background-image: url('/images/fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.conteiner-black-belt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.conteiner-black-belt ul {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    list-style: none;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.conteiner-black-belt li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 calc(20% - 60px);
+    max-width: calc(20% - 60px);
+    box-sizing: border-box;
+    min-width: 200px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1.0s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.img-black-belt {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 5px solid black;
+    padding: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+.span-black-belt {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 18px !important;
+    font-weight: bold;
+}
+
+.span-black-belt-nome {
+    font-size: 12px;
+}
+/* INICIO REGISTRO BLACK BELT */
+
+/* PAGINATION BLACK BELTS */
+.pagination-black-belts {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-black-belts ul {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+}
+
+.pagination-black-belts li {
+    margin: 0;
+}
+
+.pagination-black-belts a {
+    padding: 4px 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.pagination-black-belts a:hover {
+    background-color: red;
+}
+
+.pagination-black-belts .active a {
+    background-color: red;
+    cursor: default;
+}
+
+.pagination-black-belts li a {
+    cursor: pointer;
+}
+/* PAGINATION BLACK BELTS */
+/* FIM NAV BLACK BELT */
 
 /* INICIO CONTEUDO */
 
@@ -1848,9 +1971,7 @@ th:nth-child(10), td:nth-child(10) { /* Status */
 }
 
 .Preta-Coral {
-    background-color: black;
-    border: 1.5px solid red;
-    box-shadow: 0 0 25px red;
+    background: linear-gradient(135deg, black 70%, red 30%);
 }
 
 .Amarela,

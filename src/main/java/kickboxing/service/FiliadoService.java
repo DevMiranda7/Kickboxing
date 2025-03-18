@@ -29,6 +29,10 @@ public class FiliadoService {
         return filiadoRepository.findAll(Sort.by(Sort.Order.asc("nomeFiliado")));
     }
 
+    public Page<Filiado> listarFiliadosBlackBeltsPaginados(Pageable pageable) {
+        return filiadoRepository.findBlackBelts(pageable);
+    }
+
     public List<Filiado> pesquisarFiliados(String cidade, String nome, String registro, String tipoFaixa) {
         Specification<Filiado> spec = FiliadoSpecification.filtrarFiliados(cidade, nome, registro, tipoFaixa);
         return filiadoRepository.findAll(spec);
