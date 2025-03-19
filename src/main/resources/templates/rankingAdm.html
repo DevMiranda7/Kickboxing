@@ -74,7 +74,7 @@
     <!--INICIO CONTEUDO-->
     <section class="container">
         <div class="conteiner-modalidades">
-            <button type="button" class="ant-input btn-modalidade-light">Light Combat</button>
+            <button type="button" class="ant-input btn-modalidade-light">Light Contact</button>
             <button type="button" class="ant-input btn-modalidade-kick">Kick Light</button>
             <button type="button" class="ant-input btn-modalidade-point">Point Fight</button>
             <button type="button" class="ant-input btn-modalidade-full">Full Contact</button>
@@ -87,24 +87,24 @@
         <div id="cabecalho-light" class="div-cabecalho-modalidade">
             <div class="conteiner-info-cabecalho-ranking">
                 <div class="div-info-cabecalho">
-                    <h2>Light Combat</h2>
-                    <i class="fa-solid fa-plus icon-criar" onclick="openModalLightCombat()"></i>
+                    <h2>Light Contact</h2>
+                    <i class="fa-solid fa-plus icon-criar" onclick="openModalLightContact()"></i>
                 </div>
 
                 <table class="table-ranking">
                     <tbody>
-                        <tr th:each="lightCombat, iterStat : ${lightCombats}">
+                        <tr th:each="lightContact, iterStat : ${lightContacts}">
                             <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
-                            <td class="nome-ranking" th:text="${lightCombat.nomeLightCombat}"></td>
-                            <td class="pontos-ranking" th:text="${lightCombat.pontosLightCombat}"></td>
+                            <td class="nome-ranking" th:text="${lightContact.nomeLightContact}"></td>
+                            <td class="pontos-ranking" th:text="${lightContact.pontosLightContact}"></td>
 
                             <td class="lixo-ranking">
-                                <form th:id="'formExcluir_light_' + ${lightCombat.idLightCombat}"
-                                      th:action="@{/lightCombats/{id}(id=${lightCombat.idLightCombat})}"
+                                <form th:id="'formExcluir_light_' + ${lightContact.idLightContact}"
+                                      th:action="@{/lightContacts/{id}(id=${lightContact.idLightContact})}"
                                       method="post">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button type="button" class="icon-lixo-ranking"
-                                            th:attr="data-id='light_' + ${lightCombat.idLightCombat}">
+                                            th:attr="data-id='light_' + ${lightContact.idLightContact}">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
@@ -313,18 +313,18 @@
             </div>
         </div>
 
-        <!-- Modal Light Combat -->
-        <div id="lightCombatModal" class="modal-light-combat">
-            <div class="modal-light-combat-content">
-                <span class="close-light-combat" onclick="closeModalLightCombat()">&times;</span>
-                <h2>Light Combat</h2>
+        <!-- Modal Light Contact -->
+        <div id="lightContactModal" class="modal-light-contact">
+            <div class="modal-light-contact-content">
+                <span class="close-light-contact" onclick="closeModalLightContact()">&times;</span>
+                <h2>Light Contact</h2>
 
-                <form id="lightCombatForm" th:action="@{/pontosLightCombat}" method="post">
+                <form id="lightContactForm" th:action="@{/pontosLightContact}" method="post">
                     <div class="div-modal-modalidade">
-                        <input type="text" id="nome-light-combat" name="nomeLightCombat" placeholder="Nome do Filiado"
+                        <input type="text" id="nome-light-contact" name="nomeLightContact" placeholder="Nome do Filiado"
                                class="ant-input ant-input custom-input-editar" required>
 
-                        <input type="text" id="pontos-light-combat" name="pontosLightCombat"
+                        <input type="text" id="pontos-light-contact" name="pontosLightContact"
                                placeholder="Pontos" class="ant-input custom-input-pontos" required>
                     </div>
                     <div class="div-btn-cadastrar-pontos">
@@ -333,7 +333,7 @@
                 </form>
             </div>
         </div>
-        <!-- Modal Light Combat -->
+        <!-- Modal Light Contact -->
 
         <!-- INICIO MODAL Kick Light -->
         <div id="kickLightModal" class="modal-kick-light">

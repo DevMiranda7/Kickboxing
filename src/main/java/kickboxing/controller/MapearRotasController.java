@@ -34,7 +34,7 @@ public class MapearRotasController {
     private PatrocinadorController patrocinadorController;
 
     @Autowired
-    private LightCombatService lightCombatService;
+    private LightContactService lightContactService;
 
     @Autowired
     private KickLightService kickLightService;
@@ -125,8 +125,8 @@ public class MapearRotasController {
 
     @GetMapping("/rankingPub")
     public String rankingPub(Model model) {
-        List<LightCombat> lightCombats = lightCombatService.listarLightCombat();
-        model.addAttribute("lightCombats", lightCombats);
+        List<LightContact> lightContacts = lightContactService.listarLightContact();
+        model.addAttribute("lightContacts", lightContacts);
 
         List<KickLight> kicklights = kickLightService.listarKickLight();
         model.addAttribute("kicklights", kicklights);
@@ -156,8 +156,8 @@ public class MapearRotasController {
             return redirecionamento;
         }
 
-        List<LightCombat> lightCombats = lightCombatService.listarLightCombat();
-        model.addAttribute("lightCombats", lightCombats);
+        List<LightContact> lightContacts = lightContactService.listarLightContact();
+        model.addAttribute("lightContacts", lightContacts);
 
         List<KickLight> kicklights = kickLightService.listarKickLight();
         model.addAttribute("kicklights", kicklights);

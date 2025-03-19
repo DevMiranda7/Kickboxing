@@ -70,7 +70,7 @@ public class FiliadoController {
 
     @GetMapping("/listarFiliadosBlackBeltsPub")
     public String listarFiliadosBlackBeltsPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 10;
+        int tamanhoPagina = 8;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         Page<Filiado> paginaFiliados = filiadoService.listarFiliadosBlackBeltsPaginados(pageable);
