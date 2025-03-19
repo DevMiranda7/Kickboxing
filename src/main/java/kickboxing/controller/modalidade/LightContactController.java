@@ -1,6 +1,6 @@
 package kickboxing.controller.modalidade;
 
-import kickboxing.service.modalidade.LightCombatService;
+import kickboxing.service.modalidade.LightContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class LightCombatController {
+public class LightContactController {
 
     @Autowired
-    private LightCombatService lightCombatService;
+    private LightContactService lightContactService;
 
-    public LightCombatController(LightCombatService lightCombatService) {
-        this.lightCombatService = lightCombatService;
+    public LightContactController(LightContactService lightContactService) {
+        this.lightContactService = lightContactService;
     }
 
-    @PostMapping("/pontosLightCombat")
-    public String cadastrarLightCombat(@RequestParam String nomeLightCombat,
-                                       @RequestParam String pontosLightCombat,
+    @PostMapping("/pontosLightContact")
+    public String cadastrarLightContact(@RequestParam String nomeLightContact,
+                                       @RequestParam String pontosLightContact,
                                        RedirectAttributes redirectAttributes) {
         try {
-            lightCombatService.cadastrarLightCombat(nomeLightCombat, pontosLightCombat);
+            lightContactService.cadastrarLightContact(nomeLightContact, pontosLightContact);
             redirectAttributes.addFlashAttribute("successMessage", "Pontos cadastrados com sucesso!");
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
@@ -32,10 +32,10 @@ public class LightCombatController {
         return "redirect:/rankingAdm";
     }
 
-    @PostMapping("/lightCombats/{id}")
-    public String excluirLightCombat(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    @PostMapping("/lightContacts/{id}")
+    public String excluirLightContact(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
-            lightCombatService.excluirLightCombat(id);
+            lightContactService.excluirLightContact(id);
             redirectAttributes.addFlashAttribute("successMessage", "Excluído com sucesso!");
 
         } catch (Exception e) {

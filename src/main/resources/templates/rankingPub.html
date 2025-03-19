@@ -75,7 +75,7 @@
     <!--INICIO CONTEUDO-->
     <section class="container">
         <div class="conteiner-modalidades">
-            <button type="button" class="ant-input btn-modalidade-light">Light Combat</button>
+            <button type="button" class="ant-input btn-modalidade-light">Light Contact</button>
             <button type="button" class="ant-input btn-modalidade-kick">Kick Light</button>
             <button type="button" class="ant-input btn-modalidade-point">Point Fight</button>
             <button type="button" class="ant-input btn-modalidade-full">Full Contact</button>
@@ -88,15 +88,15 @@
         <div id="cabecalho-light" class="div-cabecalho-modalidade">
             <div class="conteiner-info-cabecalho-ranking">
                 <div class="div-info-cabecalho">
-                    <h2>Light Combat</h2>
+                    <h2>Light Contact</h2>
                 </div>
 
                 <table class="table-ranking">
                     <tbody>
-                    <tr th:each="lightCombat, iterStat : ${lightCombats}">
+                    <tr th:each="lightContact, iterStat : ${lightContacts}">
                         <td class="indice-ranking" th:text="${iterStat.index + 1}"></td>
-                        <td class="nome-ranking" th:text="${lightCombat.nomeLightCombat}"></td>
-                        <td class="pontos-ranking" th:text="${lightCombat.pontosLightCombat}"></td>
+                        <td class="nome-ranking" th:text="${lightContact.nomeLightContact}"></td>
+                        <td class="pontos-ranking" th:text="${lightContact.pontosLightContact}"></td>
                     </tr>
                     </tbody>
                 </table>

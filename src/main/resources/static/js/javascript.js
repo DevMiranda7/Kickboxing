@@ -773,12 +773,12 @@ function pesquisarFiliados() {
         .catch(error => console.error("Erro ao buscar filiados:", error));
 }
 
-function openModalLightCombat() {
-    document.getElementById("lightCombatModal").style.display = "block";
+function openModalLightContact() {
+    document.getElementById("lightContactModal").style.display = "block";
 }
 
-function closeModalLightCombat() {
-    document.getElementById("lightCombatModal").style.display = "none";
+function closeModalLightContact() {
+    document.getElementById("lightContactModal").style.display = "none";
 }
 
 function openModalKickLight() {
@@ -830,7 +830,7 @@ function closeModalKBCombat() {
 }
 
 window.onclick = function (event) {
-    let lightCombatModal = document.getElementById("lightCombatModal");
+    let lightContactModal = document.getElementById("lightContactModal");
     let kickLightModal = document.getElementById("kickLightModal");
     let pointFightModal = document.getElementById("pointFightModal");
     let fullContactModal = document.getElementById("fullContactModal");
@@ -839,7 +839,7 @@ window.onclick = function (event) {
     let KBCombatModal = document.getElementById("KBCombatModal");
 
     if (event.target === pointFightModal) {
-        closeModalLightCombat();
+        closeModalLightContact();
     }
 
     if (event.target === kickLightModal) {

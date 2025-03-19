@@ -212,13 +212,91 @@ html, body {
 /* INICIO REGISTRO BLACK BELT */
 .container-black {
     display: flex;
-    flex-direction: column;
     background-color: #000;
     background-image: url('/images/fundo.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
+}
+
+.separator-faixa {
+    width: 6px;
+    height: 100vh;
+    background-color: black;
+    margin-left: 60px;
+    margin-right: 30px;
+    background: linear-gradient(45deg,
+        #009739 33.33%,
+        #c60c30 33.33%, #c60c30 66.66%,
+        #ffcc29 66.66%
+    );
+}
+
+.separator-faixa2 {
+    width: 6px;
+    height: 100vh;
+    background-color: black;
+    margin-left: 30px;
+    background: linear-gradient(45deg,
+        #009739 33.33%,
+        #c60c30 33.33%, #c60c30 66.66%,
+        #ffcc29 66.66%
+    );
+}
+
+.div-registro-faixa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg,
+        #009739 33.33%,
+        #c60c30 33.33%, #c60c30 66.66%,
+        #ffcc29 66.66%
+    );
+    height: 100vh;
+    width: 9rem;
+    max-width: 9rem;
+    min-width: 9rem;
+    box-sizing: border-box;
+}
+
+.info-faixa-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-faixa-h {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.registro-faixa-img-logo {
+    width: 250px;
+    height: auto;
+    margin-bottom: 60px;
+    z-index: 10;
+}
+
+.info-faixa-h h1 {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    color: black;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 40px;
+    font-size: 40px;
+    font-family: "Reggae One", sans-serif;
+    font-weight: bold;
+
+}
+
+.div-black-belt-registro {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .conteiner-black-belt {
@@ -236,7 +314,7 @@ html, body {
     list-style: none;
     padding: 0;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 150px;
     gap: 30px;
     flex-wrap: wrap;
 }
@@ -245,8 +323,8 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1 1 calc(20% - 60px);
-    max-width: calc(20% - 60px);
+    flex: 1 1 calc(10% - 80px);
+    max-width: calc(10% - 80px);
     box-sizing: border-box;
     min-width: 200px;
         opacity: 0;
@@ -266,8 +344,8 @@ html, body {
 }
 
 .img-black-belt {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     object-fit: cover;
     border: 5px solid black;
     padding: 5px;
@@ -290,6 +368,7 @@ html, body {
 .pagination-black-belts {
     display: flex;
     justify-content: center;
+    margin-right: 100px;
 }
 
 .pagination-black-belts ul {
@@ -323,10 +402,19 @@ html, body {
 .pagination-black-belts li a {
     cursor: pointer;
 }
-/* PAGINATION BLACK BELTS */
-/* FIM NAV BLACK BELT */
 
-/* INICIO CONTEUDO */
+.faixa-preta-frase {
+    position: fixed;
+    bottom: 5px;
+    right: 50px;
+    font-size: 28px;
+    color: white;
+    font-style: italic;
+    font-family: 'Dancing Script', cursive; /* Usando a fonte cursiva */
+}
+
+/* PAGINATION BLACK BELTS */
+/* FIM CONTEUDO */
 
 /* LOGIN ADMNISTRATIVA */
 #loginAdmin {
@@ -2371,14 +2459,14 @@ table .lixo-ranking {
 }
 /* Tabela */
 
-/* MODAL Light Combat */
+/* MODAL Light Contact */
 .modal-KBCombat,
 .modal-k1,
 .modal-low-kicks,
 .modal-full-contact,
 .modal-point-fight,
 .modal-kick-light,
-.modal-light-combat {
+.modal-light-contact {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -2395,7 +2483,7 @@ table .lixo-ranking {
 .modal-full-contact-content,
 .modal-point-fight-content,
 .modal-kick-light-content,
-.modal-light-combat-content {
+.modal-light-contact-content {
     background-color: #fff;
     margin: 10% auto;
     padding: 20px;
@@ -2411,7 +2499,7 @@ table .lixo-ranking {
 .close-full-contact,
 .close-point-fight,
 .close-kick-light,
-.close-light-combat {
+.close-light-contact {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -2425,10 +2513,10 @@ table .lixo-ranking {
 .close-full-contact:hover,
 .close-point-fight:hover,
 .close-kick-light:hover,
-.close-light-combat:hover {
+.close-light-contact:hover {
     color: #000;
 }
-/* MODAL Light Combat */
+/* MODAL Light contact */
 
 .div-modal-modalidade {
     display: flex;
