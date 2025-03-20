@@ -39,36 +39,25 @@
             <i class="fa-brands fa-whatsapp custon-icon-contato"></i>
         </div>
     </div>
+
     <nav class="conteirner-nav-publica">
         <div>
             <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-nav-logo">
         </div>
 
-        <div>
+        <div class="nav-container">
             <div class="nav-list-publica">
-                <li>
-                    <a th:href="@{/index}">Início</a>
-                </li>
-                <li>
-                    <a th:href="@{/eventosPub}">Eventos</a>
-                </li>
-                <li>
-                    <a th:href="@{/filiadosPub}">Filiados</a>
-                </li>
-                <li>
-                    <a th:href="@{/professoresPub}">Professores</a>
-                </li>
-                <li>
-                    <a th:href="@{/academiasPub}"  style="color: white;">Academias</a>
-                </li>
-                <li>
-                    <a th:href="@{/rankingPub}">Ranking</a>
-                </li>
-                <li>
-                    <a th:href="@{/blackBeltsPub}" target="_blank">Black Belts</a>
-                </li>
+                <li><a th:href="@{/index}">Início</a></li>
+                <li><a th:href="@{/eventosPub}">Eventos</a></li>
+                <li><a th:href="@{/filiadosPub}">Filiados</a></li>
+                <li><a th:href="@{/professoresPub}">Professores</a></li>
+                <li><a th:href="@{/academiasPub}" style="color: #262626;">Academias</a></li>
+                <li><a th:href="@{/rankingPub}">Ranking</a></li>
+                <li><a th:href="@{/blackBeltsPub}" target="_blank">Black Belts</a></li>
             </div>
         </div>
+
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </nav>
     <!--FIM NAV-->
 
