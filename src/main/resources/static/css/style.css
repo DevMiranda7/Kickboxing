@@ -2936,4 +2936,51 @@ footer {
 
 /* PAGINA ADMINISTRACAO */
 
-/* INICIO RESPONSIVIDADE */
+/* PAGINA PATROCINADORES */
+@media (max-width: 960px) {
+    .conteiner-patrocinadores li {
+        flex: 1 1 calc(16.66% - 30px);
+        max-width: calc(16.66% - 30px);
+    }
+}
+
+@media (max-width: 760px) {
+    .conteiner-patrocinadores li {
+        flex: 1 1 calc(16.66% - 10px);
+        max-width: calc(16.66% - 10px);
+    }
+}
+
+@media (max-width: 620px) {
+    .conteiner-patrocinadores li {
+        flex: 1 1 calc(20.66% - 5px);
+        max-width: calc(20.66% - 5px);
+    }
+}
+
+@media (max-width: 500px) {
+    .conteiner-patrocinadores li {
+        flex: 1 1 calc(40.66% - 5px);
+        max-width: calc(40.66% - 5px);
+    }
+}
+
+@media (max-width: 720px) {
+    .conteiner-cadastrar-patrocinadores {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .custom-input-redirecionamento {
+        width: 270px;
+    }
+
+    .custom-input-upload-patrocinadores {
+        width: 280px;
+    }
+}
+/* PAGINA PATROCINADORES */
+
+/* FIM RESPONSIVIDADE */
