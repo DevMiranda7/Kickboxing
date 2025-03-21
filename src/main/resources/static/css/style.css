@@ -1487,6 +1487,8 @@ html, body {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 30px;
 }
 
 .conteiner-pesquisar-professores select {
@@ -1528,6 +1530,12 @@ html, body {
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+.custom-input-editar-professor {
+    width: 250px;
+    font-size: 14px;
+    border: 1px solid #aaa;
 }
 
 .div-p {
@@ -1812,6 +1820,8 @@ th:nth-child(9), td:nth-child(9) { /* Status */
     justify-content: center;
     align-items: flex-end;
     gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 30px;
 }
 
 .radio-margin {
@@ -1932,6 +1942,7 @@ th:nth-child(9), td:nth-child(9) { /* Status */
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    flex-wrap: wrap;
     gap: 20px;
     margin-top: 10px;
 }
@@ -2868,6 +2879,76 @@ footer {
 }
 /* NAV ADMINISTRACAO */
 
+/* PAGINA FILIADOS */
+
+@media (max-width: 1017px) {
+    .div-btn-pesquisar {
+        margin-top: 0;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 740px) {
+    .div-cadastrar-filiados-registro {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .div-cadastrar-filiados-cidade {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .div-cadastrar-filiados-upload {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 371px) {
+    .conteiner-pesquisar-filiados {
+        flex-direction: column;
+        align-items: flex-start
+    }
+}
+/* PAGINA FILIADOS */
+
+/* PAGINA PROFESSORES */
+@media (max-width: 670px) {
+    .div-cadastrar-professores-registro {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .div-cadastrar-professores-cidade {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .div-genero {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 470px) {
+    .conteiner-pesquisar-professores {
+        flex-direction: column;
+        align-items: flex-start
+    }
+}
+/* PAGINA PROFESSORES */
+
+/* PAGINA ACADEMIAS */
+@media (max-width: 630px) {
+    .conteiner-pesquisar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+/* PAGINA ACADEMIAS */
+
 /* PAGINA EVENTOS */
 .conteiner-cadastrar-eventos {
     width: 100%;
@@ -2962,7 +3043,6 @@ footer {
 /* PAGINA ADMINISTRACAO */
 
 /* PAGINA RANKING */
-
 @media (max-width: 830px) {
     .div-modal-modalidade {
         display: flex;
@@ -2996,8 +3076,6 @@ footer {
         font-size: 20px;
     }
 }
-
-
 /* PAGINA RANKING */
 
 /* PAGINA PATROCINADORES */
@@ -3046,17 +3124,4 @@ footer {
     }
 }
 /* PAGINA PATROCINADORES */
-
-/* PAGINA ACADEMIAS */
-@media (max-width: 630px) {
-    .conteiner-pesquisar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-/* PAGINA ACADEMIAS */
-
 /* FIM RESPONSIVIDADE */
