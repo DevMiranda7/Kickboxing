@@ -76,24 +76,24 @@
 
                     <!-- Botão < -->
                     <li th:if="${paginaAtual > 0}">
-                        <a th:href="'/blackBeltsPub?pagina=' + (${paginaAtual} - 1)">&lt;</a>
+                        <a th:href="@{/blackBeltsPub(pagina=${paginaAtual - 1})}">&lt;</a>
                     </li>
 
                     <!-- Páginas limitadas a 5 -->
                     <li th:each="i : ${#numbers.sequence(0, totalPaginas - 1)}"
                         th:if="${i >= paginaAtual - 2 && i <= paginaAtual + 2}"
                         th:classappend="${i == paginaAtual ? 'active' : ''}">
-                        <a th:href="'/blackBeltsPub?pagina=' + ${i}">[[${i + 1}]]</a>
+                        <a th:href="@{/blackBeltsPub(pagina=${i})}">[[${i + 1}]]</a>
                     </li>
 
                     <!-- Botão > -->
                     <li th:if="${paginaAtual < totalPaginas - 1}">
-                        <a th:href="'/blackBeltsPub?pagina=' + (${paginaAtual} + 1)">&gt;</a>
+                        <a th:href="@{/blackBeltsPub(pagina=${paginaAtual + 1})}">&gt;</a>
                     </li>
 
                     <!-- Botão >> -->
                     <li th:if="${paginaAtual < totalPaginas - 1}">
-                        <a th:href="'/blackBeltsPub?pagina=' + (${totalPaginas - 1})">&gt;&gt;</a>
+                        <a th:href="@{/blackBeltsPub(pagina=${totalPaginas - 1})}">&gt;&gt;</a>
                     </li>
                 </ul>
             </div>
