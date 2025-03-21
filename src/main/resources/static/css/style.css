@@ -980,6 +980,8 @@ html, body {
     align-items: center;
     margin-top: 5px;
     gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 20px;
 }
 
 .conteiner-calendario button {
@@ -1003,15 +1005,13 @@ html, body {
 .conteiner-eventos ul {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     list-style: none;
     padding: 0;
     margin-top: 60px;
-    margin-left: auto;
-    margin-right: auto;
-    gap: 70px;
-    flex-wrap: wrap;
+    gap: 30px;
 }
 
 .conteiner-eventos li {
@@ -1019,9 +1019,7 @@ html, body {
     flex-direction: column;
     justify-content: center;
     margin-bottom: 20px;
-    flex: 1 1 calc(20% - 30px);
-    max-width: calc(20% - 30px);
-    box-sizing: border-box;
+    max-width: 300px;
 }
 
 .div-img-data-evento {
@@ -1058,7 +1056,6 @@ html, body {
     font-style: italic;
     margin-top: 5px;
     overflow: hidden;
-    width: 94%;
     word-wrap: break-word;
     white-space: normal;
 }
@@ -1080,7 +1077,6 @@ html, body {
     overflow: hidden;
     gap: 5px;
     color: #006aff;
-
 }
 
 .icon-lixo-eventos {
@@ -2720,18 +2716,6 @@ footer {
         font-size: 14px;
     }
 
-    .custom-btn-perfil {
-        width: 54px;
-        font-size: 12px;
-    }
-
-    .custom-btn-sair {
-        width: 54px;
-        font-size: 12px;
-        margin-right: 20px;
-        margin-left: 20px;
-    }
-
     .titulo-h1 {
         font-size: 16px;
         margin-right: 20px;
@@ -2741,6 +2725,11 @@ footer {
 @media screen and (max-width: 1060px) {
     .div-perfil {
         margin-left: 55%;
+    }
+
+    .custom-btn-sair {
+        margin-right: 15px;
+        margin-left: 15px;
     }
 
     .nav-list-administracao a {
@@ -2845,18 +2834,6 @@ footer {
         margin-left: 5px;
     }
 
-    .custom-btn-perfil {
-        width: 45px;
-        font-size: 10px;
-    }
-
-    .custom-btn-sair{
-        width: 45px;
-        font-size: 10px;
-        margin-right: 10px;
-        margin-left: 10px;
-    }
-
     .menu-toggle {
         font-size: 20px;
         width: 40px;
@@ -2870,7 +2847,54 @@ footer {
         margin-top: 75px;
     }
 }
+
+@media (max-width: 370px) {
+    .img-nav-logo {
+        width: 100px;
+        margin-left: 5px;
+    }
+
+    .custom-btn-perfil {
+        width: 50px;
+        font-size: 12px;
+    }
+
+    .custom-btn-sair{
+        width: 50px;
+        font-size: 12px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
 /* NAV ADMINISTRACAO */
+
+/* PAGINA EVENTOS */
+.conteiner-cadastrar-eventos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .conteiner-cadastrar-eventos {
+        flex-direction:column;
+        align-items: center;
+    }
+
+    .div-cadastrar-eventos-upload {
+        flex-direction:column;
+    }
+
+    .div-cadastrar-eventos-text .custom-input-editar {
+         width: 250px;
+         font-size: 14px;
+         border: 1px solid #aaa;
+     }
+}
+
+/* PAGINA EVENTOS */
 
 /* PAGINA ADMINISTRACAO */
 @media (max-width: 900px) {
@@ -2912,12 +2936,10 @@ footer {
 @media (max-width: 450px) {
     .custom-input-editar {
         width: 150px;
-        height: 25px;
     }
 
     .custom-input {
         width: 150px;
-        height: 25px;
     }
 
     .close-editar-conta {
@@ -2949,12 +2971,6 @@ footer {
         gap: 20px;
         margin-top: 20px;
         flex-direction: column;
-    }
-}
-
-@media (max-width: 590px) {
-    .custom-input-pontos {
-        height: 25px;
     }
 }
 
@@ -3039,12 +3055,6 @@ footer {
         align-items: center;
         flex-direction: column;
         gap: 20px;
-    }
-}
-
-@media (max-width: 450px) {
-    .custom-input-telefone {
-        height: 25px;
     }
 }
 /* PAGINA ACADEMIAS */
