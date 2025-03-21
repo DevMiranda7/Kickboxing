@@ -2274,6 +2274,8 @@ th:nth-child(10), td:nth-child(10) { /* Status */
     width: 100%;
     gap: 20px;
     margin-top: 50px;
+    flex-wrap: wrap;
+    padding: 0 20px;
 }
 
 .btn-modalidade-light {
@@ -2510,8 +2512,6 @@ table .lixo-ranking {
     display: none;
     position: fixed;
     z-index: 1000;
-    left: 0;
-    top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
@@ -2524,8 +2524,11 @@ table .lixo-ranking {
 .modal-point-fight-content,
 .modal-kick-light-content,
 .modal-light-contact-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: #fff;
-    margin: 10% auto;
     padding: 20px;
     width: 50%;
     border-radius: 10px;
@@ -2935,6 +2938,51 @@ footer {
 }
 
 /* PAGINA ADMINISTRACAO */
+
+/* PAGINA RANKING */
+
+@media (max-width: 830px) {
+    .div-modal-modalidade {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-top: 20px;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 590px) {
+    .custom-input-pontos {
+        height: 25px;
+    }
+}
+
+@media (max-width: 440px) {
+
+    .modal-KBCombat-content h2,
+    .modal-k1-content h2,
+    .modal-low-kicks-content h2,
+    .modal-full-contact-content h2,
+    .modal-point-fight-content h2,
+    .modal-kick-light-content h2,
+    .modal-light-contact-content h2 {
+        font-size: 15px;
+    }
+
+    .close-KBCombat,
+    .close-k1,
+    .close-low-kicks,
+    .close-full-contact,
+    .close-point-fight,
+    .close-kick-light,
+    .close-light-contact {
+        font-size: 20px;
+    }
+}
+
+
+/* PAGINA RANKING */
 
 /* PAGINA PATROCINADORES */
 @media (max-width: 960px) {
