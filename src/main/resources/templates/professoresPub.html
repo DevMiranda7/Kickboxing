@@ -80,58 +80,60 @@
             </div>
         </form>
 
-        <div class="conteiner-professores">
-            <table>
-                <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Registro</th>
-                    <th>Nome</th>
-                    <th>Data de Nascimento</th>
-                    <th>M/F</th>
-                    <th>Cidade</th>
-                    <th>Graduação</th>
-                    <th>Equipe</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
+        <div id="conteiner-tabela-registro">
+            <div class="conteiner-professores">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Registro</th>
+                        <th>Nome</th>
+                        <th>Data de Nascimento</th>
+                        <th>M/F</th>
+                        <th>Cidade</th>
+                        <th>Graduação</th>
+                        <th>Equipe</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                <tr th:each="professor : ${professores}">
-                    <td>
-                        <img th:src="@{${professor.imagemProfessor}}" alt="Imagem do professor"
-                             th:attr="data-id=${professor.idProfessor},
-                                     data-nome=${professor.nomeProfessor},
-                                     data-registro=${professor.registroProfessor},
-                                     data-cidade=${professor.cidadeProfessor},
-                                     data-genero=${professor.generoProfessor},
-                                     data-graduacao=${professor.graduacaoProfessor},
-                                     data-graduado=${professor.graduadoEm},
-                                     data-equipe=${professor.equipeProfessor},
-                                     data-nascimento=${professor.nascimentoProfessor}"
-                             onclick="openModalImagemProfessor(this)" style="border-radius: 10px;">
-                    </td>
+                    <tbody>
+                    <tr th:each="professor : ${professores}">
+                        <td>
+                            <img th:src="@{${professor.imagemProfessor}}" alt="Imagem do professor"
+                                 th:attr="data-id=${professor.idProfessor},
+                                         data-nome=${professor.nomeProfessor},
+                                         data-registro=${professor.registroProfessor},
+                                         data-cidade=${professor.cidadeProfessor},
+                                         data-genero=${professor.generoProfessor},
+                                         data-graduacao=${professor.graduacaoProfessor},
+                                         data-graduado=${professor.graduadoEm},
+                                         data-equipe=${professor.equipeProfessor},
+                                         data-nascimento=${professor.nascimentoProfessor}"
+                                 onclick="openModalImagemProfessor(this)" style="border-radius: 10px;">
+                        </td>
 
-                    <td th:text="${professor.registroProfessor}"></td>
-                    <td th:text="${professor.nomeProfessor}"></td>
-                    <td th:text="${#temporals.format(professor.nascimentoProfessor, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${professor.generoProfessor == 'Masculino' ? 'M' : (professor.generoProfessor == 'Feminino' ? 'F' : '')}"></td>
-                    <td th:text="${professor.cidadeProfessor}"></td>
+                        <td th:text="${professor.registroProfessor}"></td>
+                        <td th:text="${professor.nomeProfessor}"></td>
+                        <td th:text="${#temporals.format(professor.nascimentoProfessor, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${professor.generoProfessor == 'Masculino' ? 'M' : (professor.generoProfessor == 'Feminino' ? 'F' : '')}"></td>
+                        <td th:text="${professor.cidadeProfessor}"></td>
 
-                    <td>
-                                <span th:text="${professor.graduacaoProfessor}"
-                                      th:classappend="${professor.graduacaoProfessor.contains('Coral') ? 'Preta-Coral' : 'Preta'}"></span>
-                    </td>
+                        <td>
+                                    <span th:text="${professor.graduacaoProfessor}"
+                                          th:classappend="${professor.graduacaoProfessor.contains('Coral') ? 'Preta-Coral' : 'Preta'}"></span>
+                        </td>
 
-                    <td th:text="${professor.equipeProfessor}"></td>
+                        <td th:text="${professor.equipeProfessor}"></td>
 
-                    <td
-                            th:classappend="${professor.statusProfessor == 'Ativo' ? 'status-ativo' : (professor.statusProfessor == 'Inativo' ? 'status-inativo' : '')}">
-                        <span th:text="${professor.statusProfessor}"></span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        <td
+                                th:classappend="${professor.statusProfessor == 'Ativo' ? 'status-ativo' : (professor.statusProfessor == 'Inativo' ? 'status-inativo' : '')}">
+                            <span th:text="${professor.statusProfessor}"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="pagination" th:if="${totalPaginas > 1}">

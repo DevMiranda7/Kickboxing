@@ -2938,10 +2938,48 @@ footer {
 /* PAGINA FILIADOS */
 
 /* PAGINA PROFESSORES */
+@media (max-width: 1015px) {
+    .conteiner-professores th {
+        font-size: 14px;
+        height: 65px;
+        padding: 6px;
+    }
+
+    .conteiner-professores td {
+        font-size: 11px;
+        padding: 8px;
+    }
+
+    .imagem-tabela {
+        width: 65px !important;
+        height: 65px !important;
+    }
+
+    th:nth-child(1), td:nth-child(1) {
+        width: 80px;
+    }
+}
+
+@media (max-width: 883px) {
+    div#conteiner-tabela-registro {
+        overflow-x: auto;
+    }
+
+    div#conteiner-tabela-registro .conteiner-professores {
+        display: block;
+        width: max-content;
+    }
+
+    div#conteiner-tabela-registro table {
+        width: 100%;
+    }
+}
+
 @media (max-width: 670px) {
     .conteiner-cadastrar-professores {
         align-items: flex-start;
         margin-left: 50px;
+        width: 0%;
     }
 
     .div-cadastrar-professores-registro {
