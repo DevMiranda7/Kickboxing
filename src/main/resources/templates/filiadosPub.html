@@ -122,68 +122,69 @@
             </div>
         </form>
 
-        <div class="conteiner-filiados">
-            <table>
-                <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Registro</th>
-                    <th>Nome</th>
-                    <th>Data de Nascimento</th>
-                    <th>M/F</th>
-                    <th>Cidade</th>
-                    <th>Graduação</th>
-                    <th>Academia</th>
-                    <th>Responsável</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
+        <div id="conteiner-tabela-registro-filiados">
+            <div class="conteiner-filiados">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Registro</th>
+                        <th>Nome</th>
+                        <th>Data de Nascimento</th>
+                        <th>M/F</th>
+                        <th>Cidade</th>
+                        <th>Graduação</th>
+                        <th>Academia</th>
+                        <th>Responsável</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                <tr th:each="filiado : ${filiados}">
-                    <td>
-                        <img th:src="@{${filiado.imagemFiliado}}" alt="Imagem do filiado"
-                             th:attr="data-id=${filiado.idFiliado},
-                                  data-registro=${filiado.registroFiliado},
-                                  data-nome=${filiado.nomeFiliado},
-                                  data-cidade=${filiado.cidadeFiliado},
-                                  data-academia=${filiado.academiaFiliado},
-                                  data-responsavel=${filiado.responsavelFiliado},
-                                  data-genero=${filiado.generoFiliado},
-                                  data-graduado=${filiado.graduadoEm},
-                                  data-graduacao=${filiado.graduacaoFiliado}"
-                             onclick="openModalImagemFiliado(this)" style="border-radius: 10px;">
+                    <tbody>
+                    <tr th:each="filiado : ${filiados}">
+                        <td>
+                            <img th:src="@{${filiado.imagemFiliado}}" alt="Imagem do filiado"
+                                 th:attr="data-id=${filiado.idFiliado},
+                                      data-registro=${filiado.registroFiliado},
+                                      data-nome=${filiado.nomeFiliado},
+                                      data-cidade=${filiado.cidadeFiliado},
+                                      data-academia=${filiado.academiaFiliado},
+                                      data-responsavel=${filiado.responsavelFiliado},
+                                      data-genero=${filiado.generoFiliado},
+                                      data-graduado=${filiado.graduadoEm},
+                                      data-graduacao=${filiado.graduacaoFiliado}"
+                                 onclick="openModalImagemFiliado(this)" style="border-radius: 10px;" class="imagem-tabela">
+                        </td>
 
-                    </td>
+                        <td th:text="${filiado.registroFiliado}"></td>
+                        <td th:text="${filiado.nomeFiliado}"></td>
+                        <td th:text="${#temporals.format(filiado.nascimentoFiliado, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${filiado.generoFiliado == 'Masculino' ? 'M' : (filiado.generoFiliado == 'Feminino' ? 'F' : '')}"></td>
+                        <td th:text="${filiado.cidadeFiliado}"></td>
 
-                    <td th:text="${filiado.registroFiliado}"></td>
-                    <td th:text="${filiado.nomeFiliado}"></td>
-                    <td th:text="${#temporals.format(filiado.nascimentoFiliado, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${filiado.generoFiliado == 'Masculino' ? 'M' : (filiado.generoFiliado == 'Feminino' ? 'F' : '')}"></td>
-                    <td th:text="${filiado.cidadeFiliado}"></td>
+                        <td>
+                                <span th:text="${filiado.graduacaoFiliado}"
+                                      th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' :
+                                                       (filiado.graduacaoFiliado.contains('Preta') ? 'Preta' :
+                                                       (filiado.graduacaoFiliado == 'Amarela' ? 'Amarela' :
+                                                       (filiado.graduacaoFiliado == 'Laranja' ? 'Laranja' :
+                                                       (filiado.graduacaoFiliado == 'Verde' ? 'Verde' :
+                                                       (filiado.graduacaoFiliado == 'Azul' ? 'Azul' :
+                                                       (filiado.graduacaoFiliado == 'Marrom' ? 'Marrom' : ''))))))}"></span>
+                        </td>
 
-                    <td>
-                            <span th:text="${filiado.graduacaoFiliado}"
-                                  th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' :
-                                                   (filiado.graduacaoFiliado.contains('Preta') ? 'Preta' :
-                                                   (filiado.graduacaoFiliado == 'Amarela' ? 'Amarela' :
-                                                   (filiado.graduacaoFiliado == 'Laranja' ? 'Laranja' :
-                                                   (filiado.graduacaoFiliado == 'Verde' ? 'Verde' :
-                                                   (filiado.graduacaoFiliado == 'Azul' ? 'Azul' :
-                                                   (filiado.graduacaoFiliado == 'Marrom' ? 'Marrom' : ''))))))}"></span>
-                    </td>
+                        <td th:text="${filiado.academiaFiliado}"></td>
 
-                    <td th:text="${filiado.academiaFiliado}"></td>
+                        <td th:text="${filiado.responsavelFiliado}"></td>
 
-                    <td th:text="${filiado.responsavelFiliado}"></td>
-
-                    <td class="status-filiado"
-                        th:classappend="${filiado.statusFiliado == 'Ativo' ? 'status-ativo' : (filiado.statusFiliado == 'Inativo' ? 'status-inativo' : '')}">
-                        <span th:text="${filiado.statusFiliado}"></span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        <td class="status-filiado"
+                            th:classappend="${filiado.statusFiliado == 'Ativo' ? 'status-ativo' : (filiado.statusFiliado == 'Inativo' ? 'status-inativo' : '')}">
+                            <span th:text="${filiado.statusFiliado}"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="pagination" th:if="${totalPaginas > 1}">

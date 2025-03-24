@@ -243,7 +243,7 @@
             </div>
         </form>
 
-        <div id="conteiner-tabela-registro">
+        <div id="conteiner-tabela-registro-filiados">
             <div class="conteiner-filiados">
                 <table>
                     <thead>
@@ -274,8 +274,7 @@
                                   data-genero=${filiado.generoFiliado},
                                   data-graduado=${filiado.graduadoEm},
                                   data-graduacao=${filiado.graduacaoFiliado}"
-                                  onclick="openModalImagemFiliado(this)" style="border-radius: 10px;">
-
+                                  onclick="openModalImagemFiliado(this)" style="border-radius: 10px;" class="imagem-tabela">
                         </td>
 
                         <td th:text="${filiado.registroFiliado}"></td>

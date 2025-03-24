@@ -2941,6 +2941,42 @@ footer {
 }
 /* PAGINA FILIADOS */
 
+@media (max-width: 1115px) {
+    .conteiner-filiados th {
+        font-size: 14px;
+        height: 65px;
+        padding: 6px;
+    }
+
+    .conteiner-filiados td {
+        font-size: 11px;
+        padding: 8px;
+    }
+
+    .imagem-tabela {
+        width: 65px !important;
+        height: 65px !important;
+    }
+
+    th:nth-child(1), td:nth-child(1) {
+        width: 80px;
+    }
+}
+
+@media (max-width: 1030px) {
+    div#conteiner-tabela-registro-filiados {
+        overflow-x: auto;
+    }
+
+    div#conteiner-tabela-registro-filiados .conteiner-filiados {
+        display: block;
+        width: max-content;
+    }
+
+    div#conteiner-tabela-registro-filiados table {
+        width: 100%;
+    }
+}
 /* PAGINA PROFESSORES */
 @media (max-width: 1015px) {
     .conteiner-professores th {
