@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Controller
@@ -26,7 +26,7 @@ public class FiliadoController {
 
     @GetMapping("/listarFiliadosPub")
     public String listarFiliadosPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 50;
+        int tamanhoPagina = 3;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Filiado> todosFiliados = filiadoService.listarFiliados();
@@ -48,7 +48,7 @@ public class FiliadoController {
 
     @GetMapping("/listarFiliados")
     public String listarFiliados(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 50;
+        int tamanhoPagina = 3;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Filiado> todosFiliados = filiadoService.listarFiliados();
@@ -87,25 +87,32 @@ public class FiliadoController {
                                @RequestParam("nomeFiliado") String nomeFiliado,
                                @RequestParam("cidadeFiliado") String cidadeFiliado,
                                @RequestParam(value = "graduacaoFiliado", required = false) String graduacaoFiliado,
-                               @RequestParam("graduadoEm") LocalDate graduadoEm,
+                               @RequestParam("graduadoEm") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate graduadoEm,
                                @RequestParam("academiaFiliado") String academiaFiliado,
                                @RequestParam("responsavelFiliado") String responsavelFiliado,
-                               @RequestParam("nascimentoFiliado") LocalDate nascimentoFiliado,
+                               @RequestParam("nascimentoFiliado") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate nascimentoFiliado,
                                @RequestParam("generoFiliado") String generoFiliado,
                                @RequestParam("imagemFiliado") MultipartFile imagemFiliado,
                                RedirectAttributes redirectAttributes) {
         try {
 
             if (graduacaoFiliado == null || graduacaoFiliado.trim().isEmpty()) {
-                    throw new IllegalArgumentException("É obrigatório selecionar uma faixa de graduação.");
+                throw new IllegalArgumentException("É obrigatório selecionar uma faixa de graduação.");
             }
 
             if (graduacaoFiliado != null && (graduacaoFiliado.contains(",") || graduacaoFiliado.isEmpty())) {
                 throw new IllegalArgumentException("Selecione apenas uma faixa de graduação.");
             }
 
+            Integer parsedRegistroFiliado;
+            try {
+                parsedRegistroFiliado = Integer.parseInt(registroFiliado);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("O registro do filiado deve ser um número.");
+            }
+
             Filiado filiado = new Filiado();
-            filiado.setRegistroFiliado(registroFiliado);
+            filiado.setRegistroFiliado(parsedRegistroFiliado);
             filiado.setNomeFiliado(nomeFiliado);
             filiado.setCidadeFiliado(cidadeFiliado);
             filiado.setGraduacaoFiliado(graduacaoFiliado);
@@ -139,10 +146,17 @@ public class FiliadoController {
     public List<Filiado> pesquisarFiliados(
             @RequestParam(value = "opcoes-cidades-filiados", required = false) String cidade,
             @RequestParam(value = "nome-filiado", required = false) String nome,
-            @RequestParam(value = "registro-filiado", required = false) String registro,
+            @RequestParam(value = "registro-filiado", required = false) Integer registro,
             @RequestParam(value = "tipoFaixa", required = false) String tipoFaixa) {
+
+        System.out.println("Cidade: " + cidade);
+        System.out.println("Nome: " + nome);
+        System.out.println("Registro: " + registro);
+        System.out.println("Tipo Faixa: " + tipoFaixa);
+
         return filiadoService.pesquisarFiliados(cidade, nome, registro, tipoFaixa);
     }
+
 
     @PostMapping("/filiados/{id}")
     public String excluirFiliados(@PathVariable Long id, RedirectAttributes redirectAttributes) {
@@ -162,7 +176,7 @@ public class FiliadoController {
                                 @RequestParam("nomeFiliado") String nomeFiliado,
                                 @RequestParam("cidadeFiliado") String cidadeFiliado,
                                 @RequestParam(value = "graduacaoFiliado", required = false) String graduacaoFiliado,
-                                @RequestParam("graduadoEm") LocalDate graduadoEm,
+                                @RequestParam("graduadoEm") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate graduadoEm,
                                 @RequestParam("academiaFiliado") String academiaFiliado,
                                 @RequestParam("responsavelFiliado") String responsavelFiliado,
                                 @RequestParam("generoFiliado") String generoFiliado,
@@ -179,9 +193,16 @@ public class FiliadoController {
                 throw new IllegalArgumentException("Selecione apenas uma faixa de graduação.");
             }
 
+            Integer parsedRegistroFiliado;
+            try {
+                parsedRegistroFiliado = Integer.parseInt(registroFiliado);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("O registro do filiado deve ser um número.");
+            }
+
             Filiado filiado = filiadoService.buscarFiliadoPorId(idFiliado);
 
-            filiado.setRegistroFiliado(registroFiliado);
+            filiado.setRegistroFiliado(parsedRegistroFiliado);
             filiado.setNomeFiliado(nomeFiliado);
             filiado.setCidadeFiliado(cidadeFiliado);
             filiado.setGraduacaoFiliado(graduacaoFiliado);

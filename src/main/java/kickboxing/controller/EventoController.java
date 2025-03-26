@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -54,7 +55,10 @@ public class EventoController {
             Evento evento = new Evento();
             evento.setNomeEvento(nomeEvento);
             evento.setDescricaoEvento(descricaoEvento);
-            evento.setDataEvento(LocalDate.parse(dataEvento));
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            evento.setDataEvento(LocalDate.parse(dataEvento, formatter));
+
             evento.setHoraEvento(LocalTime.parse(horaEvento));
 
             eventoService.salvarEvento(evento, imagemEvento);
@@ -71,6 +75,7 @@ public class EventoController {
             return "redirect:/eventosAdm";
         }
     }
+
 
     @PostMapping("/eventos/{id}")
     public String excluirEvento(@PathVariable Long id, RedirectAttributes redirectAttributes) {

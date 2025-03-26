@@ -1,5 +1,6 @@
 package kickboxing.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,7 +15,7 @@ public class Professor {
     private long idProfessor;
 
     @Column(nullable = false)
-    private String registroProfessor;
+    private Integer registroProfessor;
 
     @Column(nullable = false)
     private String nomeProfessor;
@@ -25,7 +26,7 @@ public class Professor {
     @Column(nullable = true)
     private String graduacaoProfessor;
 
-    @Column
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate nascimentoProfessor;
 
     @Column(nullable = false)
@@ -37,7 +38,7 @@ public class Professor {
     @Column(nullable = false)
     private String generoProfessor;
 
-    @Column
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate graduadoEm;
 
     @Column(nullable = false)
@@ -51,11 +52,11 @@ public class Professor {
         this.idProfessor = idProfessor;
     }
 
-    public String getRegistroProfessor() {
+    public Integer getRegistroProfessor() {
         return registroProfessor;
     }
 
-    public void setRegistroProfessor(String registroProfessor) {
+    public void setRegistroProfessor(Integer registroProfessor) {
         this.registroProfessor = registroProfessor;
     }
 

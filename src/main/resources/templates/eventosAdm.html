@@ -21,6 +21,11 @@
     <!-- Sweet Alert Componentes UI -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- Importação do CSS e do JavaScript do Flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <title>Administração - Eventos</title>
@@ -82,11 +87,33 @@
                     </div>
 
                     <div class="div-cadastrar-eventos-data">
-                        <input type="date" id="data-evento" name="dataEvento" 
-                        class="ant-input ant-input custom-input-data" required>
+                        <input type="text" id="data-evento" name="dataEvento"
+                               class="ant-input ant-input custom-input-data" required placeholder="Data do Evento">
 
-                        <input type="time" id="hora-evento" name="horaEvento" 
-                        class="ant-input custom-input-hora" required>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                flatpickr("#data-evento", {
+                                    dateFormat: "d/m/Y",
+                                    locale: "pt"
+                                });
+                            });
+                        </script>
+
+                        <input type="text" id="hora-evento" name="horaEvento"
+                               class="ant-input custom-input-hora" required placeholder="Hora">
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                flatpickr("#hora-evento", {
+                                    enableTime: true,
+                                    noCalendar: true,
+                                    dateFormat: "H:i",
+                                    time_24hr: true,
+                                    locale: "pt"
+                                });
+                            });
+                        </script>
+
                     </div>
                 </div>
 

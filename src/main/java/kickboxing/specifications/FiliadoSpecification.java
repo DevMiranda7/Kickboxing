@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FiliadoSpecification {
 
-    public static Specification<Filiado> filtrarFiliados(String cidade, String nome, String registro, String tipoFaixa) {
+    public static Specification<Filiado> filtrarFiliados(String cidade, String nome, Integer registro, String tipoFaixa) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -20,8 +20,8 @@ public class FiliadoSpecification {
                 predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("nomeFiliado")), "%" + nome.toLowerCase() + "%"));
             }
 
-            if (registro != null && !registro.isEmpty()) {
-                predicates.add(criteriaBuilder.like(root.get("registroFiliado"), "%" + registro + "%"));
+            if (registro != null) {
+                predicates.add(criteriaBuilder.equal(root.get("registroFiliado"), registro));
             }
 
             if (tipoFaixa != null) {
