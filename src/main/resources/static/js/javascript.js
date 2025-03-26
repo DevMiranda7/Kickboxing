@@ -620,7 +620,13 @@ window.onclick = function(event) {
 };
 
 function formatDateToBrazilian(dateString) {
-    const date = new Date(dateString);
+    let date = new Date(dateString);
+
+    if (isNaN(date)) {
+        const parts = dateString.split('/');
+        date = new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
@@ -712,8 +718,18 @@ function pesquisarFiliados() {
                 tdStatus.textContent = filiado.statusFiliado;
                 tdStatus.classList.add(filiado.statusFiliado === "Ativo" ? "status-ativo" : "status-inativo");
 
-                // Verifica se está na página de administração antes de adicionar o botão de exclusão
-                if (document.body.classList.contains("pagina-filiadosAdm")) {
+                tr.appendChild(tdImg);
+                tr.appendChild(tdRegistro);
+                tr.appendChild(tdNome);
+                tr.appendChild(tdNascimento);
+                tr.appendChild(tdGenero);
+                tr.appendChild(tdCidade);
+                tr.appendChild(tdGraduacao);
+                tr.appendChild(tdAcademia);
+                tr.appendChild(tdResponsavel);
+                tr.appendChild(tdStatus);
+
+                if (document.body.getAttribute("data-page") === "pagina-filiadosAdm") {
                     let tdExcluir = document.createElement("td");
                     let formExcluir = document.createElement("form");
                     formExcluir.id = `formExcluir_${filiado.idFiliado}`;
@@ -755,17 +771,6 @@ function pesquisarFiliados() {
                     tdExcluir.appendChild(formExcluir);
                     tr.appendChild(tdExcluir);
                 }
-
-                tr.appendChild(tdImg);
-                tr.appendChild(tdRegistro);
-                tr.appendChild(tdNome);
-                tr.appendChild(tdNascimento);
-                tr.appendChild(tdGenero);
-                tr.appendChild(tdCidade);
-                tr.appendChild(tdGraduacao);
-                tr.appendChild(tdAcademia);
-                tr.appendChild(tdResponsavel);
-                tr.appendChild(tdStatus);
 
                 tbody.appendChild(tr);
             });

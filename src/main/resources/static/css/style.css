@@ -938,7 +938,7 @@ html, body {
 }
 
 .custom-input-data {
-    width: 160px;
+    width: 130px !important;
     font-size: 14px;
     border: 1px solid #aaa;
 }
@@ -950,7 +950,7 @@ html, body {
 }
 
 .custom-input-hora {
-    width: 100px;
+    width: 70px;
     font-size: 14px;
     border: 1px solid #aaa;
     justify-content: center;

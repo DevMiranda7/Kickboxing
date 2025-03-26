@@ -25,36 +25,39 @@ public class ProfessorService {
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/upload/professores";
 
     public List<Professor> listarProfessores() {
-        return professorRepository.findAll(Sort.by(Sort.Order.asc("nomeProfessor")));
+        return professorRepository.findAll(Sort.by(Sort.Order.asc("registroProfessor")));
     }
 
     public List<Professor> pesquisarProfessoresPorCidade(String cidade) {
         return professorRepository.findByCidadeProfessor(cidade)
                 .stream()
-                .sorted(Comparator.comparing(Professor::getNomeProfessor))
+                .sorted(Comparator.comparing(Professor::getRegistroProfessor))
                 .collect(Collectors.toList());
     }
 
     public List<Professor> pesquisarProfessoresPorNome(String nomeProfessor) {
         return professorRepository.findByNomeProfessor(nomeProfessor)
                 .stream()
-                .sorted(Comparator.comparing(Professor::getNomeProfessor))
+                .sorted(Comparator.comparing(Professor::getRegistroProfessor))
                 .collect(Collectors.toList());
     }
 
     public List<Professor> pesquisarProfessoresPorCidadeENome(String cidadeProfessor, String nomeProfessor) {
         return professorRepository.findByCidadeProfessorAndNomeProfessor(cidadeProfessor, nomeProfessor)
                 .stream()
-                .sorted(Comparator.comparing(Professor::getNomeProfessor))
+                .sorted(Comparator.comparing(Professor::getRegistroProfessor))
                 .collect(Collectors.toList());
     }
 
-    public List<Professor> pesquisarProfessoresPorRegistro(String registroProfessor) {
-        return professorRepository.findByRegistroProfessor(registroProfessor);
+    public List<Professor> pesquisarProfessoresPorRegistro(Integer registroProfessor) {
+        return professorRepository.findByRegistroProfessor(registroProfessor)
+                .stream()
+                .sorted(Comparator.comparing(Professor::getRegistroProfessor))
+                .collect(Collectors.toList());
     }
 
     public Page<Professor> listarProfessoresPaginados(Pageable pageable) {
-        Pageable pageableComOrdenacao = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Order.asc("nomeProfessor")));
+        Pageable pageableComOrdenacao = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Order.asc("registroProfessor")));
         return professorRepository.findAll(pageableComOrdenacao);
     }
 

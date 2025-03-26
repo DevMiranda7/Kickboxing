@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class ProfessorController {
 
     @GetMapping("/listarProfessoresPub")
     public String listarProfessoresPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 50;
+        int tamanhoPagina = 3;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Professor> todosProfessores = professorService.listarProfessores();
@@ -47,7 +48,7 @@ public class ProfessorController {
 
     @GetMapping("/listarProfessores")
     public String listarProfessores(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 50;
+        int tamanhoPagina = 3;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Professor> todosProfessores = professorService.listarProfessores();
@@ -72,20 +73,26 @@ public class ProfessorController {
                                  @RequestParam("nomeProfessor") String nomeProfessor,
                                  @RequestParam("cidadeProfessor") String cidadeProfessor,
                                  @RequestParam(value = "graduacaoProfessor", required = false) String graduacaoProfessor,
-                                 @RequestParam("graduadoEm") LocalDate graduadoEm,
+                                 @RequestParam("graduadoEm") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate graduadoEm,
                                  @RequestParam("equipeProfessor") String equipeProfessor,
-                                 @RequestParam("nascimentoProfessor") LocalDate nascimentoProfessor,
+                                 @RequestParam("nascimentoProfessor") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate nascimentoProfessor,
                                  @RequestParam("generoProfessor") String generoProfessor,
                                  @RequestParam("imagemProfessor") MultipartFile imagemProfessor,
                                  RedirectAttributes redirectAttributes) {
         try {
+            Integer parsedRegistroProfessor;
+            try {
+                parsedRegistroProfessor = Integer.parseInt(registroProfessor);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("O registro do professor deve ser um número.");
+            }
 
             if (graduacaoProfessor == null || graduacaoProfessor.trim().isEmpty()) {
                 throw new IllegalArgumentException("É obrigatório selecionar uma faixa de graduação.");
             }
 
             Professor professor = new Professor();
-            professor.setRegistroProfessor(registroProfessor);
+            professor.setRegistroProfessor(parsedRegistroProfessor);
             professor.setNomeProfessor(nomeProfessor);
             professor.setCidadeProfessor(cidadeProfessor);
             professor.setGraduacaoProfessor(graduacaoProfessor);
@@ -119,14 +126,14 @@ public class ProfessorController {
     public List<Professor> pesquisarProfessores(
             @RequestParam(value = "opcoes-cidades-professores", required = false) String cidadeProfessor,
             @RequestParam(value = "nome-professor", required = false) String nomeProfessor,
-            @RequestParam(value = "registro-professor", required = false) String registroProfessor) {
+            @RequestParam(value = "registro-professor", required = false) Integer registroProfessor) {
 
         if ((cidadeProfessor == null || cidadeProfessor.isEmpty())
                 && (nomeProfessor == null || nomeProfessor.isEmpty())
-                && (registroProfessor == null || registroProfessor.isEmpty())) {
+                && (registroProfessor == null)) {
             return professorService.listarProfessores();
 
-        } else if (registroProfessor != null && !registroProfessor.isEmpty()) {
+        } else if (registroProfessor != null) {
             return professorService.pesquisarProfessoresPorRegistro(registroProfessor);
 
         } else if (cidadeProfessor != null && !cidadeProfessor.isEmpty() && (nomeProfessor == null || nomeProfessor.isEmpty())) {
@@ -158,7 +165,7 @@ public class ProfessorController {
                                   @RequestParam("nomeProfessor") String nomeProfessor,
                                   @RequestParam("cidadeProfessor") String cidadeProfessor,
                                   @RequestParam(value = "graduacaoProfessor", required = false) String graduacaoProfessor,
-                                  @RequestParam("graduadoEm") LocalDate graduadoEm,
+                                  @RequestParam("graduadoEm") @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate graduadoEm,
                                   @RequestParam("equipeProfessor") String equipeProfessor,
                                   @RequestParam("generoProfessor") String generoProfessor,
                                   @RequestParam(value = "imagemProfessor", required = false) MultipartFile imagemProfessor,
@@ -170,9 +177,16 @@ public class ProfessorController {
                 throw new IllegalArgumentException("É obrigatório selecionar uma faixa de graduação.");
             }
 
+            Integer parsedRegistroProfessor;
+            try {
+                parsedRegistroProfessor = Integer.parseInt(registroProfessor);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("O registro do professor deve ser um número.");
+            }
+
             Professor professor = professorService.buscarProfessorPorId(idProfessor);
 
-            professor.setRegistroProfessor(registroProfessor);
+            professor.setRegistroProfessor(parsedRegistroProfessor);
             professor.setNomeProfessor(nomeProfessor);
             professor.setCidadeProfessor(cidadeProfessor);
             professor.setGraduacaoProfessor(graduacaoProfessor);

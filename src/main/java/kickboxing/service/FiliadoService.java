@@ -33,9 +33,9 @@ public class FiliadoService {
         return filiadoRepository.findBlackBelts(pageable);
     }
 
-    public List<Filiado> pesquisarFiliados(String cidade, String nome, String registro, String tipoFaixa) {
+    public List<Filiado> pesquisarFiliados(String cidade, String nome, Integer registro, String tipoFaixa) {
         Specification<Filiado> spec = FiliadoSpecification.filtrarFiliados(cidade, nome, registro, tipoFaixa);
-        return filiadoRepository.findAll(spec);
+        return filiadoRepository.findAll(spec, Sort.by(Sort.Order.asc("registroFiliado")));
     }
 
     public Filiado buscarFiliadoPorId(Long id) {
@@ -44,7 +44,7 @@ public class FiliadoService {
     }
 
     public Page<Filiado> listarFiliadosPaginados(Pageable pageable) {
-        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Order.asc("nomeFiliado")));
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Order.asc("registroFiliado")));
         return filiadoRepository.findAll(sortedPageable);
     }
 
