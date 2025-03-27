@@ -26,7 +26,7 @@ public class FiliadoController {
 
     @GetMapping("/listarFiliadosPub")
     public String listarFiliadosPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 3;
+        int tamanhoPagina = 30;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Filiado> todosFiliados = filiadoService.listarFiliados();
@@ -48,7 +48,7 @@ public class FiliadoController {
 
     @GetMapping("/listarFiliados")
     public String listarFiliados(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 3;
+        int tamanhoPagina = 30;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Filiado> todosFiliados = filiadoService.listarFiliados();

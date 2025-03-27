@@ -30,10 +30,12 @@
     <title>Black Belts</title>
 </head>
 
-<body data-page="blackBeltsPub" style="background-color: white;">
+<body data-page="blackBeltsPub" style="background-color: black;">
 
     <!--INICIO CONTEUDO-->
     <section class="container-black">
+
+        <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-logo-fundo">
 
         <div class="separator-faixa"></div>
 
@@ -49,6 +51,10 @@
 
         <div class="separator-faixa2"></div>
 
+        <div class="faixa-preta-frase">
+            <span class="texto-preto">O Faixa Preta é o Branca que nunca desistiu!</span>
+        </div>
+
         <div class="div-black-belt-registro">
             <div class="conteiner-black-belt">
                 <ul>
@@ -56,13 +62,15 @@
                         <img th:src="@{${filiado.imagemFiliado}}" alt="Imagem do Faixa Preta" width="200"
                              class="img-black-belt">
 
-                        <span th:text="${#strings.arraySplit(filiado.nomeFiliado, ' ')[0] + ' ' +
-                            (#strings.arraySplit(filiado.nomeFiliado, ' ').length > 1 ? #strings.arraySplit(filiado.nomeFiliado, ' ')[1] : '')}"
-                            class="span-black-belt">
-                        </span>
+                        <span th:text="'Registro: ' + ${filiado.registroFiliado}" class="registro-black-belts"></span>
 
                         <span th:text="${filiado.graduacaoFiliado}" class="span-black-belt-nome"
                               th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' : 'Preta'}"></span>
+
+                        <span th:text="${#strings.arraySplit(filiado.nomeFiliado, ' ')[0] + ' ' +
+                            (#strings.arraySplit(filiado.nomeFiliado, ' ').length > 1 ? #strings.arraySplit(filiado.nomeFiliado, ' ')[1] : '')}"
+                              class="span-black-belt">
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -97,10 +105,6 @@
                     </li>
                 </ul>
             </div>
-        </div>
-
-        <div class="faixa-preta-frase">
-            O Faixa Preta é o branca que nunca desistiu!
         </div>
     </section>
     <!--FIM CONTEUDO-->

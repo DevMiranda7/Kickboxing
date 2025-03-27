@@ -30,7 +30,8 @@ public class FiliadoService {
     }
 
     public Page<Filiado> listarFiliadosBlackBeltsPaginados(Pageable pageable) {
-        return filiadoRepository.findBlackBelts(pageable);
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Order.asc("registroFiliado")));
+        return filiadoRepository.findBlackBelts(sortedPageable);
     }
 
     public List<Filiado> pesquisarFiliados(String cidade, String nome, Integer registro, String tipoFaixa) {

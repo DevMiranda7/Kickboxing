@@ -21,11 +21,6 @@
     <!-- Sweet Alert Componentes UI -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Importação do CSS e do JavaScript do Flatpickr -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
-
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <title>Administração - Filiados</title>
@@ -92,17 +87,8 @@
 
                         <div>
                             <p>Data de Nascimento</p>
-                            <input type="text" id="nascimento-filiado" name="nascimentoFiliado"
-                                   class="ant-input ant-input custom-input-data" required placeholder="Nascimento">
-
-                            <script>
-                                document.addEventListener("DOMContentLoaded", function () {
-                                    flatpickr("#nascimento-filiado", {
-                                        dateFormat: "d/m/Y",
-                                        locale: "pt"
-                                    });
-                                });
-                            </script>
+                            <input type="date" id="nascimento-filiado" name="nascimentoFiliado"
+                                   class="ant-input ant-input custom-input-data" required>
                         </div>
                     </div>
 
@@ -183,17 +169,8 @@
 
                     <div class="color-div">
                         <p>Graduado em:</p>
-                        <input type="text" id="graduadoEm" name="graduadoEm"
-                               class="ant-input ant-input custom-input-data" required placeholder="Graduado em">
-
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                flatpickr("#graduadoEm", {
-                                    dateFormat: "d/m/Y",
-                                    locale: "pt",
-                                });
-                            });
-                        </script>
+                        <input type="date" id="graduadoEm" name="graduadoEm"
+                               class="ant-input ant-input custom-input-data" required>
                     </div>
                 </div>
 
@@ -295,7 +272,7 @@
                                   data-academia=${filiado.academiaFiliado},
                                   data-responsavel=${filiado.responsavelFiliado},
                                   data-genero=${filiado.generoFiliado},
-                                  data-graduado=${#temporals.format(filiado.graduadoEm, 'dd/MM/yyyy')},
+                                  data-graduado=${filiado.graduadoEm},
                                   data-graduacao=${filiado.graduacaoFiliado}"
                                   onclick="openModalImagemFiliado(this)" style="border-radius: 10px;" class="imagem-tabela">
                         </td>
@@ -463,32 +440,7 @@
                                 <div class="info-modal-nome">
                                     <p>Graduado Em:</p>
                                     <input type="date" id="filiadoGraduadoEm" name="graduadoEm"
-                                           class="ant-input ant-input custom-input-data" required placeholder="Graduado em">
-
-                                    <script>
-                                        document.addEventListener("DOMContentLoaded", function () {
-                                            flatpickr("#filiadoGraduadoEm", {
-                                                dateFormat: "d/m/Y",
-                                                locale: "pt",
-                                            });
-                                        });
-
-                                        document.addEventListener("DOMContentLoaded", function () {
-                                            const filiadoGraduadoEmInput = document.getElementById("filiadoGraduadoEm");
-                                            const graduadoEmDate = filiadoGraduadoEmInput.value;
-
-                                            if (graduadoEmDate) {
-                                                const formattedDate = formatDate(graduadoEmDate);
-                                                filiadoGraduadoEmInput.value = formattedDate;
-                                            }
-                                        });
-
-                                        // Função para formatar a data para dd/MM/yyyy
-                                        function formatDate(date) {
-                                            const [year, month, day] = date.split("-");
-                                            return `${day}/${month}/${year}`;
-                                        }
-                                    </script>
+                                           class="ant-input ant-input custom-input-data" required>
                                 </div>
                             </div>
 
