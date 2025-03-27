@@ -237,8 +237,11 @@ html, body {
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
-    overflow: hidden;
     height: 100vh;
+}
+
+.img-logo-fundo {
+    display: none;
 }
 
 .separator-faixa {
@@ -296,7 +299,7 @@ html, body {
 .registro-faixa-img-logo {
     width: 250px;
     height: auto;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     z-index: 10;
 }
 
@@ -307,8 +310,8 @@ html, body {
     color: black;
     margin: 0;
     padding: 0;
-    margin-bottom: 40px;
-    font-size: 40px;
+    margin-bottom: 30px;
+    font-size: 46px;
     font-family: "Reggae One", sans-serif;
     font-weight: bold;
 
@@ -326,6 +329,7 @@ html, body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    margin-top: 70px;
 }
 
 .conteiner-black-belt ul {
@@ -349,9 +353,9 @@ html, body {
     max-width: calc(10% - 80px);
     box-sizing: border-box;
     min-width: 200px;
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeInUp 1.0s ease-in-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.0s ease-in-out forwards;
 }
 
 @keyframes fadeInUp {
@@ -374,15 +378,24 @@ html, body {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 }
 
+.registro-black-belts {
+    color: white;
+    font-weight: bold;
+}
+
 .span-black-belt {
-    margin-top: 5px;
-    margin-bottom: 5px;
     font-size: 18px !important;
     font-weight: bold;
+    text-align: center;
+    color: white; /* Cor dourada para destaque */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    display: block;
+    margin-top: 5px;
 }
 
 .span-black-belt-nome {
     font-size: 12px;
+    margin-top: 5px;
 }
 /* INICIO REGISTRO BLACK BELT */
 
@@ -391,6 +404,7 @@ html, body {
     display: flex;
     justify-content: center;
     margin-right: 100px;
+    margin: 10px;
 }
 
 .pagination-black-belts ul {
@@ -427,12 +441,23 @@ html, body {
 
 .faixa-preta-frase {
     position: fixed;
-    bottom: 5px;
-    right: 50px;
-    font-size: 28px;
+    top: 20px;
+    right: 20px;
+    background: black;
     color: white;
+    padding: 5px 20px;
+    font-size: 28px;
     font-style: italic;
-    font-family: 'Dancing Script', cursive; /* Usando a fonte cursiva */
+    font-family: "Reggae One", sans-serif;
+    border-radius: 5px;
+    display: inline-block;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    border-left: 15px solid red;
+    border-right: 15px solid red;
+}
+
+.texto-preto {
+    color: white;
 }
 
 /* PAGINATION BLACK BELTS */
@@ -3500,4 +3525,177 @@ footer {
     }
 }
 /* PAGINA PATROCINADORES */
+
+/* PAGINA BLACK BELTS */
+@media (max-width: 1390px) {
+    .conteiner-black-belt ul {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    .separator-faixa {
+        margin-left: 20px;
+        margin-right: 30px;
+    }
+}
+
+@media (max-width: 1130px) {
+    .div-registro-faixa {
+        width: 7rem;
+        max-width: 7rem;
+        min-width: 7rem;
+    }
+
+    .registro-faixa-img-logo {
+        width: 220px;
+        height: auto;
+        margin-bottom: 50px;
+        z-index: 10;
+    }
+
+    .info-faixa-h h1 {
+        font-size: 40px;
+    }
+
+    .faixa-preta-frase {
+        padding: 5px 20px;
+        font-size: 20px;
+    }
+
+    .img-black-belt {
+        width: 100px;
+        height: 100px;
+    }
+
+    .conteiner-black-belt li {
+        min-width: 150px;
+    }
+
+    .span-black-belt {
+        font-size: 16px !important;
+    }
+
+    .conteiner-black-belt {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 915px) {
+    .separator-faixa,
+    .separator-faixa2,
+    .div-registro-faixa {
+        display: none;
+    }
+
+    .conteiner-black-belt li {
+        min-width: 120px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .faixa-preta-frase {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        right: 0;
+    }
+
+    .pagination-black-belts {
+        margin-right: 0;
+    }
+
+    .div-black-belt-registro {
+        margin-top: 10px;
+    }
+
+    .img-logo-fundo {
+        width: 350px;
+        display: flex;
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.5;
+        mix-blend-mode: multiply;
+    }
+}
+
+@media (max-width: 730px) {
+    .conteiner-black-belt li {
+        min-width: 110px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 620px) {
+    .conteiner-black-belt ul {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 550px) {
+    .faixa-preta-frase {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .img-black-belt {
+        width: 80px;
+        height: 80px;
+    }
+
+    .span-black-belt-nome {
+        font-size: 10px;
+    }
+
+    .span-black-belt {
+        font-size: 14px !important;
+    }
+
+    .conteiner-black-belt li {
+        min-width: 90px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .registro-black-belts {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 351px) {
+    .img-black-belt {
+        width: 60px;
+        height: 60px;
+    }
+
+    .span-black-belt-nome {
+        font-size: 8px;
+    }
+
+    .span-black-belt {
+        font-size: 12px !important;
+    }
+
+    .conteiner-black-belt li {
+        min-width: 80px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .conteiner-black-belt ul {
+        gap: 15px;
+    }
+
+    .registro-black-belts {
+        font-size: 10px;
+    }
+}
+/* PAGINA BLACK BELTS */
 /* FIM RESPONSIVIDADE */

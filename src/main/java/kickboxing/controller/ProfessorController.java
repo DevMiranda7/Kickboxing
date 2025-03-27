@@ -26,7 +26,7 @@ public class ProfessorController {
 
     @GetMapping("/listarProfessoresPub")
     public String listarProfessoresPub(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 3;
+        int tamanhoPagina = 30;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Professor> todosProfessores = professorService.listarProfessores();
@@ -48,7 +48,7 @@ public class ProfessorController {
 
     @GetMapping("/listarProfessores")
     public String listarProfessores(@RequestParam(defaultValue = "0") int pagina, Model model) {
-        int tamanhoPagina = 3;
+        int tamanhoPagina = 30;
         Pageable pageable = PageRequest.of(pagina, tamanhoPagina);
 
         List<Professor> todosProfessores = professorService.listarProfessores();
