@@ -3084,13 +3084,15 @@ footer {
     }
 }
 
-@media (max-height: 850px) {
+@media (max-height: 800px) {
     #imagemFiliadoModalImage {
         display: none;
     }
+}
 
-    .imagem-professor-modal-content {
-        padding: 0;
+@media (max-height: 700px) {
+    #imagemFiliadoModalImage {
+        display: none;
     }
 
     .close-imagem-filiado-modal {
@@ -3098,7 +3100,7 @@ footer {
     }
 }
 
-@media (max-height: 750px) {
+@media (max-height: 600px) {
     .imagem-filiado-modal-content p {
         font-size: 10px;
     }
