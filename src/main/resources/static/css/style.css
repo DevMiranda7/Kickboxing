@@ -938,7 +938,7 @@ html, body {
 }
 
 .custom-input-data {
-    width: 130px !important;
+    width: 145px !important;
     font-size: 14px;
     border: 1px solid #aaa;
 }
@@ -1735,6 +1735,10 @@ th:nth-child(9), td:nth-child(9) { /* Status */
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     max-width: 600px;
     background-color: #fff;
@@ -1787,6 +1791,18 @@ th:nth-child(9), td:nth-child(9) { /* Status */
     margin-top: 20px;
 }
 
+.custom-input-upload-prof-modal {
+    width: 320px;
+    display: flex;
+    border: 1px solid #aaa;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-file-label {
+    display: none;
+}
+
 .ativo-inativo-professor {
     display: flex;
     justify-content: center;
@@ -1801,7 +1817,7 @@ th:nth-child(9), td:nth-child(9) { /* Status */
 }
 
 .close-imagem-professor-modal {
-    color: #fff;
+    color: black;
     font-size: 40px;
     position: absolute;
     top: 10px;
@@ -2184,6 +2200,10 @@ th:nth-child(10), td:nth-child(10) { /* Status */
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     max-width: 600px;
     background-color: #fff;
@@ -2256,6 +2276,18 @@ th:nth-child(10), td:nth-child(10) { /* Status */
     color: #f72c1e;
 }
 
+.custom-input-upload-fili-modal {
+    width: 320px;
+    display: flex;
+    border: 1px solid #aaa;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-file-label-fili {
+    display: none;
+}
+
 .ativo-inativo {
     display: flex;
     justify-content: center;
@@ -2264,7 +2296,7 @@ th:nth-child(10), td:nth-child(10) { /* Status */
 }
 
 .close-imagem-filiado-modal {
-    color: #fff;
+    color: black;
     font-size: 40px;
     position: absolute;
     top: 10px;
@@ -2885,7 +2917,6 @@ footer {
 /* NAV ADMINISTRACAO */
 
 /* PAGINA FILIADOS */
-
 @media (max-width: 1017px) {
     .div-btn-pesquisar {
         margin-top: 0;
@@ -2939,7 +2970,6 @@ footer {
         align-items: flex-start
     }
 }
-/* PAGINA FILIADOS */
 
 @media (max-width: 1115px) {
     .conteiner-filiados th {
@@ -2977,6 +3007,139 @@ footer {
         width: 100%;
     }
 }
+
+@media (max-width: 630px) {
+    .imagem-filiado-modal-content {
+        width: 75%;
+    }
+
+    .imagem-filiado-modal-content img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .modal-content-wrapper {
+        align-items: flex-start;
+    }
+
+    .imagem-container {
+        flex: 0 0 40%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .div-modal-img-button {
+        align-items: flex-start;
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+
+    .ativo-inativo {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .div-modal-img-button p {
+        margin: 0;
+    }
+
+    .custom-file-label-fili {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 180px;
+        height: 30px;
+        background-color: white;
+        border: 1px solid #d9d9d9;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #181818;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .custom-file-label-fili:hover {
+        border-color: #40a9ff;
+        color: #333;
+    }
+
+    #imagemFiliados {
+        display: none;
+    }
+
+    .div-respon-genero {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .div-respon-btn-salvar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-height: 850px) {
+    #imagemFiliadoModalImage {
+        display: none;
+    }
+
+    .imagem-professor-modal-content {
+        padding: 0;
+    }
+
+    .close-imagem-filiado-modal {
+        top: 0;
+    }
+}
+
+@media (max-height: 750px) {
+    .imagem-filiado-modal-content p {
+        font-size: 10px;
+    }
+
+    .imagem-filiado-modal-content input {
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .imagem-filiado-modal-content label {
+        font-size: 10px;
+    }
+
+    .imagem-filiado-modal-content select {
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .custom-file-label-fili {
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .custom-btn-salvar-conta {
+        width: 60px;
+        height: 20px;
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .close-imagem-filiado-modal {
+        font-size: 30px;
+        top: 20px;
+    }
+
+    .imagem-filiado-modal-content {
+        padding: 20px;
+    }
+}
+/* PAGINA FILIADOS */
+
 /* PAGINA PROFESSORES */
 @media (max-width: 1015px) {
     .conteiner-professores th {
@@ -3042,12 +3205,110 @@ footer {
     }
 }
 
+@media (max-width: 630px) {
+    .imagem-professor-modal-content {
+        width: 85%;
+    }
+
+    .imagem-professor-modal-content img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .professor-details {
+        margin-top: 0;
+    }
+
+    .div-modal-nome {
+        flex-direction: column;
+        margin-left: 20px;
+        gap: 0;
+    }
+
+    .div-modal-img-button-professor {
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 15px;
+        margin-left: 20px;
+    }
+
+    .info-modal-genero {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .custom-input-upload-prof-modal {
+        width: 250px !important;
+    }
+
+    .custom-file-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 30px;
+        background-color: white;
+        border: 1px solid #d9d9d9;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #181818;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    .custom-file-label {
+        width: 180px;
+    }
+
+    .custom-file-label:hover {
+        border-color: #40a9ff;
+        color: #333;
+    }
+
+    #imagemProfessores {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .imagem-professor-modal-content {
+        width: 75%;
+    }
+
+    .custom-input-upload-prof-modal {
+        width: 180px !important;
+    }
+}
+
 @media (max-width: 470px) {
     .conteiner-pesquisar-professores {
         flex-direction: column;
         align-items: flex-start
     }
+
+    .custom-file-label {
+        width: 100px !important;
+    }
 }
+
+@media (max-width: 435px) {
+    .custom-input-upload-prof-modal {
+        width: 100px !important;
+        border: none;
+    }
+}
+
+@media (max-height: 600px) {
+    #imagemProfessorModalImage {
+        display: none;
+    }
+}
+
 /* PAGINA PROFESSORES */
 
 /* PAGINA ACADEMIAS */

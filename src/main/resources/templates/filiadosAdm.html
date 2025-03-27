@@ -496,14 +496,16 @@
                                 <div class="ativo-inativo">
                                     <p>Selecione apenas uma faixa</p>
 
-                                    <label>
-                                        <input type="radio" name="statusFiliado" value="Ativo" required>
-                                        Ativo
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="statusFiliado" value="Inativo" required>
-                                        Inativo
-                                    </label>
+                                    <div class="div-respon-genero">
+                                        <label>
+                                            <input type="radio" name="statusFiliado" value="Ativo" required>
+                                            Ativo
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="statusFiliado" value="Inativo" required>
+                                            Inativo
+                                        </label>
+                                    </div>
 
                                     <script>
                                         document.addEventListener("DOMContentLoaded", function () {
@@ -526,9 +528,14 @@
                                     </script>
                                 </div>
 
-                                <input style="width: 325px;" type="file" id="imagemFiliados" name="imagemFiliado" accept="image/*" class="ant-input custom-input-upload">
+                                <label for="imagemFiliados" class="custom-file-label-fili" >
+                                    Procurar
+                                </label>
+                                <input style="width: 325px;" type="file" id="imagemFiliados" name="imagemFiliado" accept="image/*" class="ant-input custom-input-upload-fili-modal">
 
-                                <button type="submit" class="anti-input custom-btn-salvar-conta">Salvar</button>
+                                <div class="div-respon-btn-salvar">
+                                    <button type="submit" class="anti-input custom-btn-salvar-conta">Salvar</button>
+                                </div>
                             </div>
                         </form>
                     </div>

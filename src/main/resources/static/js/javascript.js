@@ -458,6 +458,7 @@ function pesquisarProfessores() {
                 let img = document.createElement("img");
                 img.src = professor.imagemProfessor;
                 img.alt = "Imagem do professor";
+                img.classList.add("imagem-tabela");
                 img.style.borderRadius = "10px";
                 img.setAttribute("data-id", professor.idProfessor);
                 img.setAttribute("data-registro", professor.registroProfessor);
@@ -655,6 +656,7 @@ function pesquisarFiliados() {
                 let img = document.createElement("img");
                 img.src = filiado.imagemFiliado;
                 img.alt = "Imagem do filiado";
+                img.classList.add("imagem-tabela");
                 img.style.borderRadius = "10px";
                 img.setAttribute("data-id", filiado.idFiliado);
                 img.setAttribute("data-nome", filiado.nomeFiliado);
