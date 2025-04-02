@@ -99,6 +99,86 @@
     <!--FIM NAV-->
 
     <section class="container">
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img th:src="@{/images/banner1.png}" alt="Banner">
+            </div>
+            <div class="slide fade">
+                <img th:src="@{/images/banner2.png}" alt="Banner">
+            </div>
+            <div class="slide fade">
+                <img th:src="@{/images/banner3.png}" alt="Banner">
+            </div>
+            <div class="slide fade">
+                <img th:src="@{/images/banner4.png}" alt="Banner">
+            </div>
+
+            <!-- Botões de Controle -->
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
+
+        <div class="caminho-frase">
+            <span class="texto-caminho">Caminho do Guerreiro</span>
+        </div>
+
+        <div class="conteiner-lema">
+            <img th:src="@{/images/forca.png}" alt="Força">
+            <img th:src="@{/images/disciplina.png}" alt="Disciplina">
+            <img th:src="@{/images/respeito.png}" alt="Respeito">
+        </div>
+
+        <section class="header-section">
+            <h1 class="header-title">Seja Bem-vindo à Federação Gaúcha de Kickboxing</h1>
+            <p class="section-text-sub">Promovendo o Kickboxing no Rio Grande do Sul com profissionalismo, excelência e paixão!</p>
+            <hr class="separator-head">
+        </section>
+
+        <div class="conteiner-section-index">
+            <section class="content-section">
+                <h2 class="section-title">Nossas Diretrizes</h2>
+
+                <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="selo">
+
+                <p class="section-text">A F.G.K.B. é movida pela paixão pelo esporte e pelo compromisso de tornar o Kickboxing acessível a todos. Nossa missão é proporcionar um ambiente de alto nível técnico e competitivo, capacitar treinadores e árbitros, e promover campeonatos e eventos que estimulam o espírito esportivo, a disciplina e o respeito.</p>
+
+                <h2 class="section-title-sub">Trabalhamos incansavelmente para:</h2>
+                <ul class="section-list">
+                    <li>Desenvolver o Kickboxing em todo o estado, proporcionando treinamento de qualidade para atletas e profissionais.</li>
+                    <li>Promover a formação de novos campeões, seja no ringue ou na vida, com foco na ética, no respeito e na superação pessoal.</li>
+                    <li>Organizar eventos e campeonatos que coloquem o Rio Grande do Sul em destaque no cenário nacional e internacional.</li>
+                </ul>
+
+                <h2 class="section-title" style="margin-top: 20px;">Nosso Trabalho</h2>
+                <p class="section-text">Estamos empenhados em proporcionar a melhor infraestrutura para os praticantes de Kickboxing. Com treinamentos de alto nível, eventos organizados com todo o cuidado e qualidade, e uma equipe de professores e profissionais qualificados, trabalhamos para transformar cada pessoa que entra para a F.G.K.B. em um verdadeiro guerreiro.</p>
+                <p class="section-text">Além disso, nossa federação é um ponto de apoio para academias, atletas e entidades do Kickboxing, oferecendo recursos para o desenvolvimento da modalidade e contribuindo para o fortalecimento da nossa comunidade esportiva.</p>
+                <p class="section-text">A F.G.K.B. é a sua oportunidade de se tornar parte de uma comunidade que busca a excelência no Kickboxing, promovendo o crescimento pessoal e profissional através da prática esportiva.</p>
+                <p class="section-text">Venha Fazer Parte Dessa História!</p>
+            </section>
+        </div>
+
+        <div>
+            <div class="correr">
+                <img th:src="@{/images/correr.gif}" alt="Corredor">
+            </div>
+
+            <div class="inspirational-section">
+                <div class="div-inspirational-section">
+                    <h2>O Kickboxing é Mais que um Esporte!</h2>
+                    <hr class="separator-head">
+
+                    <p>Acreditamos que o Kickboxing é uma jornada de autoconhecimento, onde cada golpe, cada treino e cada desafio nos ensina a sermos mais fortes, resilientes e disciplinados. A F.G.K.B. tem como lema o compromisso com a excelência, a busca constante pela superação e a valorização dos princípios fundamentais do esporte.</p>
+                    <p>Seja você também um membro da Federação Gaúcha de Kickboxing! Filie-se e faça parte dessa jornada de superação, disciplina e conquista. Juntos, vamos transformar o Kickboxing no Rio Grande do Sul em uma potência esportiva!</p>
+
+                    <a href="#" class="ant-input custom-btn-filiar">Clique aqui para se filiar</a>
+                </div>
+
+                <!-- Imagem de fundo -->
+                <img th:src="@{/images/boxing.png}" alt="Banner">
+            </div>
+        </div>
+
+
         <div id="teste" class="sessao-puclica">
             <form th:action="@{/admin}" method="post">
                 <h2>SESSÃO PÚBLICA</h2>
