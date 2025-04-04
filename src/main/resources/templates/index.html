@@ -63,7 +63,7 @@
     <title>Federação Gaúcha de Kickboxing</title>
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
     <!--INICIO NAV-->
     <div class="div-top-publica">
         <h1 class="titulo-h1">Federação Gaúcha de Kickboxing</h1>
@@ -74,6 +74,8 @@
             <i class="fa-brands fa-facebook custon-icon-contato"></i>
 
             <i class="fa-brands fa-whatsapp custon-icon-contato"></i>
+
+            <i class="fa-solid fa-envelope custon-icon-contato"></i>
         </div>
     </div>
 
@@ -128,14 +130,14 @@
             <img th:src="@{/images/respeito.png}" alt="Respeito">
         </div>
 
-        <section class="header-section">
+        <div class="header-section">
             <h1 class="header-title">Seja Bem-vindo à Federação Gaúcha de Kickboxing</h1>
             <p class="section-text-sub">Promovendo o Kickboxing no Rio Grande do Sul com profissionalismo, excelência e paixão!</p>
             <hr class="separator-head">
-        </section>
+        </div>
 
         <div class="conteiner-section-index">
-            <section class="content-section">
+            <div class="content-section">
                 <h2 class="section-title">Nossas Diretrizes</h2>
 
                 <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="selo">
@@ -154,14 +156,10 @@
                 <p class="section-text">Além disso, nossa federação é um ponto de apoio para academias, atletas e entidades do Kickboxing, oferecendo recursos para o desenvolvimento da modalidade e contribuindo para o fortalecimento da nossa comunidade esportiva.</p>
                 <p class="section-text">A F.G.K.B. é a sua oportunidade de se tornar parte de uma comunidade que busca a excelência no Kickboxing, promovendo o crescimento pessoal e profissional através da prática esportiva.</p>
                 <p class="section-text">Venha Fazer Parte Dessa História!</p>
-            </section>
+            </div>
         </div>
 
         <div>
-            <div class="correr">
-                <img th:src="@{/images/correr.gif}" alt="Corredor">
-            </div>
-
             <div class="inspirational-section">
                 <div class="div-inspirational-section">
                     <h2>O Kickboxing é Mais que um Esporte!</h2>
@@ -178,19 +176,121 @@
             </div>
         </div>
 
+        <div class="conteiner-btns">
+            <div class="div-btns">
+                <h2>Eventos</h2>
+                <div class="separator-btns"></div>
+                <a th:href="@{/eventosPub}">
+                    <img th:src="@{/images/btn-calendario.png}" alt="Eventos">
+                </a>
+            </div>
 
-        <div id="teste" class="sessao-puclica">
-            <form th:action="@{/admin}" method="post">
-                <h2>SESSÃO PÚBLICA</h2>
-                <h3>Início - Apresentação em desenvolvimento...</h3>
+            <div class="div-btns">
+                <h2>Ranking</h2>
+                <div class="separator-btns"></div>
+                <a th:href="@{/rankingPub}">
+                    <img th:src="@{/images/btn-ranking.png}" alt="Ranking">
+                </a>
+            </div>
 
-                <button type="submit" class="ant-input custom-btn-entrar">Entrar</button>
-            </form>
+            <div class="div-btns">
+                <h2>Black Belt</h2>
+                <div class="separator-btns"></div>
+                <a th:href="@{/blackBeltsPub}" target="_blank">
+                    <img th:src="@{/images/btn-faixa.png}" alt="Faixa Preta">
+                </a>
+            </div>
+        </div>
+
+        <!--REGISTROS PATROCINADORES-->
+        <div class="conteiner-patrocinadores">
+            <div class="div-parceiros">
+                <h2>Nossos Parceiros</h2>
+                <div class="separator-parceiros"></div>
+            </div>
+            <ul>
+                <li th:each="patrocinador : ${patrocinadores}">
+
+                    <a th:href="${patrocinador.linkPatrocinador}" target="_blank">
+                        <img th:src="@{${patrocinador.imagemPatrocinador}}" alt="Patrocinador" width="120">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--REGISTROS PATROCINADORES-->
+
+        <div class="ciam-section">
+            <div class="ciam-container">
+                <img th:src="@{/images/conselho.png}" alt="Conselho Internacional de Artes Marciais" class="ciam-logo">
+
+                <div class="ciam-content">
+                    <h2>Conselho Internacional de Artes Marciais</h2>
+                    <p>
+                        A <strong>Federação Gaúcha de Kickboxing</strong> orgulha-se de fazer parte do
+                        <strong>Conselho Internacional de Artes Marciais (CIAM)</strong>, uma organização global
+                        dedicada ao fortalecimento, desenvolvimento e promoção das artes marciais.
+                    </p>
+                    <p>
+                        O CIAM reúne mestres, atletas e praticantes de diversas modalidades, incentivando o
+                        intercâmbio técnico e cultural entre os estilos de combate. Além disso, valoriza
+                        princípios essenciais como ética, disciplina e respeito mútuo, promovendo a união
+                        e o crescimento das artes marciais no cenário mundial.
+                    </p>
+                    <p>
+                        Por meio de eventos, seminários e campeonatos internacionais, o CIAM trabalha para
+                        divulgar o conhecimento das artes marciais e fomentar a cooperação entre diferentes
+                        tradições, sempre incentivando a paz e a compreensão global através do esporte e da cultura.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="conteiner-brasil">
+            <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="conteiner-brasil-img">
+            <img th:src="@{/images/br.png}" alt="Brasil" class="conteiner-brasil-img">
+            <img th:src="@{/images/rs.png}" alt="Rio Grande do Sul" class="conteiner-brasil-img">
+            <img th:src="@{/images/conselho.png}" alt="Conselho Internacional de Artes Marciais" class="img-conselho">
+        </div>
+
+
+        <div class="conteiner-localiza">
+            <div class="div-maps">
+                <h2>Localização</h2>
+                <div class="separator-maps"></div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3466.578321051557!2d-53.83571305980227!3d-29.674008438275443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x950233ed87bef345%3A0x166c059f55293204!2sCentro%20de%20treinamento%20TEAM%20MOREIRA!5e0!3m2!1spt-PT!2sbr!4v1743783007086!5m2!1spt-PT!2sbr"
+                        width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="div-contatos">
+                <h2>Nossos Contatos</h2>
+                <div class="separator-maps"></div>
+
+                <div class="div-contato-publica-index">
+                    <i class="fa-brands fa-instagram custon-icon-contato-index"></i>
+
+                    <i class="fa-brands fa-facebook custon-icon-contato-index"></i>
+
+                    <i class="fa-brands fa-whatsapp custon-icon-contato-index"></i>
+
+                    <i class="fa-solid fa-envelope custon-icon-contato-index"></i>
+                </div>
+
+                <div class="div-cnpj">
+                    <h2>Federação Gaúcha de Kickboxing</h2>
+                    <p>Horário de funcionamento: Segunda à Sexta das 8:00 às 12:00 / 14:00 às 18:00</p>
+                    <p>CNPJ: 00.000.000/0001-00</p>
+                </div>
+
+                <div class="div-img-contatos">
+                    <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-contato-logo">
+                </div>
+
+            </div>
         </div>
     </section>
 
     <!--INICIO RODAPÉ -->
-    <footer>
+    <footer class="no-margin">
         <div class="div-footer-logo">
             <img th:src="@{/images/logo-kickboxing.png}" alt="Logo da F.G.K.B" class="img-footer-logo">
             <a href="https://mycodinghub.tech/" target="_blank">
@@ -199,7 +299,7 @@
         </div>
 
         <div>
-            <p>Todos os direitos reservados!</p>
+            <p>© 2025. Federação Gaúcha de Kickboxing. Todos os direitos reservados.</p>
         </div>
     </footer>
     <!--FIM RODAPÉ -->

@@ -21,15 +21,6 @@ html, body {
     justify-content: space-between;
 }
 
-.sessao-puclica {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100vh;
-    margin: 0;
-}
-
 .titulo-h1 {
     font-size: 20px;
     font-width: bold;
@@ -109,6 +100,7 @@ html, body {
     justify-content: center;
     align-items: center;
     list-style: none;
+    margin-right: 20px;
 }
 
 .nav-list-publica a {
@@ -417,21 +409,6 @@ img {
     color: white;
     padding: 40px;
     text-align: center;
-    margin-top: 40px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.inspirational-section {
-    background-color: #181818;
-    color: white;
-    padding: 40px;
-    text-align: center;
-    margin-top: 40px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
@@ -443,7 +420,7 @@ img {
 .inspirational-section::after {
     content: "";
     position: absolute;
-    bottom: 0; /* Corrigido para garantir que fique na parte de baixo */
+    bottom: 0;
     left: 10%;
     width: 80%;
     height: 5px;
@@ -452,9 +429,8 @@ img {
         #c60c30 33.33%, #c60c30 66.66%,
         #ffcc29 66.66%
     );
-    z-index: 1; /* Garante que fique visível sobre a div */
+    z-index: 1;
 }
-
 
 .div-inspirational-section {
     width: 65%;
@@ -504,15 +480,145 @@ img {
     color: black;
 }
 
-.correr {
-    position: absolute;
-    right: 100%;
-    transform: translate(-50%, -50%);
-    width: 6.7vw;
+.conteiner-btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 150px;
+    margin-top: 50px;
+}
+
+.conteiner-btns img {
+    width: 300px;
     height: auto;
-    object-fit: contain;
-    animation: autoRun 9.5s linear infinite;
-    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
+}
+
+.conteiner-btns img:hover {
+    transform: scale(1.1);
+}
+
+.div-btns {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.div-btns h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.separator-btns {
+    width: 100%;
+    height: 2px;
+    margin: 0;
+    border: none;
+    background: linear-gradient(45deg,
+        #009739 33.33%,
+        #c60c30 33.33%, #c60c30 66.66%,
+        #ffcc29 66.66%
+    );
+}
+
+.div-parceiros {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.div-parceiros h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.separator-parceiros {
+    width: 80%;
+    height: 2px;
+    margin: 0;
+    margin-bottom: 30px;
+    border: none;
+    background: linear-gradient(45deg,
+        #009739 33.33%,
+        #c60c30 33.33%, #c60c30 66.66%,
+        #ffcc29 66.66%
+    );
+}
+
+.ciam-section {
+    background-color: #181818;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
+    width: 100%;
+}
+
+
+
+.ciam-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+}
+
+.ciam-logo {
+    max-width: 250px;
+    margin-right: 50px;
+    border-radius: 8px;
+}
+
+.ciam-content {
+    max-width: 800px;
+    text-align: left;
+}
+
+.ciam-content h2 {
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffcc29;
+    margin: 0;
+}
+
+.ciam-content p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+.ciam-content strong {
+    color: #ffcc00;
+}
+
+.conteiner-brasil {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 100%;
+    gap: 250px;
+    margin-top: 10px;
+    animation: autoRun 13.5s linear infinite;
 }
 
 @keyframes autoRun {
@@ -520,8 +626,113 @@ img {
         right: 100%;
     }
     to {
-        right: -100px;
+        right: -100%;
     }
+}
+
+.conteiner-brasil-img {
+    width: 100px;
+    height: auto;
+}
+
+.img-conselho {
+    width: 80px;
+    height: auto;
+}
+
+.conteiner-localiza {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 10px;
+    padding: 30px;
+    gap: 200px;
+    background-color: #f0f0f0;
+}
+
+.div-maps {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.div-maps h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.separator-maps {
+    width: 100%;
+    height: 2px;
+    margin: 0;
+    margin-bottom: 20px;
+    border: none;
+    background: linear-gradient(45deg,
+        #009739 33.33%,
+        #c60c30 33.33%, #c60c30 66.66%,
+        #ffcc29 66.66%
+    );
+}
+
+.div-contatos h2 {
+    text-align: left;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.div-contato-publica-index {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.custon-icon-contato-index {
+    font-size: 34px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+}
+
+.custon-icon-contato-index:hover {
+    transform: scale(1.2);
+}
+
+.div-cnpj {
+    margin: 0;
+}
+
+.div-cnpj h2 {
+    font-size: 18px;
+    font-width: bold;
+    margin: 0;
+}
+
+.div-cnpj p {
+    margin: 0;
+}
+
+.div-img-contatos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.img-contato-logo {
+    padding: 0;
+    width: 190px;
+    height: auto;
 }
 /* INICIO INDEX */
 
@@ -2962,6 +3173,10 @@ table .lixo-ranking {
 }
 
 /* Footer fixo na parte inferior */
+footer.no-margin {
+    margin-top: 0;
+}
+
 footer {
     width: 100%;
     background-color: #181818;
