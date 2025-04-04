@@ -57,10 +57,9 @@ public class MapearRotasController {
     @Autowired
     private AdminService adminService;
 
-
     @GetMapping("/index")
-    public String indexPage() {
-        return "index";
+    public String indexPage(Model model) {
+        return patrocinadorController.listarPatrocinadoresIndex(model);
     }
 
     @GetMapping("/eventosPub")

@@ -26,6 +26,12 @@ public class PatrocinadorController {
         return "patrocinadoresAdm";
     }
 
+    public String listarPatrocinadoresIndex(Model model) {
+        List<Patrocinador> patrocinadores = patrocinadorService.listarPatrocinadores();
+        model.addAttribute("patrocinadores", patrocinadores);
+        return "index";
+    }
+
     @PostMapping("/criarPatrocinador")
     public String criarPatrocinador(@RequestParam("linkPatrocinador") String linkPatrocinador,
                                     @RequestParam("imagemPatrocinador") MultipartFile imagemPatrocinador,
