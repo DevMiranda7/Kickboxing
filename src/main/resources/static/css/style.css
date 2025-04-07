@@ -383,6 +383,7 @@ img {
     background-color: #181818;
     color: white;
     padding: 40px;
+    margin-top: 50px;
     text-align: center;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     position: relative;
@@ -583,6 +584,12 @@ img {
 
 .ciam-content strong {
     color: #ffcc00;
+}
+
+.wrapper-brasil {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 10px;
 }
 
 .conteiner-brasil {
