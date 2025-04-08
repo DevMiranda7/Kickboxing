@@ -15,7 +15,7 @@ public class Professor {
     private long idProfessor;
 
     @Column(nullable = false)
-    private Integer registroProfessor;
+    private String registroProfessor;
 
     @Column(nullable = false)
     private String nomeProfessor;
@@ -52,11 +52,11 @@ public class Professor {
         this.idProfessor = idProfessor;
     }
 
-    public Integer getRegistroProfessor() {
+    public String getRegistroProfessor() {
         return registroProfessor;
     }
 
-    public void setRegistroProfessor(Integer registroProfessor) {
+    public void setRegistroProfessor(String registroProfessor) {
         this.registroProfessor = registroProfessor;
     }
 

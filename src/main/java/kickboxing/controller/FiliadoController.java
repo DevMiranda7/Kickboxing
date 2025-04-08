@@ -112,7 +112,7 @@ public class FiliadoController {
             }
 
             Filiado filiado = new Filiado();
-            filiado.setRegistroFiliado(parsedRegistroFiliado);
+            filiado.setRegistroFiliado(registroFiliado);
             filiado.setNomeFiliado(nomeFiliado);
             filiado.setCidadeFiliado(cidadeFiliado);
             filiado.setGraduacaoFiliado(graduacaoFiliado);
@@ -202,7 +202,7 @@ public class FiliadoController {
 
             Filiado filiado = filiadoService.buscarFiliadoPorId(idFiliado);
 
-            filiado.setRegistroFiliado(parsedRegistroFiliado);
+            filiado.setRegistroFiliado(registroFiliado);
             filiado.setNomeFiliado(nomeFiliado);
             filiado.setCidadeFiliado(cidadeFiliado);
             filiado.setGraduacaoFiliado(graduacaoFiliado);

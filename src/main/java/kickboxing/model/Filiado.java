@@ -15,7 +15,7 @@ public class Filiado {
     private long idFiliado;
 
     @Column(nullable = false)
-    private Integer registroFiliado;
+    private String registroFiliado;
 
     @Column(nullable = false)
     private String nomeFiliado;
@@ -55,11 +55,11 @@ public class Filiado {
         this.idFiliado = idFiliado;
     }
 
-    public Integer getRegistroFiliado() {
+    public String getRegistroFiliado() {
         return registroFiliado;
     }
 
-    public void setRegistroFiliado(Integer registroFiliado) {
+    public void setRegistroFiliado(String registroFiliado) {
         this.registroFiliado = registroFiliado;
     }
 

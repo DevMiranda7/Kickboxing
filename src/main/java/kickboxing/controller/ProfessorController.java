@@ -92,7 +92,7 @@ public class ProfessorController {
             }
 
             Professor professor = new Professor();
-            professor.setRegistroProfessor(parsedRegistroProfessor);
+            professor.setRegistroProfessor(registroProfessor);
             professor.setNomeProfessor(nomeProfessor);
             professor.setCidadeProfessor(cidadeProfessor);
             professor.setGraduacaoProfessor(graduacaoProfessor);
@@ -186,7 +186,7 @@ public class ProfessorController {
 
             Professor professor = professorService.buscarProfessorPorId(idProfessor);
 
-            professor.setRegistroProfessor(parsedRegistroProfessor);
+            professor.setRegistroProfessor(registroProfessor);
             professor.setNomeProfessor(nomeProfessor);
             professor.setCidadeProfessor(cidadeProfessor);
             professor.setGraduacaoProfessor(graduacaoProfessor);
