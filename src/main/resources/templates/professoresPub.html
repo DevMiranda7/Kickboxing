@@ -102,17 +102,11 @@
                     <tbody>
                     <tr th:each="professor : ${professores}">
                         <td>
-                            <img th:src="@{${professor.imagemProfessor}}" alt="Imagem do professor"
-                                 th:attr="data-id=${professor.idProfessor},
-                                         data-nome=${professor.nomeProfessor},
-                                         data-registro=${professor.registroProfessor},
-                                         data-cidade=${professor.cidadeProfessor},
-                                         data-genero=${professor.generoProfessor},
-                                         data-graduacao=${professor.graduacaoProfessor},
-                                         data-graduado=${professor.graduadoEm},
-                                         data-equipe=${professor.equipeProfessor},
-                                         data-nascimento=${professor.nascimentoProfessor}"
-                                 onclick="openModalImagemProfessor(this)" style="border-radius: 10px;" class="imagem-tabela">
+                            <a th:href="@{'/professor/' + ${professor.idProfessor}}" target="_blank">
+                                <img th:src="@{${professor.imagemProfessor}}"
+                                     alt="Imagem do professor"
+                                     style="border-radius: 10px;" class="imagem-tabela">
+                            </a>
                         </td>
 
                         <td th:text="${professor.registroProfessor}"></td>

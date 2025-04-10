@@ -716,7 +716,122 @@ img {
     width: 190px;
     height: auto;
 }
-/* INICIO INDEX */
+/* FIM INDEX */
+
+/* INICIO FILIE */
+.div-img-filie {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.img-filie-banner {
+    width: 60%;
+    height: auto;
+}
+
+.conteiner-formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.div-formulario {
+    width: 60%;
+    margin-top: 50px;
+}
+
+.div-form {
+    width: 100%;
+}
+
+.separator-form {
+    width: 100%;
+    height: 2px;
+    margin: 0;
+    border: none;
+    background: linear-gradient(45deg,
+    #009739 33.33%,
+    #c60c30 33.33%, #c60c30 66.66%,
+    #ffcc29 66.66%
+    );
+}
+
+.div-formulario h2 {
+    text-align: left;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.div-formulario p {
+    margin: 0;
+    margin-top: 20px;
+}
+
+.div-filie-input {
+    width: 50%;
+}
+
+.custom-input-filie-nome {
+    width: 400px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+}
+
+.custom-input-filie-telefone {
+    width: 200px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+}
+
+.custom-input-filie-text-area {
+    width: 400px;
+    height: 150px !important;
+    font-size: 14px;
+    border: 1px solid #aaa;
+}
+
+.custom-input-filie-upload {
+    width: 400px;
+    display: flex;
+    border: 1px solid #aaa;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-btn-filie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.custom-btn-filie-enviar {
+    width: 94px;
+    height: 30px;
+    background-color: #00c8ff;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-btn-filie-enviar:hover {
+    background-color: #006aff;
+}
+/* FIM FILIE */
 
 /* INICIO REGISTRO BLACK BELT */
 .container-black {
@@ -2603,8 +2718,9 @@ th:nth-child(8), td:nth-child(8) { /* Academia */
     text-align: left;
 }
 
-th:nth-child(9), td:nth-child(9) { /* Responsável */
-    width: 200px;
+.conteiner-filiados th:nth-child(9),
+.conteiner-filiados td:nth-child(9) {
+    width: 200px !important;
     text-align: left;
 }
 
@@ -3145,6 +3261,78 @@ table .lixo-ranking {
 }
 /* INICIO RANKING */
 
+/* PAGINA DESTALHES FILIADOS */
+.tela-central {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    margin-top: 70px;
+}
+
+.card-filiado {
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    color: black;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    position: relative;
+}
+
+.div-img-detalhes {
+    display: flex;
+    justify-content: center;
+}
+
+.borda-gradiente {
+    background: linear-gradient(45deg,
+        #009739 33.33%,
+        #c60c30 33.33%, #c60c30 66.66%,
+        #ffcc29 66.66%);
+    padding: 3px;
+    margin-bottom: 20px;
+    border-radius: 18px;
+    display: inline-block;
+}
+
+.borda-gradiente img {
+    width: 140px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+}
+
+.card-filiado .info-destalhes-filiado p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.card-filiado .titulo-detalhes-filiado {
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.logo-container-detalhes {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.logo-fgkb-detalhes {
+    width: 90px;
+    height: auto;
+    opacity: 0.95;
+}
+
+/* PAGINA DESTALHES FILIADOS */
 
 /* INICIO FOOTER */
 /* O container empurra o footer para o final */

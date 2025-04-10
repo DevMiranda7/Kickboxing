@@ -159,6 +159,13 @@ public class ProfessorController {
         return "redirect:/professoresAdm";
     }
 
+    @GetMapping("/professor/{id}")
+    public String exibirDetalhesProfessor(@PathVariable Long id, Model model) {
+        Professor professor = professorService.buscarProfessorPorId(id);
+        model.addAttribute("professor", professor);
+        return "detalhesProfessor";
+    }
+
     @PostMapping("/editarProfessor")
     public String editarProfessor(@RequestParam("idProfessor") Long idProfessor,
                                   @RequestParam("registroProfessor") String registroProfessor,

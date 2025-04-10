@@ -62,6 +62,11 @@ public class MapearRotasController {
         return patrocinadorController.listarPatrocinadoresIndex(model);
     }
 
+    @GetMapping("/filiePub")
+    public String filiePubPage() {
+        return "filiePub";
+    }
+
     @GetMapping("/eventosPub")
     public String eventosPub(Model model) {
         return eventoController.listarEventosPub(model);
