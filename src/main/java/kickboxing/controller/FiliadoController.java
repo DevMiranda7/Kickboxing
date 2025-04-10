@@ -157,7 +157,6 @@ public class FiliadoController {
         return filiadoService.pesquisarFiliados(cidade, nome, registro, tipoFaixa);
     }
 
-
     @PostMapping("/filiados/{id}")
     public String excluirFiliados(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
@@ -168,6 +167,13 @@ public class FiliadoController {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao excluir Filiado: " + e.getMessage());
         }
         return "redirect:/filiadosAdm";
+    }
+
+    @GetMapping("/filiado/{id}")
+    public String exibirDetalhesFiliado(@PathVariable Long id, Model model) {
+        Filiado filiado = filiadoService.buscarFiliadoPorId(id);
+        model.addAttribute("filiado", filiado);
+        return "detalhesFiliado";
     }
 
     @PostMapping("/editarFiliado")

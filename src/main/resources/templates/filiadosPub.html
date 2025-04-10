@@ -145,17 +145,11 @@
                     <tbody>
                     <tr th:each="filiado : ${filiados}">
                         <td>
-                            <img th:src="@{${filiado.imagemFiliado}}" alt="Imagem do filiado"
-                                 th:attr="data-id=${filiado.idFiliado},
-                                      data-registro=${filiado.registroFiliado},
-                                      data-nome=${filiado.nomeFiliado},
-                                      data-cidade=${filiado.cidadeFiliado},
-                                      data-academia=${filiado.academiaFiliado},
-                                      data-responsavel=${filiado.responsavelFiliado},
-                                      data-genero=${filiado.generoFiliado},
-                                      data-graduado=${filiado.graduadoEm},
-                                      data-graduacao=${filiado.graduacaoFiliado}"
-                                 onclick="openModalImagemFiliado(this)" style="border-radius: 10px;" class="imagem-tabela">
+                            <a th:href="@{'/filiado/' + ${filiado.idFiliado}}" target="_blank">
+                                <img th:src="@{${filiado.imagemFiliado}}"
+                                     alt="Imagem do filiado"
+                                     style="border-radius: 10px;" class="imagem-tabela">
+                            </a>
                         </td>
 
                         <td th:text="${filiado.registroFiliado}"></td>
@@ -165,14 +159,14 @@
                         <td th:text="${filiado.cidadeFiliado}"></td>
 
                         <td>
-                                <span th:text="${filiado.graduacaoFiliado}"
-                                      th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' :
-                                                       (filiado.graduacaoFiliado.contains('Preta') ? 'Preta' :
-                                                       (filiado.graduacaoFiliado == 'Amarela' ? 'Amarela' :
-                                                       (filiado.graduacaoFiliado == 'Laranja' ? 'Laranja' :
-                                                       (filiado.graduacaoFiliado == 'Verde' ? 'Verde' :
-                                                       (filiado.graduacaoFiliado == 'Azul' ? 'Azul' :
-                                                       (filiado.graduacaoFiliado == 'Marrom' ? 'Marrom' : ''))))))}"></span>
+                            <span th:text="${filiado.graduacaoFiliado}"
+                                  th:classappend="${filiado.graduacaoFiliado.contains('Coral') ? 'Preta-Coral' :
+                                                   (filiado.graduacaoFiliado.contains('Preta') ? 'Preta' :
+                                                   (filiado.graduacaoFiliado == 'Amarela' ? 'Amarela' :
+                                                   (filiado.graduacaoFiliado == 'Laranja' ? 'Laranja' :
+                                                   (filiado.graduacaoFiliado == 'Verde' ? 'Verde' :
+                                                   (filiado.graduacaoFiliado == 'Azul' ? 'Azul' :
+                                                   (filiado.graduacaoFiliado == 'Marrom' ? 'Marrom' : ''))))))}"></span>
                         </td>
 
                         <td th:text="${filiado.academiaFiliado}"></td>
