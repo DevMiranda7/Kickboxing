@@ -71,11 +71,17 @@
         <div class="div-contato-publica">
             <i class="fa-brands fa-instagram custon-icon-contato"></i>
 
-            <i class="fa-brands fa-facebook custon-icon-contato"></i>
+            <a href="https://www.facebook.com/share/151ak44TAg/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-facebook custon-icon-contato"></i>
+            </a>
 
-            <i class="fa-brands fa-whatsapp custon-icon-contato"></i>
+            <a href="https://wa.me/5555991771968" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp custon-icon-contato"></i>
+            </a>
 
-            <i class="fa-solid fa-envelope custon-icon-contato"></i>
+            <a href="mailto:federacao.kickboxing.rs@gmail.com">
+                <i class="fa-solid fa-envelope custon-icon-contato"></i>
+            </a>
         </div>
     </div>
 
@@ -101,69 +107,75 @@
     <!--FIM NAV-->
     <section class="container">
         <div class="div-img-filie">
-            <img th:src="@{/images/bannerFilie.png}" alt="Banner Filie-se" class="img-filie-banner">
+            <img th:src="@{/images/banner1.png}" alt="Banner Filie-se" class="img-filie-banner">
         </div>
 
         <div class="conteiner-formulario">
             <div class="div-formulario">
-                <div class="div-form">
-                    <h2>Preencha o formulário abaixo</h2>
-                    <div class="separator-form"></div>
+                <div>
+                    <img th:src="@{/images/bannerPe.png}" alt="Banner Filie-se" class="img-banner-pe">
                 </div>
 
-                <div class="div-filie-input">
-                    <div>
-                        <p>Nome Completo</p>
-                        <input type="text" id="nome-filie" name="nomeFilie" placeholder="Nome Completo"
-                               class="ant-input ant-input custom-input-filie-nome" required>
+                <div class="div-cont-form">
+                    <div class="div-form">
+                        <h2>Preencha o formulário abaixo</h2>
+                        <div class="separator-form"></div>
                     </div>
 
-                    <div>
-                        <p>E-mail</p>
-                        <input type="text" id="email-filie" name="emailFilie" placeholder="E-mail Principal"
-                               class="ant-input ant-input custom-input-filie-nome" required>
-                    </div>
+                    <div class="div-filie-input">
+                        <div>
+                            <p>Nome Completo</p>
+                            <input type="text" id="nome-filie" name="nomeFilie" placeholder="Nome Completo"
+                                   class="ant-input ant-input custom-input-filie-nome" required>
+                        </div>
 
-                    <div>
-                        <p>Endereço Completo</p>
-                        <input type="text" id="endereco-filie" name="enderecoFilie" placeholder="Endereço Completo"
-                               class="ant-input custom-input-filie-nome" required>
-                    </div>
+                        <div>
+                            <p>E-mail</p>
+                            <input type="text" id="email-filie" name="emailFilie" placeholder="E-mail Principal"
+                                   class="ant-input ant-input custom-input-filie-nome" required>
+                        </div>
 
-                    <div>
-                        <p>Cidade / Estado</p>
-                        <input type="text" id="cidade-filie" name="cidadeFilie" placeholder="Cidade / Estado"
-                               class="ant-input custom-input-filie-nome" required>
-                    </div>
+                        <div>
+                            <p>Endereço Completo</p>
+                            <input type="text" id="endereco-filie" name="enderecoFilie" placeholder="Endereço Completo"
+                                   class="ant-input custom-input-filie-nome" required>
+                        </div>
 
-                    <div>
-                        <p>Graduação</p>
-                        <input type="text" id="graduacao-filie" name="graduacaoFilie" placeholder="Graduação"
-                               class="ant-input custom-input-filie-nome" required>
-                    </div>
+                        <div>
+                            <p>Cidade / Estado</p>
+                            <input type="text" id="cidade-filie" name="cidadeFilie" placeholder="Cidade / Estado"
+                                   class="ant-input custom-input-filie-nome" required>
+                        </div>
 
-                    <div>
-                        <p>WhatsApp</p>
-                        <input type="tel" id="contato-filie" onkeyup="formatarContato(this)" name="contatoFilie"
-                               placeholder="WhatsApp" maxlength="11" minlength="11"
-                               class="ant-input custom-input-filie-telefone" required
-                               title="Número inválido">
-                    </div>
+                        <div>
+                            <p>Graduação</p>
+                            <input type="text" id="graduacao-filie" name="graduacaoFilie" placeholder="Graduação"
+                                   class="ant-input custom-input-filie-nome" required>
+                        </div>
 
-                    <div>
-                        <p>Descreva sua trajetória</p>
-                        <textarea id="descricao-filie" name="descricaoFilie" placeholder="Conte um pouco sobre sua trajetória"
-                                  class="ant-input custom-input-filie-text-area" required></textarea>
-                    </div>
+                        <div>
+                            <p>WhatsApp</p>
+                            <input type="tel" id="contato-filie" onkeyup="formatarContato(this)" name="contatoFilie"
+                                   placeholder="WhatsApp" maxlength="11" minlength="11"
+                                   class="ant-input custom-input-filie-telefone" required
+                                   title="Número inválido">
+                        </div>
 
-                    <div>
-                        <p>Anexar Documentos</p>
-                        <input type="file" id="documentos-filie" name="documentosFilie" accept="image/*"
-                               class="ant-input custom-input-filie-upload" required>
-                    </div>
+                        <div>
+                            <p>Descreva sua trajetória</p>
+                            <textarea id="descricao-filie" name="descricaoFilie" placeholder="Conte um pouco sobre sua trajetória"
+                                      class="ant-input custom-input-filie-text-area" required></textarea>
+                        </div>
 
-                    <div class="div-btn-filie">
-                        <button type="submit" class="anti-input custom-btn-filie-enviar">Enviar</button>
+                        <div>
+                            <p>Anexar Documentos</p>
+                            <input type="file" id="documentos-filie" name="documentosFilie" accept="image/*"
+                                   class="ant-input custom-input-filie-upload" required>
+                        </div>
+
+                        <div class="div-btn-filie">
+                            <button type="submit" class="anti-input custom-btn-filie-enviar">Enviar</button>
+                        </div>
                     </div>
                 </div>
             </div>

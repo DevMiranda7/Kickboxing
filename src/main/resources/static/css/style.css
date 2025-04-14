@@ -724,12 +724,6 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
-}
-
-.img-filie-banner {
-    width: 60%;
-    height: auto;
 }
 
 .conteiner-formulario {
@@ -740,8 +734,12 @@ img {
 }
 
 .div-formulario {
-    width: 60%;
     margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    gap: 120px;
+    display: flex;
+    justify-content: center;
 }
 
 .div-form {
@@ -770,11 +768,11 @@ img {
 
 .div-formulario p {
     margin: 0;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .div-filie-input {
-    width: 50%;
+    width: 100%;
 }
 
 .custom-input-filie-nome {
@@ -790,7 +788,7 @@ img {
 }
 
 .custom-input-filie-text-area {
-    width: 400px;
+    width: 400px !important;
     height: 150px !important;
     font-size: 14px;
     border: 1px solid #aaa;
@@ -830,6 +828,12 @@ img {
 
 .custom-btn-filie-enviar:hover {
     background-color: #006aff;
+}
+
+.img-banner-pe {
+    padding: 0;
+    width: 400px;
+    height: auto;
 }
 /* FIM FILIE */
 
@@ -4452,6 +4456,8 @@ footer {
     }
 }
 /* PAGINA BLACK BELTS */
+
+/* PAGINA INDEX */
 @media (max-width: 1365px) {
     .header-section {
         padding: 60px 10px;
@@ -4752,5 +4758,50 @@ footer {
 }
 /* PAGINA INDEX */
 
-/* PAGINA INDEX */
+/* PAGINA FILIE */
+@media (max-width: 1000px) {
+    .div-formulario {
+        gap: 60px;
+    }
+}
+
+@media (max-width: 920px) {
+    .div-formulario {
+        gap: 10px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .separator-form {
+        width: 400px;
+    }
+}
+
+@media (max-width: 690px) {
+    .img-banner-pe {
+        width: 300px;
+    }
+
+    .separator-form {
+        width: 300px;
+    }
+
+    .div-formulario h2 {
+        font-size: 1.2rem;
+    }
+
+    .custom-input-filie-nome {
+        width: 300px;
+    }
+
+    .custom-input-filie-text-area {
+        width: 300px !important;
+    }
+
+    .custom-input-filie-upload {
+        width: 300px;
+    }
+}
+/* PAGINA FILIE */
 /* FIM RESPONSIVIDADE */
